@@ -6,12 +6,14 @@ using System.IO; //for StreamReader
 
 //This class handles the true and false questions
 public class TFQuizHandler : MonoBehaviour
-{ 
-	// Use this for initialization
-	void Start ()
+{
+    //list of Question objects
+    public List<Question> qnsList;
+
+    // Use this for initialization
+    void Start ()
     {
-        //list of Question objects
-        List<Question> qnsList = new List<Question>();
+        qnsList = new List<Question>();
         //temporary store for the string that is read in line by line from the text file
         string line = "";
         //temporary stre for elements of a string split

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Question : MonoBehaviour {
+public class Question{
 
     public Question(string q, string a, string wa)
     {
@@ -13,6 +13,7 @@ public class Question : MonoBehaviour {
 
     public string question;
     public string answer;
+    //for displaying mcq options
     public string wrongAns;
-   
+    
 }
