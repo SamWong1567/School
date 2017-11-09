@@ -26,8 +26,7 @@ public class GameManager : MonoBehaviour {
     private Text QnsText;
 
     Boolean clearStage = false;
-
-    //counter to display every subsequent question
+    //counter for changing questions to display
     static int counter = 0;
 
     //delay when changing question
@@ -42,11 +41,11 @@ public class GameManager : MonoBehaviour {
         try
         {
             //Read text file and extract it's contents line by line
-            //The contents store the question as well as the answers
             StreamReader sr = new StreamReader(filePath);
 
             while ((line = sr.ReadLine()) != null)
             {
+
                 //split contents in file with the delimiter ','
                 tempArray = line.Split(',');
                 q = tempArray[0];
@@ -62,7 +61,7 @@ public class GameManager : MonoBehaviour {
         {
             Debug.LogException(e, this);
         }
-        //Proceed to display question after loading in the questions
+
         displayQuestion();
         
     }
@@ -86,7 +85,7 @@ public class GameManager : MonoBehaviour {
         checkAnswer(a);
     }
 
-    //check if answer chosen by user is correct or wrong
+    //check if answer is correct or wrong
     public void checkAnswer(String ans)
     {
         if(ans.Equals(qnsList[counter].answer))
