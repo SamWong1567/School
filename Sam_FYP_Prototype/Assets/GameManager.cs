@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI;//for using Text
 using System; //for try catch blocks
 using System.IO; //for StreamReader
 
@@ -19,18 +19,21 @@ public class GameManager : MonoBehaviour {
     string a;
     // temporary store for wrong answer
     string wa;
-    //identifies current question
+    //identifies current question NOT USED
     private Question currentQns;
     //to allow questions to be edited in the unity editor. Dragged text under panel into game manager QnsText field
     [SerializeField]
-    private Text QnsText;
+    private Text qnsText;
 
-    Boolean clearStage = false;
+    
     //counter for changing questions to display
     static int counter = 0;
 
     //delay when changing question
     private float delayBetweenQuestions = 1f;
+
+    //Yet to use this var. Prob use to calculate score
+    Boolean clearStage = false;
 
     //called everytime you load/reload a scene
     void Start()
@@ -65,20 +68,20 @@ public class GameManager : MonoBehaviour {
         displayQuestion();
         
     }
-    //display questions at the panel
+    //display questions at the question panel
     void displayQuestion()
     {
-        QnsText.text = qnsList[counter].question;
+        qnsText.text = qnsList[counter].question;
         
     }
-    //method is called when true button is clicked
+    //method is called when true button is tapped
     public void trueButton()
     {
         String a = "True";
         checkAnswer(a);
     }
 
-    //method is called when false button is clicked
+    //method is called when false button is tapped
     public void falseButton()
     {
         String a = "False";

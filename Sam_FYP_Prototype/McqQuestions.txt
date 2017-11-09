@@ -1,0 +1,2 @@
+1.Which of the following values should you assign to int?,1,2.5,1 000 000,0.0008
+2.Why variable should you use when declaring a text?,string,boolean,int,double
