@@ -24,9 +24,8 @@ public class GameManager : MonoBehaviour {
     //to allow questions to be edited in the unity editor. Dragged text under panel into game manager QnsText field
     [SerializeField]
     private Text qnsText;
-
     
-    //counter for changing questions to display
+    //counter for transiting to next question
     static int counter = 0;
 
     //delay when changing question
@@ -94,6 +93,7 @@ public class GameManager : MonoBehaviour {
         if(ans.Equals(qnsList[counter].answer))
         {
             clearStage = true;
+            //increase question counter by 1
             counter++;
             StartCoroutine(TransitionToNextQuestion());
         }

@@ -55,7 +55,16 @@ public class GameManagerMCQ : MonoBehaviour
     //fixed string to be displayed at option 4 button
     string option4Text = "D: ";
 
-    //counter for changing questions to display
+    //variable to temporarily store the answer for checking purpose
+    string s1;
+    //variable to temporarily store the answer for checking purpose
+    string s2;
+    //variable to temporarily store the answer for checking purpose
+    string s3;
+    //variable to temporarily store the answer for checking purpose
+    string s4;
+
+    //counter for transiting to next question
     static int counter = 0;
 
     //delay when changing question
@@ -116,8 +125,10 @@ public class GameManagerMCQ : MonoBehaviour
         //Option 1 button 
         //randoms a number between 0 and the size of the list of wrong answers
         randomIndex = UnityEngine.Random.Range(0, tempList.Count);
+        //store answer to variable before concatenating the fixed message to be displayed
+        s1 = tempList[randomIndex];
         //assign first random answer to be displayed at option 1 button
-        //as well as concatenating the fixed msg to be displayed
+        //as well as concatenating the fixed message to be displayed
         optionField1.text = option1Text + tempList[randomIndex];
         //remove this answer from templist
         tempList.RemoveAt(randomIndex);
@@ -125,8 +136,10 @@ public class GameManagerMCQ : MonoBehaviour
         //Option 2 button
         //randoms a number between 0 and the size of the list of wrong answers
         randomIndex = UnityEngine.Random.Range(0, tempList.Count);
+        //store answer to variable before concatenating the fixed message to be displayed
+        s2 = tempList[randomIndex];
         //assign first random answer to be displayed at option 2 button
-        //as well as concatenating the fixed msg to be displayed
+        //as well as concatenating the fixed message to be displayed
         optionField2.text = option2Text + tempList[randomIndex];
         //remove this answer from templist
         tempList.RemoveAt(randomIndex);
@@ -134,18 +147,80 @@ public class GameManagerMCQ : MonoBehaviour
         //Option 3 button
         //randoms a number between 0 and the size of the list of wrong answers
         randomIndex = UnityEngine.Random.Range(0, tempList.Count);
+        //store answer to variable before concatenating the fixed message to be displayed
+        s3 = tempList[randomIndex];
         //assign first random answer to be displayed at option 3 button
-        //as well as concatenating the fixed msg to be displayed
+        //as well as concatenating the fixed message to be displayed
         optionField3.text = option3Text + tempList[randomIndex];
         //remove this answer from templist
         tempList.RemoveAt(randomIndex);
 
         //Option 4 button
         //since only 1 element is left. There is no need for randomizing
-        //concatenating the fixed msg to be displayed
+        //store answer to variable before concatenating the fixed message to be displayed
+        s4 = tempList[0];
+        //concatenating the fixed message to be displayed
         optionField4.text = option4Text + tempList[0];
 
-    }      
+    }   
+    
+    //method is called when option 1 button is tapped
+    public void optionButton1()
+    {
+        //checks the answer displayed at option 1 button
+        checkAns(s1);
+    }
+
+    //method is called when option 2 button is tapped
+    public void optionButton2()
+    {
+        //checks the answer displayed at option 2 button
+        checkAns(s2);
+    }
+
+    //method is called when option 3 button is tapped
+    public void optionButton3()
+    {
+        //checks the answer displayed at option 3 button
+        checkAns(s3);
+    }
+
+    //method is called when option 4 button is tapped
+    public void optionButton4()
+    {
+        //checks the answer displayed at option 4 button
+        checkAns(s4);
+    }
+
+    //check if the answer selected by the user is correct
+    public void checkAns(String ans)
+    {
+        if(ans.Equals(mcqQnsList[counter].answer))
+        {
+            print(ans);
+            print(mcqQnsList[counter].answer);
+            //increase question counter by 1
+            counter++;
+            print("CORRECT");
+            StartCoroutine(TransitionToNextQuestion());
+        }
+        else
+        {
+            print(ans);
+            print(mcqQnsList[counter].answer);
+            counter++;
+            print("WRONG");
+            StartCoroutine(TransitionToNextQuestion());
+        }
+    }
+
+    //delay before displaying next question
+    IEnumerator TransitionToNextQuestion()
+    {
+        yield return new WaitForSeconds(delayBetweenQuestions);
+        displayQuestion();
+        displayAnswers();
+    }
 }
 
 
