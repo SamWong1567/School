@@ -8,7 +8,7 @@ using System.IO; //for StreamReader
 public class GameManager : MonoBehaviour {
 
     //list of Question objects
-    private static List<Question> qnsList = new List<Question>();
+    private List<Question> qnsList = new List<Question>();
     //temporary store for the string that is read in line by line from the text file
     string line = "";
     //temporary stre for elements of a string split
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
     private Text qnsText;
     
     //counter for transiting to next question
-    static int counter = 0;
+     int counter = 0;
 
     //delay when changing question
     private float delayBetweenQuestions = 1f;
