@@ -193,7 +193,7 @@ public class GameManagerMCQ : MonoBehaviour
     }
 
     //check if the answer selected by the user is correct
-    public void checkAns(String ans)
+    public void checkAns(string ans)
     {
         if(ans.Equals(mcqQnsList[counter].answer))
         {

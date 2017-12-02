@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;//for using Text
 using System; //for try catch blocks
 using System.IO; //for StreamReader
-
+using UnityEngine.SceneManagement;//for loading between scenes
 public class GameManager : MonoBehaviour {
 
     //list of Question objects
@@ -76,19 +76,19 @@ public class GameManager : MonoBehaviour {
     //method is called when true button is tapped
     public void trueButton()
     {
-        String a = "True";
+        string a = "True";
         checkAnswer(a);
     }
 
     //method is called when false button is tapped
     public void falseButton()
     {
-        String a = "False";
+        string a = "False";
         checkAnswer(a);
     }
 
     //check if answer is correct or wrong
-    public void checkAnswer(String ans)
+    public void checkAnswer(string ans)
     {
         if(ans.Equals(qnsList[counter].answer))
         {
@@ -109,6 +109,13 @@ public class GameManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(delayBetweenQuestions);
         displayQuestion();
+    }
+
+    //function to load to another scene
+    public void loadScene(string sceneName)
+    {
+        //load to the specific scene name that was passed into the parameter
+        SceneManager.LoadScene(sceneName);
     }
 
 }
