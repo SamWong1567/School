@@ -5,117 +5,82 @@ using UnityEngine.UI;//for using Text
 using System; //for try catch blocks
 using System.IO; //for StreamReader
 using UnityEngine.SceneManagement;//for loading between scenes
+//Script for True False Scene
 public class GameManager : MonoBehaviour {
 
-    //list of Question objects
-    private List<Question> qnsList = new List<Question>();
-    //temporary store for the string that is read in line by line from the text file
-    string line = "";
-    //temporary stre for elements of a string split
-    string[] tempArray;
-    // temporary store for question
-    string q;
-    // temporary store for answer
-    string a;
-    // temporary store for wrong answer
-    string wa;
-    //identifies current question NOT USED
-    private Question currentQns;
     //to allow questions to be edited in the unity editor. Dragged text under panel into game manager QnsText field
     [SerializeField]
     private Text qnsText;
-    
-    //counter for transiting to next question
-     int counter = 0;
 
     //delay when changing question
     private float delayBetweenQuestions = 1f;
 
-    //Yet to use this var. Prob use to calculate score
-    Boolean clearStage = false;
+    GameObject gameManagerForCSS;
+    GameManagerConceptSelectionScreen gcss;
 
     //called everytime you load/reload a scene
     void Start()
     {
-        //get relative path to file as opposed to abosolute so that the file can be read on any computer
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "TFQuestions.txt");
-
-        try
-        {
-            //Read text file and extract it's contents line by line
-            StreamReader sr = new StreamReader(filePath);
-
-            while ((line = sr.ReadLine()) != null)
-            {
-
-                //split contents in file with the delimiter ','
-                tempArray = line.Split(',');
-                q = tempArray[0];
-                a = tempArray[1];
-                wa = tempArray[2];
-                //creating and adding instance of Question objects to qnsList  
-                qnsList.Add(new Question(q, a, wa));
-
-            }
-            sr.Close();
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e, this);
-        }
-
-        displayQuestion();
-        
+        //retrieve the game object called GameManager
+        gameManagerForCSS = GameObject.Find("GameManager");
+        //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
+        gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
+        DisplayQuestion();
     }
+
     //display questions at the question panel
-    void displayQuestion()
+    void DisplayQuestion()
     {
-        qnsText.text = qnsList[counter].question;
-        
+        print(gcss.randomNum);
+        qnsText.text = gcss.qnsList[gcss.randomNum].question;
     }
+    
     //method is called when true button is tapped
-    public void trueButton()
+    public void TrueButton()
     {
         string a = "True";
-        checkAnswer(a);
+        CheckAnswer(a);
     }
 
     //method is called when false button is tapped
-    public void falseButton()
+    public void FalseButton()
     {
         string a = "False";
-        checkAnswer(a);
+        CheckAnswer(a);
     }
-
-    //check if answer is correct or wrong
-    public void checkAnswer(string ans)
+    
+    //check if answer chosen by user is correct or wrong
+    public void CheckAnswer(string ans)
     {
-        if(ans.Equals(qnsList[counter].answer))
+        print(gcss.qnsList[gcss.randomNum].correctAnswer[0]);
+        if(ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {
-            clearStage = true;
-            //increase question counter by 1
-            counter++;
-            StartCoroutine(TransitionToNextQuestion());
+            print("correct");
+            //add score here
+            //StartCoroutine(TransitionToNextQuestion());
         }
         else
         {
-            counter++;
-            StartCoroutine(TransitionToNextQuestion());
+            print("wrong");
+            //no score will be added    
+            //StartCoroutine(TransitionToNextQuestion());
         }
+        gcss.callNextQuestion();
     }
 
     //delay before displaying next question
     IEnumerator TransitionToNextQuestion ()
     {
         yield return new WaitForSeconds(delayBetweenQuestions);
-        displayQuestion();
+        DisplayQuestion();
     }
 
     //function to load to another scene
-    public void loadScene(string sceneName)
+    public void LoadScene(string sceneName)
     {
         //load to the specific scene name that was passed into the parameter
         SceneManager.LoadScene(sceneName);
     }
 
 }
+

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System; //for try catch blocks
 using System.IO; //for StreamReader
-
+/*
 //This class handles the true and false questions
 public class TFQuizHandler : MonoBehaviour
 {
@@ -50,7 +50,7 @@ public class TFQuizHandler : MonoBehaviour
                 print(qnsList[counter].wrongAns);
                 counter++;
                 */
-                
+              /*  
             }
             sr.Close();
         }
@@ -61,4 +61,5 @@ public class TFQuizHandler : MonoBehaviour
 
     }
 
-}
+}*/
+

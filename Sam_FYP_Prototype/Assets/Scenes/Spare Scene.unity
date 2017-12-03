@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1630024355}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameManagerSpareScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

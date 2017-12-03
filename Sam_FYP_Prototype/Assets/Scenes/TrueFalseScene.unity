@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 396889726}
   - component: {fileID: 396889725}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameManagerTrueFalse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -745,7 +745,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 396889725}
-        m_MethodName: falseButton
+        m_MethodName: FalseButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1770,7 +1770,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 396889725}
-        m_MethodName: trueButton
+        m_MethodName: TrueButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
