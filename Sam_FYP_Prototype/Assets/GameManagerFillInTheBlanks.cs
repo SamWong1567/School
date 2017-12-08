@@ -8,7 +8,11 @@ using System.Linq;
 public class GameManagerFillInTheBlanks : MonoBehaviour {
 
     GameObject gameManagerForCSS;
+    GameObject imageParent;
+    GameObject panel;
+    public GameObject blanksToFillIn;
     GameManagerConceptSelectionScreen gcss;
+
 
     //to allow questions to be edited in the unity editor. 
     [SerializeField]
@@ -49,12 +53,26 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             for (int j = 0; j < templist2.Length; j++)
             {
                 qnsText.text += arrayOfArrays[i][j] +  '\n';
+                InstantiatePrefab();
             }
-
-            //qnsText.text += '\n';
-
         }
         
+    }
+
+    public void InstantiatePrefab()
+    {
+        imageParent = GameObject.Find("Panel");
+        GameObject blanks = Instantiate(blanksToFillIn) as GameObject;
+        blanks.transform.SetParent(imageParent.transform);
+        //scale the instantiated prefab to its original size. Became smaller after instantiating
+        blanks.transform.localScale = new Vector3(1, 1, 1);
+        //panel = GameObject.Find("Panel");
+        //get height of component
+        //float width =  (panel.GetComponent<panel>().rect.width)/2;
+        //float height = (panel.GetComponent<RectTransform>().rect.height)/2 ;
+
+        //positioning it
+        blanks.transform.localPosition = Vector3.zero;
     }
 	
 
