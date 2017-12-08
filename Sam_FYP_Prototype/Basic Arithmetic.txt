@@ -37,7 +37,12 @@ bankAmount
 3
 1. myMoney <- 1000
 2. bankBal <- 5000
-3. total <- _ + _
+3. total <-_+_
 2
 myMoney
 bankBal
+
+1
+1
+Is Aditya gay?
+True

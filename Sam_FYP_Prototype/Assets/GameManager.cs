@@ -7,9 +7,12 @@ using System.IO; //for StreamReader
 using UnityEngine.SceneManagement;//for loading between scenes
 //Script for True False Scene
 public class GameManager : MonoBehaviour {
+    //PROBABLY YHAVE TO DELETE THIS
+    GameObject tryAgain;
+    float time;
 
-    //to allow questions to be edited in the unity editor. Dragged text under panel into game manager QnsText field
-    [SerializeField]
+   //to allow questions to be edited in the unity editor. Dragged text under panel into game manager QnsText field
+   [SerializeField]
     private Text qnsText;
 
     //delay when changing question
@@ -17,6 +20,8 @@ public class GameManager : MonoBehaviour {
 
     GameObject gameManagerForCSS;
     GameManagerConceptSelectionScreen gcss;
+
+    public GameObject tryAgainPrefab;
 
     //called everytime you load/reload a scene
     void Start()
@@ -28,6 +33,15 @@ public class GameManager : MonoBehaviour {
         DisplayQuestion();
     }
 
+    private void Update()
+    {
+        int duration = 2;
+        
+        if (Time.time > time + duration)
+        {
+            Destroy(tryAgain);
+        }
+    }
     //display questions at the question panel
     void DisplayQuestion()
     {
@@ -56,16 +70,24 @@ public class GameManager : MonoBehaviour {
         if(ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {
             print("correct");
+            gcss.callNextQuestion();
             //add score here
             //StartCoroutine(TransitionToNextQuestion());
         }
         else
         {
             print("wrong");
+            GameObject canvas = GameObject.Find("Canvas");
+            tryAgain = Instantiate(tryAgainPrefab) as GameObject;
+            tryAgain.transform.SetParent(canvas.transform,false);
+
+            time = Time.time;
+            
+      
             //no score will be added    
             //StartCoroutine(TransitionToNextQuestion());
         }
-        gcss.callNextQuestion();
+        
     }
 
     //delay before displaying next question
