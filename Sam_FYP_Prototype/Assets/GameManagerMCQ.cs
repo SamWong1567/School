@@ -81,7 +81,7 @@ public class GameManagerMCQ : MonoBehaviour
     void DisplayAnswers()
     {
         //Convert array of wrong anaswers to a list
-        tempList = gcss.qnsList[gcss.randomNum].wrongAns.ToList();
+        tempList = gcss.qnsList[gcss.randomNum].wrongAns.ToList().GetRange(0,3);
         //add the correct answer for the mcq question into the list
         tempList.Add(gcss.qnsList[gcss.randomNum].correctAnswer[0]);
 

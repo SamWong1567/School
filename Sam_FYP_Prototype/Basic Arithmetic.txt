@@ -32,6 +32,15 @@ double
 2
 salary
 bankAmount
+8
+111
+222
+333
+444
+55
+66
+77
+88
 
 3
 3
@@ -41,6 +50,12 @@ bankAmount
 2
 myMoney
 bankBal
+5
+asd
+ddd
+fff
+sss
+431
 
 1
 1

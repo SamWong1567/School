@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class GameManagerFillInTheBlanks : MonoBehaviour {
 
@@ -12,12 +13,11 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     GameObject panel;
     public GameObject panelPrefab;
     public GameObject pseudocodeBlockPrefab;
+
+    public GameObject optionPanelPrefab;
+    public GameObject answerBlockPrefab;
+
     GameManagerConceptSelectionScreen gcss;
-
-
-    //to allow questions to be edited in the unity editor. 
-    [SerializeField]
-    private Text qnsText;
 
     string[] pseudocodes;
 
@@ -34,8 +34,9 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
         SplitString();
-        InstantiatePrefab();
-       // DisplayPseudocode();
+        DisplayPseudocode();
+        DisplayAnsOptions();
+
     }
 
     //split the string that is read in from the file
@@ -61,15 +62,8 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         }
     }
 
-    
-    public void DisplayPseudocode()
-    {
-
-
-    }
-
     ////display pesudocode onto the panel
-    public void InstantiatePrefab()
+    public void DisplayPseudocode()
     {
         //parent panel
         parentPanel = GameObject.Find("Panel");
@@ -89,16 +83,19 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
                 //print button for each element
                 GameObject pseudocodeBlock = Instantiate(pseudocodeBlockPrefab) as GameObject;
                 pseudocodeBlock.transform.SetParent(subsequentPanels.transform,false);
-
+                //get access to change the text on the button
                 Text codeText = pseudocodeBlock.GetComponentInChildren<Text>();
-
+                //if string is a pseudocode
                 if (arrayOfArrays[i][j] != "_")
                 {
                     Image image = pseudocodeBlock.GetComponent<Image>();
                     Color c = image.color;
+                    //changing the alpha to 0 for complete transparency
                     c.a = 0;
                     image.color = c;
                 }
+                //if string is a blank to be filled in extend the blank for visibility 
+                //else print the psuedocode statement
                 codeText.text = arrayOfArrays[i][j] == "_"? "___": arrayOfArrays[i][j];
                 
             }
@@ -115,7 +112,69 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         //positioning it
         //blanks.transform.localPosition = Vector3.zero;
     }
-	
+
+    //Display the answer options for the specific fill in the blanks question
+    public void DisplayAnsOptions()
+    {
+        //list to temporarily store the wrong answers
+        List<string> tempList = new List<string>();
+        int count = 0;
+
+        while (true)
+        {
+            if (gcss.qnsList[gcss.randomNum].wrongAns.Length == count || string.IsNullOrEmpty(gcss.qnsList[gcss.randomNum].wrongAns[count]))
+            {
+                print("reached");
+                break;
+            }
+            tempList.Add(gcss.qnsList[gcss.randomNum].wrongAns[count]);
+            count++;
+        }
+        print(tempList.Count + " size of list");
+        print(tempList[0]);
+        //reset counter
+        count = 0;
+
+        //add the correct answers into the list as well in order to be displayed
+        while (true)
+        {
+            if(gcss.qnsList[gcss.randomNum].correctAnswer.Length == count || string.IsNullOrEmpty(gcss.qnsList[gcss.randomNum].correctAnswer[count]))
+            {
+                break;
+            }
+            tempList.Add(gcss.qnsList[gcss.randomNum].correctAnswer[count]);
+            count++;
+        }
+
+        print(tempList.Count + " ackasndkansdkasn kasndkl nasdkasn ls");
+        //get access to the panel to display the options
+        GameObject parentOptionsPanel = GameObject.Find("OptionsPanel");
+        
+        //instantiate stuff
+        for(int i =0; i<tempList.Count; i++)
+        {
+            //instantiate row
+            GameObject optionPanel = Instantiate(optionPanelPrefab) as GameObject;
+            //set parent to optionsPanel
+            optionPanel.transform.SetParent(parentOptionsPanel.transform, false);
+            //instantiate option button
+            GameObject answerBlock = Instantiate(answerBlockPrefab) as GameObject;
+            //set parent to row
+            answerBlock.transform.SetParent(optionPanel.transform, false);
+
+            /*
+             *Instantiate button
+                then current width - button.width
+                if(nextButton.width < leftOverWidth)
+                {continue to instantiate}
+                else{
+                make a new panel (row)}
+                //repeat for loop
+             */
+        }
+
+    }
+
 
 
 }

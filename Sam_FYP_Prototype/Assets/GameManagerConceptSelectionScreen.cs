@@ -27,8 +27,8 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         string question = "";
         //temporary store for correctanswer
         string[] correctAnswer = new string[10];
-        //temporary store for wrongAnswer
-        string[] wrongAnswer = new string[3];
+        //temporary store for wrongAnswer for MCQ and Fill in the blanks question
+        string[] wrongAnswer = new string[10];
         //number to identify the type of question
         // 1 = true/false question 
         // 2 = MCQ 
@@ -36,6 +36,8 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         int qnsType;
         //number of lines in the question for "for" loop purposes
         int numberOfQnsLines;
+        //number of wrong answers in the question for "for" loop purposes
+        int numberOfWrongAns;
         //for fill in the blanks
         int numberOfCorrectAnswers;
         
@@ -101,11 +103,23 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                     }
                     
                 }
+
+                //if it is fill in the blanks question, read in the question's wrong options
+                else if(qnsType == 3)
+                {
+                    numberOfWrongAns = int.Parse(sr.ReadLine());
+                    //number of options to read in
+                    for (int i = 0; i<numberOfWrongAns; i++)
+                    {
+                        wrongAnswer[i] = sr.ReadLine();
+                    }
+                }
+
                 else
                 {
-                    wrongAnswer = new string[3];
+                    wrongAnswer = new string[10];
                 }
-                
+
                 //creating and adding instance of Question objects to qnsList  
                 qnsList.Add(new Question(question, correctAnswer, wrongAnswer, qnsType));
                 //skip empty line between questions in the textfile
