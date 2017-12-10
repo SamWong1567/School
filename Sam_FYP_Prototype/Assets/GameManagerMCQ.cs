@@ -80,7 +80,7 @@ public class GameManagerMCQ : MonoBehaviour
     //display answers for the MCQ question randomly across the 4 option buttons
     void DisplayAnswers()
     {
-        //Convert array of wrong anaswers to a list
+        //Convert array of wrong anaswers to a list but only from elements 0 to 2 as there are only 3 wrong answers
         tempList = gcss.qnsList[gcss.randomNum].wrongAns.ToList().GetRange(0,3);
         //add the correct answer for the mcq question into the list
         tempList.Add(gcss.qnsList[gcss.randomNum].correctAnswer[0]);

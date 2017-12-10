@@ -8,26 +8,26 @@ using System;
 
 public class GameManagerFillInTheBlanks : MonoBehaviour {
 
-    GameObject gameManagerForCSS;
+    //variables for displaying pseudocode
     GameObject parentPanel;
     GameObject panel;
     public GameObject panelPrefab;
     public GameObject pseudocodeBlockPrefab;
 
+    //variables for displaying answer options
     public GameObject optionPanelPrefab;
     public GameObject answerBlockPrefab;
+    int randomIndex;
 
+    GameObject gameManagerForCSS;
     GameManagerConceptSelectionScreen gcss;
-
-    string[] pseudocodes;
 
     //Array of arrays to store the pseudocodes to be displayed
     string[][] arrayOfArrays = new string[30][];
 
     int numOfRows;
 
-    // Use this for initialization
-    void Start ()
+    void Start()
     {
         //retrieve the game object called GameManager
         gameManagerForCSS = GameObject.Find("GameManager");
@@ -35,8 +35,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
         SplitString();
         DisplayPseudocode();
-        DisplayAnsOptions();
-
+        StartCoroutine(DisplayAnsOptions());
     }
 
     //split the string that is read in from the file
@@ -100,21 +99,10 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
                 
             }
         }
-        
-        
-        //blanks.transform.SetParent(imageParent.transform);
-        //scale the instantiated prefab to its original size. Became smaller after instantiating
-        //blanks.transform.localScale = new Vector3(1, 1, 1);
-        
-        //get height of component
-        //float width =  (panel.GetComponent<panel>().rect.width)/2;
-        //float height = (panel.GetComponent<RectTransform>().rect.height)/2 ;
-        //positioning it
-        //blanks.transform.localPosition = Vector3.zero;
     }
 
     //Display the answer options for the specific fill in the blanks question
-    public void DisplayAnsOptions()
+    IEnumerator DisplayAnsOptions()
     {
         //list to temporarily store the wrong answers
         List<string> tempList = new List<string>();
@@ -145,34 +133,103 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             tempList.Add(gcss.qnsList[gcss.randomNum].correctAnswer[count]);
             count++;
         }
+        //reset counter for below use
+        count = 0;
+        int listSize = tempList.Count;
 
         print(tempList.Count + " ackasndkansdkasn kasndkl nasdkasn ls");
+
         //get access to the panel to display the options
         GameObject parentOptionsPanel = GameObject.Find("OptionsPanel");
-        
-        //instantiate stuff
-        for(int i =0; i<tempList.Count; i++)
-        {
-            //instantiate row
-            GameObject optionPanel = Instantiate(optionPanelPrefab) as GameObject;
-            //set parent to optionsPanel
-            optionPanel.transform.SetParent(parentOptionsPanel.transform, false);
-            //instantiate option button
-            GameObject answerBlock = Instantiate(answerBlockPrefab) as GameObject;
-            //set parent to row
-            answerBlock.transform.SetParent(optionPanel.transform, false);
+        //instantiate row
+        GameObject optionPanel = Instantiate(optionPanelPrefab) as GameObject;
+        //set parent to optionsPanel
+        optionPanel.transform.SetParent(parentOptionsPanel.transform, false);
+        //instantiate first option button
+        GameObject answerBlock = Instantiate(answerBlockPrefab) as GameObject;
+        //set parent to row
+        answerBlock.transform.SetParent(optionPanel.transform, false);
+        //keeps track of the row that i'm at
+        GameObject row = optionPanel;
 
-            /*
-             *Instantiate button
-                then current width - button.width
-                if(nextButton.width < leftOverWidth)
-                {continue to instantiate}
-                else{
-                make a new panel (row)}
-                //repeat for loop
-             */
+        //randoms a answer option to be displayed
+        randomIndex = UnityEngine.Random.Range(0, tempList.Count);
+        //displayes the text on the answer block
+        Text answerBlockText = answerBlock.GetComponentInChildren<Text>();
+        answerBlockText.text = tempList[randomIndex];
+        //remove this answer from the list
+        tempList.RemoveAt(randomIndex);
+
+        //get the width of answerBlock in the next frame
+        yield return new WaitForEndOfFrame();
+        float answerBlockWidth = GetWidthOfGameObject(answerBlock);
+
+        print("asdasdasdasd " + answerBlockWidth);
+        //get width of optionPanel
+        float optionPanelWidth = GetWidthOfGameObject(row);
+        print("panel W" + optionPanelWidth);
+        //get leftover space
+        float availablePanelSpace = optionPanelWidth - answerBlockWidth;
+        print("availableSpace  outside" + availablePanelSpace);
+
+
+        while (true)
+        {
+            //instantiate subsequent blocks
+            GameObject subsequentBlock = Instantiate(answerBlockPrefab) as GameObject;
+            count++;
+
+            randomIndex = UnityEngine.Random.Range(0, tempList.Count);
+            answerBlockText = subsequentBlock.GetComponentInChildren<Text>();
+            answerBlockText.text = tempList[randomIndex];
+            tempList.RemoveAt(randomIndex);
+            print("size of temp list" + tempList.Count);
+
+            //get width of subsequent block
+            yield return new WaitForEndOfFrame();
+            float subsequentBlockWidth = GetWidthOfGameObject(subsequentBlock);
+            print(count + "block width " + subsequentBlockWidth);
+
+
+            if(subsequentBlockWidth <= availablePanelSpace)
+            {   
+                //set parent to current row
+                subsequentBlock.transform.SetParent(row.transform, false);
+                //update leftover space
+                availablePanelSpace -= subsequentBlockWidth;
+            print(count + "availableSpace  " + availablePanelSpace);
+            }
+            
+            else
+            {
+                //make a new row
+                row = Instantiate(optionPanelPrefab) as GameObject;
+                //set new row to parentPanel
+                row.transform.SetParent(parentOptionsPanel.transform, false);
+                //get width of new row
+                yield return new WaitForEndOfFrame();
+                availablePanelSpace = GetWidthOfGameObject(row);
+                print("new panel space" + availablePanelSpace);
+                //set block to new row
+                subsequentBlock.transform.SetParent(row.transform, false);
+                //update leftover space
+                availablePanelSpace -= subsequentBlockWidth;
+                print("else " + availablePanelSpace);
+            }
+                
+            if((listSize - 1) == count)
+            {
+                break;
+            }     
         }
 
+    }
+
+    public float GetWidthOfGameObject(GameObject obj)
+    {
+        RectTransform objRT = obj.GetComponent<RectTransform>();
+        float temp = objRT.rect.width;
+        return temp;
     }
 
 
