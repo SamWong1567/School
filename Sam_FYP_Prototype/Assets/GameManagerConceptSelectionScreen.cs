@@ -124,6 +124,8 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 qnsList.Add(new Question(question, correctAnswer, wrongAnswer, qnsType));
                 //skip empty line between questions in the textfile
                 sr.ReadLine();
+                wrongAnswer = new string[10];
+                correctAnswer = new string[10];
                 /*
                 //print("size: " + qnsList.Count);
                 //print("count: " +count);
@@ -141,7 +143,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 print(count + "correct answer: " + qnsList[count].correctAnswer[0]);
                 count++;
                 */
-                
+
             }
             /*
             for (count = 0; count < 5; count++)

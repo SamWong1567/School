@@ -29,7 +29,9 @@ double
 1. salary <- 1000
 2. bankAmount <- 5000
 3. totalMoney <- _ + _
-2
+4
+asdasd121
+asdasd
 salary
 bankAmount
 8
