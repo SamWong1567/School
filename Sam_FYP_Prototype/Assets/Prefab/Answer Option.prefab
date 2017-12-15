@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 114752986176186450}
   - component: {fileID: 114124036087877436}
   - component: {fileID: 114182190206009434}
-  - component: {fileID: 114363584141025274}
+  - component: {fileID: 114706197789779430}
   m_Layer: 0
-  m_Name: Blanks
+  m_Name: Answer Option
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!114 &114363584141025274
+--- !u!114 &114706197789779430
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -152,13 +152,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1366722995225376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b842d683ab1909e4e92cb3b80f618ea8, type: 3}
+  m_Script: {fileID: 11500000, guid: fa18032af0bfaa5489d95e903233f93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelPrefab: {fileID: 0}
-  pseudocodeBlockPrefab: {fileID: 0}
-  optionPanelPrefab: {fileID: 0}
-  answerBlockPrefab: {fileID: 0}
+  buttonIndex: 0
 --- !u!114 &114752986176186450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,18 +194,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114363584141025274}
-        m_MethodName: SelectAnswer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &222189301318786106

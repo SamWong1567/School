@@ -27,6 +27,8 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
 
     GameObject gameManagerForCSS;
     GameManagerConceptSelectionScreen gcss;
+    AnswerButtonIndex ansBtnIndex;
+    StoreAnsButtonIndex storeAnsBtnIndex;
 
     //Array of arrays to store the pseudocodes to be displayed
     string[][] arrayOfArrays = new string[30][];
@@ -178,6 +180,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         answerBlock.transform.SetParent(optionPanel.transform, false);
         //keeps track of the row that i'm at
         GameObject row = optionPanel;
+        
 
         //randoms a answer option to be displayed
         randomIndex = UnityEngine.Random.Range(0, tempList.Count);
@@ -195,6 +198,10 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         buttonTemp.onClick.AddListener(delegate { SelectAnswer(); });
         //add it to the answer game object list
         AnswersGameObjList.Add(answerBlock);
+        //assign the index of this gameObject to another script
+        ansBtnIndex = answerBlock.GetComponent<AnswerButtonIndex>();
+        ansBtnIndex.buttonIndex = count;
+
         //get width of optionPanel
         float optionPanelWidth = GetWidthOfGameObject(row);
         //get leftover space
@@ -213,6 +220,9 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             buttonTemp.onClick.AddListener(delegate { SelectAnswer(); });
             //add it to the answer game object list
             AnswersGameObjList.Add(subsequentBlock);
+            //assign the index of this gameObject to another script
+            ansBtnIndex = subsequentBlock.GetComponent<AnswerButtonIndex>();
+            ansBtnIndex.buttonIndex = count;
 
             randomIndex = UnityEngine.Random.Range(0, tempList.Count);
             answerBlockText = subsequentBlock.GetComponentInChildren<Text>();
@@ -272,6 +282,8 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     public void SelectAnswer()
     {
         float tempWidth;
+        float tempHeight;
+        int temp;
         //get the game object of the button that is tapped
         GameObject ansButton = EventSystem.current.currentSelectedGameObject;
         //find the very first blank to fill the answer 
@@ -279,10 +291,18 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         {
             if(PseudocodeGameObjList[i].GetComponentInChildren<Text>().text == "___")
             {
+                
                 PseudocodeGameObjList[i].GetComponentInChildren<Text>().text = ansButton.GetComponentInChildren<Text>().text;
-                tempWidth = GetWidthOfGameObject(PseudocodeGameObjList[i]);
                 ansButton.GetComponentInChildren<Text>().text = "";
-                a
+                //keep track of which answer button was tapped
+                temp = ansButton.GetComponentInChildren<AnswerButtonIndex>().buttonIndex;
+                //store this index
+                PseudocodeGameObjList[i].GetComponentInChildren<StoreAnsButtonIndex>().indexStored = temp;
+                //tempWidth = GetWidthOfGameObject(PseudocodeGameObjList[i]);
+                //tempHeight = ansButton.GetComponent<RectTransform>().rect.height;
+                //ansButton.GetComponent<RectTransform>().sizeDelta = new Vector2(tempWidth, tempHeight);
+                //ansButton.GetComponent<ContentSizeFitter>().enabled = false;
+                //ansButton.GetComponent<Button>().enabled = false;
                 break;
             }
         }
@@ -291,12 +311,16 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     //method is called when user decides to remove the answer from the blank in the pseudocodes
     public void RemoveAnswer()
     {
-        string blankPanelName = EventSystem.current.currentSelectedGameObject.name;
+        int index;
         //retrieve the gameObj for the blank
-        GameObject ansButton = GameObject.Find(blankPanelName);
-        Text ansButtonT = ansButton.GetComponentInChildren<Text>();
+        GameObject blankPanel = EventSystem.current.currentSelectedGameObject;
+        //get the index of the answer button to return the text to
+        index = blankPanel.GetComponentInChildren<StoreAnsButtonIndex>().indexStored;
+        //restore the text back to the answer option button
+        AnswersGameObjList[index].GetComponentInChildren<Text>().text = blankPanel.GetComponentInChildren<Text>().text;
         //remove the text shown on the blank panel
-        ansButtonT.text = "___";
+        blankPanel.GetComponentInChildren<Text>().text = "___";
+
     }
 
 

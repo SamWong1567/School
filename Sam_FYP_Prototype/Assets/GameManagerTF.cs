@@ -6,7 +6,7 @@ using System; //for try catch blocks
 using System.IO; //for StreamReader
 using UnityEngine.SceneManagement;//for loading between scenes
 //Script for True False Scene
-public class GameManager : MonoBehaviour {
+public class GameManagerTF : MonoBehaviour {
     //PROBABLY YHAVE TO DELETE THIS
     GameObject tryAgain;
     float time;
