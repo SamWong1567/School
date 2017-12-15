@@ -9,6 +9,10 @@ using UnityEngine.EventSystems;
 
 public class GameManagerFillInTheBlanks : MonoBehaviour {
 
+    //list of game objects
+    List<GameObject> PseudocodeGameObjList = new List<GameObject>();
+    List<GameObject> AnswersGameObjList = new List<GameObject>();
+
     //variables for displaying pseudocode
     GameObject parentPanel;
     GameObject panel;
@@ -86,6 +90,8 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             {
                 //print button for each element
                 GameObject pseudocodeBlock = Instantiate(pseudocodeBlockPrefab) as GameObject;
+                //add to gameObject list
+                PseudocodeGameObjList.Add(pseudocodeBlock);
                 pseudocodeBlock.transform.SetParent(subsequentPanels.transform,false);
                 //get access to change the text on the button
                 Text codeText = pseudocodeBlock.GetComponentInChildren<Text>();
@@ -140,8 +146,6 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             tempList.Add(gcss.qnsList[gcss.randomNum].wrongAns[count]);
             count++;
         }
-        print(tempList.Count + " size of list");
-        print(tempList[0]);
         //reset counter
         count = 0;
 
@@ -159,7 +163,6 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         count = 0;
         int listSize = tempList.Count;
 
-        print(tempList.Count + " ackasndkansdkasn kasndkl nasdkasn ls");
 
         //get access to the panel to display the options
         GameObject parentOptionsPanel = GameObject.Find("OptionsPanel");
@@ -187,15 +190,15 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         //get the width of answerBlock in the next frame
         yield return new WaitForEndOfFrame();
         float answerBlockWidth = GetWidthOfGameObject(answerBlock);
-        //add listener to first block
-        
-        print("asdasdasdasd " + answerBlockWidth);
+        //add listener to first instantiated button
+        Button buttonTemp = answerBlock.GetComponent<Button>();
+        buttonTemp.onClick.AddListener(delegate { SelectAnswer(); });
+        //add it to the answer game object list
+        AnswersGameObjList.Add(answerBlock);
         //get width of optionPanel
         float optionPanelWidth = GetWidthOfGameObject(row);
-        print("panel W" + optionPanelWidth);
         //get leftover space
         float availablePanelSpace = optionPanelWidth - answerBlockWidth;
-        print("availableSpace  outside" + availablePanelSpace);
 
 
         while (true)
@@ -205,6 +208,11 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             subsequentBlock.name = "Answer Option" + namingIndexForAnsButton;
             namingIndexForAnsButton++;
             count++;
+            //add listener to every instantiated button
+            buttonTemp = subsequentBlock.GetComponent<Button>();
+            buttonTemp.onClick.AddListener(delegate { SelectAnswer(); });
+            //add it to the answer game object list
+            AnswersGameObjList.Add(subsequentBlock);
 
             randomIndex = UnityEngine.Random.Range(0, tempList.Count);
             answerBlockText = subsequentBlock.GetComponentInChildren<Text>();
@@ -263,15 +271,21 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     //the answer will then be set to the very first blank
     public void SelectAnswer()
     {
-        string ansButtonName = EventSystem.current.currentSelectedGameObject.name;
-        //retrieve the following gameobjects
-        GameObject ansButton = GameObject.Find(ansButtonName);
-        GameObject blanks = GameObject.Find("Blank to fill in gameObj" + 0);
-        //transfer the text from the selected answer to be shown in the blanks
-        Text ansButtonT = ansButton.GetComponentInChildren<Text>();
-        string temp = ansButtonT.text;
-        Text blanksT = blanks.GetComponentInChildren<Text>();
-        blanksT.text = temp;
+        float tempWidth;
+        //get the game object of the button that is tapped
+        GameObject ansButton = EventSystem.current.currentSelectedGameObject;
+        //find the very first blank to fill the answer 
+        for(int i = 0; i<PseudocodeGameObjList.Count; i++)
+        {
+            if(PseudocodeGameObjList[i].GetComponentInChildren<Text>().text == "___")
+            {
+                PseudocodeGameObjList[i].GetComponentInChildren<Text>().text = ansButton.GetComponentInChildren<Text>().text;
+                tempWidth = GetWidthOfGameObject(PseudocodeGameObjList[i]);
+                ansButton.GetComponentInChildren<Text>().text = "";
+                a
+                break;
+            }
+        }
     }
 
     //method is called when user decides to remove the answer from the blank in the pseudocodes
