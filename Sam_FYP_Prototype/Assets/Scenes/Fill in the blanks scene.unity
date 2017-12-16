@@ -186,7 +186,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 422848293}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1704805942}
+        m_MethodName: checkAnswer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &422848293
@@ -426,7 +437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -77.5}
+  m_AnchoredPosition: {x: 0, y: -77.500015}
   m_SizeDelta: {x: 0, y: -229.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1297524182
@@ -713,7 +724,7 @@ Prefab:
     - target: {fileID: 114861794939566110, guid: fe303315147237b4ebac208afe5ffa8e,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224015932093560936, guid: fe303315147237b4ebac208afe5ffa8e,
         type: 2}
@@ -813,7 +824,7 @@ Prefab:
     - target: {fileID: 114861794939566110, guid: fe303315147237b4ebac208afe5ffa8e,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectAnswer
+      value: checkAnswer
       objectReference: {fileID: 0}
     - target: {fileID: 114861794939566110, guid: fe303315147237b4ebac208afe5ffa8e,
         type: 2}

@@ -37,6 +37,9 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     int namingIndex = 0;
     int namingIndexForAnsButton = 1;
 
+    //array to store the answers chosen by user for tallying with the correct answer
+    string[] AnswersChosenByUser = new string[20];
+
 
     void Start()
     {
@@ -291,36 +294,81 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         {
             if(PseudocodeGameObjList[i].GetComponentInChildren<Text>().text == "___")
             {
-                
-                PseudocodeGameObjList[i].GetComponentInChildren<Text>().text = ansButton.GetComponentInChildren<Text>().text;
-                ansButton.GetComponentInChildren<Text>().text = "";
                 //keep track of which answer button was tapped
                 temp = ansButton.GetComponentInChildren<AnswerButtonIndex>().buttonIndex;
                 //store this index
                 PseudocodeGameObjList[i].GetComponentInChildren<StoreAnsButtonIndex>().indexStored = temp;
+                AnswersChosenByUser[temp] = ansButton.GetComponentInChildren<Text>().text;
+                PseudocodeGameObjList[i].GetComponentInChildren<Text>().text = ansButton.GetComponentInChildren<Text>().text;
+                //add chosen answer into list
+                ansButton.GetComponentInChildren<Text>().text = "";
+                
+
                 //tempWidth = GetWidthOfGameObject(PseudocodeGameObjList[i]);
                 //tempHeight = ansButton.GetComponent<RectTransform>().rect.height;
                 //ansButton.GetComponent<RectTransform>().sizeDelta = new Vector2(tempWidth, tempHeight);
-                //ansButton.GetComponent<ContentSizeFitter>().enabled = false;
-                //ansButton.GetComponent<Button>().enabled = false;
+                //ansButton.GetComponent<Text>().enabled = false;
+                //disable the onClick listern of the button
+                ansButton.GetComponent<Button>().interactable = false;
                 break;
             }
         }
     }
-
+    
     //method is called when user decides to remove the answer from the blank in the pseudocodes
     public void RemoveAnswer()
     {
         int index;
         //retrieve the gameObj for the blank
         GameObject blankPanel = EventSystem.current.currentSelectedGameObject;
-        //get the index of the answer button to return the text to
-        index = blankPanel.GetComponentInChildren<StoreAnsButtonIndex>().indexStored;
-        //restore the text back to the answer option button
-        AnswersGameObjList[index].GetComponentInChildren<Text>().text = blankPanel.GetComponentInChildren<Text>().text;
-        //remove the text shown on the blank panel
+        //if there is an existing answer on the blank
+        if(blankPanel.GetComponentInChildren<Text>().text != "___")
+        {
+            //get the index of the answer button to return the text to
+            index = blankPanel.GetComponentInChildren<StoreAnsButtonIndex>().indexStored;
+            //remove answer stored in list
+            AnswersChosenByUser[index] = null;
+            //restore the text back to the answer option button
+            AnswersGameObjList[index].GetComponentInChildren<Text>().text = blankPanel.GetComponentInChildren<Text>().text;
+            //enable the onClick listern of the button
+            AnswersGameObjList[index].GetComponent<Button>().interactable = true;
+            //AnswersGameObjList[index].GetComponent<>().enabled = true;
+        }
+        //resets the blank panel to empty again
         blankPanel.GetComponentInChildren<Text>().text = "___";
+    }
+    
+    //check answers when the RUN CODE button is tapped
+    public void checkAnswer()
+    {
+        int correctAnsCount = 0;
+        for(int i = 0; i<AnswersChosenByUser.Length; i++)
+        {
+            if(AnswersChosenByUser[i] != null)
+            {
 
+                if (AnswersChosenByUser[i] == (gcss.qnsList[gcss.randomNum].correctAnswer[i]))
+                {
+                    correctAnsCount++;
+                }
+                else
+                {
+                    print("Ans chosen by user" + AnswersChosenByUser[i]);
+                    print(AnswersChosenByUser.Length);
+                    print("correct ans" + gcss.qnsList[gcss.randomNum].correctAnswer[i]);
+                    print(gcss.qnsList[gcss.randomNum].correctAnswer.Length);
+                    print("Wrong");
+                    break;
+                }   
+            }
+        }
+        //if all answers match, then the user has successfully answered the question
+        if (correctAnsCount == gcss.qnsList[gcss.randomNum].correctAnswer.Length)
+        {
+            print("Correct");
+        }
+        print("Count result" + correctAnsCount);
+        correctAnsCount = 0;
     }
 
 
