@@ -1,0 +1,65 @@
+1
+1
+When assigning variables names you should name them appropriately
+True
+
+1
+1
+For loop is used when you do know not the number of loops to occur
+False
+
+2
+1
+Which of the following values should you assign to int?
+1
+2.5
+1 000 000
+0.0008
+
+2
+1
+Which datatype should you use when declaring a text?
+string
+boolean
+int
+double
+
+3
+3
+1. salary <- 1000
+2. bankAmount <- 5000
+3. totalMoney <- _ + _
+4
+asdasd121
+asdasd
+salary
+bankAmount
+8
+111
+222
+333
+444
+55
+66
+77
+88
+
+3
+3
+1. myMoney <- 1000
+2. bankBal <- 5000
+3. total <-_+_
+2
+myMoney
+bankBal
+5
+asd
+ddd
+fff
+sss
+431
+
+1
+1
+Is Aditya gay?
+True

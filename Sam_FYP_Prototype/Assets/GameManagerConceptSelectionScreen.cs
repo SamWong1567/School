@@ -50,7 +50,9 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         string tempLine;
 
         //get relative path to file as opposed to abosolute so that the file can be read on any computer
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), questionFileName);
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(),"Assets");
+        filePath = Path.Combine(filePath, "Questions_Answers_Codes");
+        filePath = Path.Combine(filePath, questionFileName);
 
         try
         {
