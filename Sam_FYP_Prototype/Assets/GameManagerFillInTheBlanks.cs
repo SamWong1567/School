@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 public class GameManagerFillInTheBlanks : MonoBehaviour {
 
     //list of game objects
-    List<GameObject> PseudocodeGameObjList = new List<GameObject>();
+    List<GameObject> BlanksGameObjList = new List<GameObject>();
     List<GameObject> AnswersGameObjList = new List<GameObject>();
 
     //variables for displaying pseudocode
@@ -23,23 +23,23 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     public GameObject optionPanelPrefab;
     public GameObject answerBlockPrefab;
     int randomIndex;
-    
 
+    //variable for retrieving data from other scripts
     GameObject gameManagerForCSS;
     GameManagerConceptSelectionScreen gcss;
     AnswerButtonIndex ansBtnIndex;
     StoreAnsButtonIndex storeAnsBtnIndex;
 
+    //variable for dialogue box
+    public GameObject AcknowedgementBoxPrefab;
+    GameObject acknowledgementBox;
+
     //Array of arrays to store the pseudocodes to be displayed
     string[][] arrayOfArrays = new string[30][];
 
     int numOfRows;
-    int namingIndex = 0;
+    int noOfBlanks = 0;
     int namingIndexForAnsButton = 1;
-
-    //array to store the answers chosen by user for tallying with the correct answer
-    string[] AnswersChosenByUser = new string[20];
-
 
     void Start()
     {
@@ -67,7 +67,6 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             //preserve the underscore using regex
             //won't add any empty spaces generated from regex as Regex.split generates a empty space before and after the delimiter
             templist2 = Regex.Split(templist[i],"(_)").Where(s=>!string.IsNullOrEmpty(s)).ToArray();
-            print(templist2.Length + " templist2 size");
             //declare number of columns per row
             arrayOfArrays[i] = new string[templist2.Length];
             //storing the array across the whole row
@@ -81,7 +80,6 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         //parent panel
         parentPanel = GameObject.Find("Panel");
         //loop according to the total number of rows in the array of arrays
-        print(numOfRows);
         for(int i = 0; i<numOfRows; i++)
         {
             //instantiate panels with horizontal layout within the parent panel
@@ -90,13 +88,10 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             //make this panel as a child
             subsequentPanels.transform.SetParent(parentPanel.transform,false);
             //loops according to the number of columns of this specific row
-            print("length of row" +i + arrayOfArrays[i].Length);
             for(int j = 0; j<arrayOfArrays[i].Length; j++)
             {
                 //print button for each element
                 GameObject pseudocodeBlock = Instantiate(pseudocodeBlockPrefab) as GameObject;
-                //add to gameObject list
-                PseudocodeGameObjList.Add(pseudocodeBlock);
                 pseudocodeBlock.transform.SetParent(subsequentPanels.transform,false);
                 //get access to change the text on the button
                 Text codeText = pseudocodeBlock.GetComponentInChildren<Text>();
@@ -114,22 +109,19 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
                 if(arrayOfArrays[i][j] == "_")
                 {
                     codeText.text = "___";
-                    //uniquely name each instantiated "blank" game object
-                    pseudocodeBlock.name = "Blank to fill in gameObj" + namingIndex;
-                    namingIndex++;
+                    noOfBlanks++;
                     //get the button component of the pseudocodeBlock
                     Button temp = pseudocodeBlock.GetComponent<Button>();
                     //add a onClick listener to the blanks
                     //method will remove selected answer from this blank
                     temp.onClick.AddListener(delegate { RemoveAnswer(); });
-
+                    //add to gameObject list
+                    BlanksGameObjList.Add(pseudocodeBlock);
                 }
                 else
                 {
                     codeText.text = arrayOfArrays[i][j];
-                }
-                //codeText.text = arrayOfArrays[i][j] == "_"? "___": arrayOfArrays[i][j];
-                
+                }  
             }
         }
     }
@@ -145,7 +137,6 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         {
             if (gcss.qnsList[gcss.randomNum].wrongAns.Length == count || string.IsNullOrEmpty(gcss.qnsList[gcss.randomNum].wrongAns[count]))
             {
-                print("reached");
                 break;
             }
             tempList.Add(gcss.qnsList[gcss.randomNum].wrongAns[count]);
@@ -231,12 +222,10 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             answerBlockText = subsequentBlock.GetComponentInChildren<Text>();
             answerBlockText.text = tempList[randomIndex];
             tempList.RemoveAt(randomIndex);
-            print("size of temp list" + tempList.Count);
 
             //get width of subsequent block
             yield return new WaitForEndOfFrame();
             float subsequentBlockWidth = GetWidthOfGameObject(subsequentBlock);
-            print(count + "block width " + subsequentBlockWidth);
 
 
             if(subsequentBlockWidth <= availablePanelSpace)
@@ -245,7 +234,6 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
                 subsequentBlock.transform.SetParent(row.transform, false);
                 //update leftover space
                 availablePanelSpace -= subsequentBlockWidth;
-            print(count + "availableSpace  " + availablePanelSpace);
             }
             
             else
@@ -257,12 +245,10 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
                 //get width of new row
                 yield return new WaitForEndOfFrame();
                 availablePanelSpace = GetWidthOfGameObject(row);
-                print("new panel space" + availablePanelSpace);
                 //set block to new row
                 subsequentBlock.transform.SetParent(row.transform, false);
                 //update leftover space
                 availablePanelSpace -= subsequentBlockWidth;
-                print("else " + availablePanelSpace);
             }
                 
             if((listSize - 1) == count)
@@ -284,30 +270,21 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     //the answer will then be set to the very first blank
     public void SelectAnswer()
     {
-        float tempWidth;
-        float tempHeight;
         int temp;
         //get the game object of the button that is tapped
         GameObject ansButton = EventSystem.current.currentSelectedGameObject;
         //find the very first blank to fill the answer 
-        for(int i = 0; i<PseudocodeGameObjList.Count; i++)
+        for(int i = 0; i<BlanksGameObjList.Count; i++)
         {
-            if(PseudocodeGameObjList[i].GetComponentInChildren<Text>().text == "___")
+            if(BlanksGameObjList[i].GetComponentInChildren<Text>().text == "___")
             {
                 //keep track of which answer button was tapped
                 temp = ansButton.GetComponentInChildren<AnswerButtonIndex>().buttonIndex;
                 //store this index
-                PseudocodeGameObjList[i].GetComponentInChildren<StoreAnsButtonIndex>().indexStored = temp;
-                AnswersChosenByUser[temp] = ansButton.GetComponentInChildren<Text>().text;
-                PseudocodeGameObjList[i].GetComponentInChildren<Text>().text = ansButton.GetComponentInChildren<Text>().text;
-                //add chosen answer into list
-                ansButton.GetComponentInChildren<Text>().text = "";
-                
-
-                //tempWidth = GetWidthOfGameObject(PseudocodeGameObjList[i]);
-                //tempHeight = ansButton.GetComponent<RectTransform>().rect.height;
-                //ansButton.GetComponent<RectTransform>().sizeDelta = new Vector2(tempWidth, tempHeight);
-                //ansButton.GetComponent<Text>().enabled = false;
+                BlanksGameObjList[i].GetComponentInChildren<StoreAnsButtonIndex>().indexStored = temp;
+                BlanksGameObjList[i].GetComponentInChildren<Text>().text = ansButton.GetComponentInChildren<Text>().text;
+                //to signify the selection of the answer
+                ansButton.GetComponentInChildren<Text>().text = "";      
                 //disable the onClick listern of the button
                 ansButton.GetComponent<Button>().interactable = false;
                 break;
@@ -326,8 +303,6 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         {
             //get the index of the answer button to return the text to
             index = blankPanel.GetComponentInChildren<StoreAnsButtonIndex>().indexStored;
-            //remove answer stored in list
-            AnswersChosenByUser[index] = null;
             //restore the text back to the answer option button
             AnswersGameObjList[index].GetComponentInChildren<Text>().text = blankPanel.GetComponentInChildren<Text>().text;
             //enable the onClick listern of the button
@@ -339,37 +314,32 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     }
     
     //check answers when the RUN CODE button is tapped
-    public void checkAnswer()
+    public void CheckAnswer()
     {
-        int correctAnsCount = 0;
-        for(int i = 0; i<AnswersChosenByUser.Length; i++)
+        Boolean correct = true;
+        GameObject canvas = GameObject.Find("Canvas");
+        acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject;
+        for (int i =0;i<BlanksGameObjList.Count;i++)
         {
-            if(AnswersChosenByUser[i] != null)
+            //as long as this condition is not triggered, the question is deemed to be answered correctly
+            if(!(BlanksGameObjList[i].GetComponentInChildren<Text>().text.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[i])))
             {
-
-                if (AnswersChosenByUser[i] == (gcss.qnsList[gcss.randomNum].correctAnswer[i]))
-                {
-                    correctAnsCount++;
-                }
-                else
-                {
-                    print("Ans chosen by user" + AnswersChosenByUser[i]);
-                    print(AnswersChosenByUser.Length);
-                    print("correct ans" + gcss.qnsList[gcss.randomNum].correctAnswer[i]);
-                    print(gcss.qnsList[gcss.randomNum].correctAnswer.Length);
-                    print("Wrong");
-                    break;
-                }   
+                print("Wrong   Ans");
+                //dialogue box to appear to notify that user answered wrongly
+                acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!";
+                acknowledgementBox.transform.SetParent(canvas.transform, false);
+                acknowledgementBox.transform.localScale.Set(1, 1, 1);
+                correct = false;
+                break;
             }
         }
-        //if all answers match, then the user has successfully answered the question
-        if (correctAnsCount == gcss.qnsList[gcss.randomNum].correctAnswer.Length)
+        
+        if(correct)
         {
-            print("Correct");
+            //dialogue box to appear to notify that user answered correctly
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!";
+            acknowledgementBox.transform.SetParent(canvas.transform, false);
+            acknowledgementBox.transform.localScale.Set(1, 1, 1);
         }
-        print("Count result" + correctAnsCount);
-        correctAnsCount = 0;
     }
-
-
 }

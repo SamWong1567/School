@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomNum: 0
+  AcknowedgementBoxPrefab: {fileID: 1869642187918868, guid: a2b8281a7772e9e4a9192030ca39bd4e,
+    type: 2}
 --- !u!4 &396889726
 Transform:
   m_ObjectHideFlags: 0

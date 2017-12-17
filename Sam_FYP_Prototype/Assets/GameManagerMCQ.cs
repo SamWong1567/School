@@ -51,11 +51,12 @@ public class GameManagerMCQ : MonoBehaviour
     //variable to temporarily store the answer for checking purpose
     string s4;
 
-    //counter for transiting to next question
-    int counter = 0;
-
     GameObject gameManagerForCSS;
     GameManagerConceptSelectionScreen gcss;
+
+    //variable for dialogue box
+    public GameObject AcknowedgementBoxPrefab;
+    GameObject acknowledgementBox;
 
     //delay when changing question
     private float delayBetweenQuestions = 1f;
@@ -160,24 +161,28 @@ public class GameManagerMCQ : MonoBehaviour
     //check if the answer selected by the user is correct
     public void CheckAns(string ans)
     {
-        if(ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
+        GameObject canvas = GameObject.Find("Canvas");
+        acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject;
+        if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {
-            print(ans);
-            print(gcss.qnsList[gcss.randomNum].correctAnswer[0]);
-            //increase question counter by 1
-            counter++;
+            //dialogue box to appear to notify that user answered correctly
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!";
+            acknowledgementBox.transform.SetParent(canvas.transform, false);
+            acknowledgementBox.transform.localScale.Set(1, 1, 1);
+
             print("CORRECT");
             //StartCoroutine(TransitionToNextQuestion());
         }
         else
         {
-            print(ans);
-            print(gcss.qnsList[gcss.randomNum].correctAnswer[0]);
-            counter++;
+            //dialogue box to appear to notify that user answered wrongly
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!";
+            acknowledgementBox.transform.SetParent(canvas.transform, false);
+            acknowledgementBox.transform.localScale.Set(1, 1, 1);
+
             print("WRONG");
             //StartCoroutine(TransitionToNextQuestion());
         }
-        gcss.callNextQuestion();
     }
     
     //delay before displaying next question

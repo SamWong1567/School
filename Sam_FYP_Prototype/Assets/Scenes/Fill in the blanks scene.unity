@@ -188,7 +188,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1704805942}
-        m_MethodName: checkAnswer
+        m_MethodName: CheckAnswer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -714,6 +714,8 @@ MonoBehaviour:
     type: 2}
   answerBlockPrefab: {fileID: 1366722995225376, guid: 803e5ffcb542159468adc0163505d1d8,
     type: 2}
+  AcknowedgementBoxPrefab: {fileID: 1869642187918868, guid: f734572ebfefda348aa2489a48373d79,
+    type: 2}
 --- !u!1001 &1723661260
 Prefab:
   m_ObjectHideFlags: 0
@@ -824,7 +826,7 @@ Prefab:
     - target: {fileID: 114861794939566110, guid: fe303315147237b4ebac208afe5ffa8e,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: checkAnswer
+      value: CheckAnswer
       objectReference: {fileID: 0}
     - target: {fileID: 114861794939566110, guid: fe303315147237b4ebac208afe5ffa8e,
         type: 2}

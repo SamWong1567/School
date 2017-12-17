@@ -826,6 +826,8 @@ MonoBehaviour:
   optionField2: {fileID: 988757873}
   optionField3: {fileID: 1293426808}
   optionField4: {fileID: 1944548857}
+  AcknowedgementBoxPrefab: {fileID: 1869642187918868, guid: f734572ebfefda348aa2489a48373d79,
+    type: 2}
 --- !u!4 &396889726
 Transform:
   m_ObjectHideFlags: 0

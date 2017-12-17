@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManagerConceptSelectionScreen : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //will be assigned a random number and be used to display questions such as true/false, MCQ or fill in the blanks
     public int randomNum;
 
+    //variable for dialogue box
+    public GameObject AcknowedgementBoxPrefab;
+    GameObject acknowledgementBox;
+
+    float delayTime = 2f;
+
     private void Start()
     {
         //to ensure that this game object persist through scene changes
@@ -21,8 +28,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //read in all the content from the file stated in order to instantiate objects of Question type
     public void LoadConceptQuestions(string questionFileName)
     {
-        //temporary store for the string that is read in line by line from the text file
-        string line;
         //temporary store for question
         string question = "";
         //temporary store for correctanswer
@@ -40,7 +45,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         int numberOfWrongAns;
         //for fill in the blanks
         int numberOfCorrectAnswers;
-        
+
         //temporary store for line read in by file
         string tempLine;
 
@@ -49,7 +54,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
 
         try
         {
-            int count = 0;
             //Read text file and extract it's contents line by line
             StreamReader sr = new StreamReader(filePath);
             while (true)
@@ -126,34 +130,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 sr.ReadLine();
                 wrongAnswer = new string[10];
                 correctAnswer = new string[10];
-                /*
-                //print("size: " + qnsList.Count);
-                //print("count: " +count);
-                //print("question: "+ qnsList[count].question);
-                //print("correctAnswer: "+ qnsList[count].correctAnswer[0]);
-                //print(qnsList[count].correctAnswer[1]);
-                //print(qnsList[count].correctAnswer[2]);
-                //print("wrong answer: " + qnsList[count].wrongAns[0]);
-                //print(qnsList[count].wrongAns[1]);
-                //print(qnsList[count].wrongAns[2]);
-                //print("first Question answer: " + qnsList[0].correctAnswer[0]);
-
-                print(count + "question: " + qnsList[count].question);
-                print(count + "wrong answer: " + qnsList[count].wrongAns[0]);
-                print(count + "correct answer: " + qnsList[count].correctAnswer[0]);
-                count++;
-                */
-
             }
-            /*
-            for (count = 0; count < 5; count++)
-            {
-                print(count + "question: " + qnsList[count].question);
-                print(count + "wrong answer: " + qnsList[count].wrongAns[0]);
-                print(count + "correct answer: " + qnsList[count].correctAnswer[0]);
-            
-            }
-            */
             sr.Close();
             RandomizeQuestion();
         }
@@ -166,15 +143,12 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //randomizes a question to be asked
     public void RandomizeQuestion()
     {
-        print("hi");
         System.Random r = new System.Random();
         //randoms a number between 1 and the size of the list - 1
         randomNum = r.Next(0, qnsList.Count);
-        print(randomNum);
         //if the object's question type = 1, display a true false question
         if (qnsList[randomNum].qnsType == 1)
         {
-            print(qnsList[randomNum].correctAnswer[0]);
             LoadScene("TrueFalseScene");
         }
         //if the object's question type = 2, display a multiple choice question
@@ -186,18 +160,22 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         else if (qnsList[randomNum].qnsType == 3)
         {
             LoadScene("Fill in the blanks scene");
-        }
-
-        
+        } 
     }
 
-    public void callNextQuestion()
+    public void CallNextQuestion()
     {
-        
+        //remove the question that was asked
         qnsList.RemoveAt(randomNum);
+        //transit to next question
         if (qnsList.Count != 0)
         {
             RandomizeQuestion();
+        }
+        //End of quiz. Return to the concept selection screen
+        else
+        {
+            StartCoroutine(DelayDialoguePopUp());
         }
     }
 
@@ -208,8 +186,20 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    //for debugging
-    private void OnDestroy()
+    //delay before displaying "end of quiz" message
+    IEnumerator DelayDialoguePopUp()
+    {
+        yield return new WaitForSeconds(delayTime);
+        GameObject canvas = GameObject.Find("Canvas");
+        acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject;
+        acknowledgementBox.transform.SetParent(canvas.transform, false);
+        acknowledgementBox.transform.localScale.Set(1, 1, 1);
+        //destroy the persisting gameManager
+        Destroy(this.gameObject);
+    }
+
+        //for debugging
+        private void OnDestroy()
     {
         Debug.Log("GameStatus was destroyed");
     }

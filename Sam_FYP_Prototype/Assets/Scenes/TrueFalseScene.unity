@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qnsText: {fileID: 1684895295}
-  tryAgainPrefab: {fileID: 1881999455455892, guid: 05256f4b8026bf1458eb31d126b162c8,
+  AcknowedgementBoxPrefab: {fileID: 1869642187918868, guid: f734572ebfefda348aa2489a48373d79,
     type: 2}
 --- !u!4 &396889726
 Transform:

@@ -7,8 +7,6 @@ using System.IO; //for StreamReader
 using UnityEngine.SceneManagement;//for loading between scenes
 //Script for True False Scene
 public class GameManagerTF : MonoBehaviour {
-    //PROBABLY YHAVE TO DELETE THIS
-    GameObject tryAgain;
     float time;
 
    //to allow questions to be edited in the unity editor. Dragged text under panel into game manager QnsText field
@@ -21,7 +19,9 @@ public class GameManagerTF : MonoBehaviour {
     GameObject gameManagerForCSS;
     GameManagerConceptSelectionScreen gcss;
 
-    public GameObject tryAgainPrefab;
+    //variable for dialogue box
+    public GameObject AcknowedgementBoxPrefab;
+    GameObject acknowledgementBox;
 
     //called everytime you load/reload a scene
     void Start()
@@ -34,13 +34,13 @@ public class GameManagerTF : MonoBehaviour {
     }
 
     private void Update()
-    {
+    {   /*
         int duration = 2;
         
         if (Time.time > time + duration)
         {
-            Destroy(tryAgain);
-        }
+            Destroy(acknowledgementBox);
+        }*/
     }
     //display questions at the question panel
     void DisplayQuestion()
@@ -66,22 +66,31 @@ public class GameManagerTF : MonoBehaviour {
     //check if answer chosen by user is correct or wrong
     public void CheckAnswer(string ans)
     {
-        print(gcss.qnsList[gcss.randomNum].correctAnswer[0]);
-        if(ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
+        GameObject canvas = GameObject.Find("Canvas");
+        acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject; 
+        //if answer is correct
+        if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {
-            print("correct");
-            gcss.callNextQuestion();
+            //dialogue box to appear to notify that user answered correctly
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!";
+            acknowledgementBox.transform.SetParent(canvas.transform, false);
+            acknowledgementBox.transform.localScale.Set(1,1,1);
+            
             //add score here
             //StartCoroutine(TransitionToNextQuestion());
         }
         else
         {
+            //dialogue box to appear to notify that user answered wrongly
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!";
+            acknowledgementBox.transform.SetParent(canvas.transform, false);
+            acknowledgementBox.transform.localScale.Set(1, 1, 1);
             print("wrong");
-            GameObject canvas = GameObject.Find("Canvas");
-            tryAgain = Instantiate(tryAgainPrefab) as GameObject;
-            tryAgain.transform.SetParent(canvas.transform,false);
+            
+            //acknowledgementBox = Instantiate(tryAgainPrefab) as GameObject;
+            //acknowledgementBox.transform.SetParent(canvas.transform,false);
 
-            time = Time.time;
+            //time = Time.time;
             
       
             //no score will be added    
