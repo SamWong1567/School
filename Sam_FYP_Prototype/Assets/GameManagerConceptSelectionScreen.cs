@@ -21,7 +21,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     float delayTime = 2f;
 
     //store the name of concept that users are attempting
-    string conceptName;
+    public string conceptName;
 
     //keeps track of the player's score
     public int score = 0;
@@ -80,8 +80,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         {
             PlayerPrefs.SetInt("Assessment Attempts", listOfConceptAttempts[5]);
         }
-
-
     }
     //read in all the content from the file stated in order to instantiate objects of Question type
     public void LoadConceptQuestions(string questionFileName)
@@ -194,7 +192,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 correctAnswer = new string[10];
             }
             sr.Close();
-            RandomizeQuestion();
+            LoadScene("Concept Intro Scene");
         }
         catch (Exception e)
         {
@@ -237,7 +235,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         //End of quiz. Return to the concept selection screen
         else
         {
-            
             StartCoroutine(DelayDialoguePopUp());
         }
     }
