@@ -19,4 +19,7 @@ EditorBuildSettings:
     guid: 006a8f601262dbe4eaff75738da8ed7c
   - enabled: 1
     path: Assets/Scenes/Fill in the blanks scene.unity
+    guid: ddab9f286a2b2e84ab9782048eb09714
+  - enabled: 1
+    path: Assets/Scenes/Overall Score Scene.unity
     guid: 00000000000000000000000000000000

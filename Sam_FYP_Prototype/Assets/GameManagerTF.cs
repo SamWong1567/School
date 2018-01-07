@@ -10,7 +10,7 @@ public class GameManagerTF : MonoBehaviour {
     float time;
 
    //to allow questions to be edited in the unity editor. Dragged text under panel into game manager QnsText field
-   [SerializeField]
+    [SerializeField]
     private Text qnsText;
 
     //delay when changing question
@@ -71,8 +71,10 @@ public class GameManagerTF : MonoBehaviour {
         //if answer is correct
         if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {
+            //add to score
+            gcss.score += 1;
             //dialogue box to appear to notify that user answered correctly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!";
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!" + " Current Score: " + gcss.score;
             acknowledgementBox.transform.SetParent(canvas.transform, false);
             acknowledgementBox.transform.localScale.Set(1,1,1);
             
@@ -80,9 +82,9 @@ public class GameManagerTF : MonoBehaviour {
             //StartCoroutine(TransitionToNextQuestion());
         }
         else
-        {
+        {   
             //dialogue box to appear to notify that user answered wrongly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!";
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!" + " Current Score: " + gcss.score;
             acknowledgementBox.transform.SetParent(canvas.transform, false);
             acknowledgementBox.transform.localScale.Set(1, 1, 1);
             print("wrong");

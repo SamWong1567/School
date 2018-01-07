@@ -1,0 +1,9 @@
+1
+1
+[Conditional Statements] When assigning variables names you should name them appropriately
+True
+
+1
+1
+[Conditional Statements] For loop is used when you do know not the number of loops to occur
+False

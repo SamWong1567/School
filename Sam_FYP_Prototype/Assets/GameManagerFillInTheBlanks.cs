@@ -178,7 +178,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
 
         //randoms a answer option to be displayed
         randomIndex = UnityEngine.Random.Range(0, tempList.Count);
-        //displayes the text on the answer block
+        //displays the text on the answer block
         Text answerBlockText = answerBlock.GetComponentInChildren<Text>();
         answerBlockText.text = tempList[randomIndex];
         //remove this answer from the list
@@ -326,7 +326,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             {
                 print("Wrong   Ans");
                 //dialogue box to appear to notify that user answered wrongly
-                acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!";
+                acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!" + " Current Score: " + gcss.score;
                 acknowledgementBox.transform.SetParent(canvas.transform, false);
                 acknowledgementBox.transform.localScale.Set(1, 1, 1);
                 correct = false;
@@ -336,8 +336,10 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         
         if(correct)
         {
+            //add score
+            gcss.score += 1;
             //dialogue box to appear to notify that user answered correctly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!";
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!" + " Current Score: " + gcss.score;
             acknowledgementBox.transform.SetParent(canvas.transform, false);
             acknowledgementBox.transform.localScale.Set(1, 1, 1);
         }

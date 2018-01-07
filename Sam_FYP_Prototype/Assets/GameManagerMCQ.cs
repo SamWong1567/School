@@ -164,9 +164,10 @@ public class GameManagerMCQ : MonoBehaviour
         GameObject canvas = GameObject.Find("Canvas");
         acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject;
         if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
-        {
+        {   //add score
+            gcss.score += 1;
             //dialogue box to appear to notify that user answered correctly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!";
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!" + " Current Score: " + gcss.score;
             acknowledgementBox.transform.SetParent(canvas.transform, false);
             acknowledgementBox.transform.localScale.Set(1, 1, 1);
 
@@ -176,7 +177,7 @@ public class GameManagerMCQ : MonoBehaviour
         else
         {
             //dialogue box to appear to notify that user answered wrongly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!";
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!" + " Current Score: " + gcss.score;
             acknowledgementBox.transform.SetParent(canvas.transform, false);
             acknowledgementBox.transform.localScale.Set(1, 1, 1);
 

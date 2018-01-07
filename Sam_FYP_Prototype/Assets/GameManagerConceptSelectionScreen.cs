@@ -20,14 +20,74 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
 
     float delayTime = 2f;
 
+    //store the name of concept that users are attempting
+    string conceptName;
+
+    //keeps track of the player's score
+    public int score = 0;
+
+    //the very first attempt by user
+    int NoOfBasicArithmeticAttempts = 0;
+    int NoOfDatatypeAttempts = 0;
+    int NoOfInputOuputAttempts = 0;
+    int NoOfConditionalStatementsAttempts = 0;
+    int NoOfLoopsAttempts = 0;
+    int NoOfAssessmentAttempts = 0;
+
+    //List to store the attempts of each concept
+    public List<int> listOfConceptAttempts = new List<int>();
+
     private void Start()
     {
         //to ensure that this game object persist through scene changes
         GameObject.DontDestroyOnLoad(this.gameObject);
+
+        listOfConceptAttempts.Add(NoOfBasicArithmeticAttempts);
+        listOfConceptAttempts.Add(NoOfDatatypeAttempts);
+        listOfConceptAttempts.Add(NoOfInputOuputAttempts);
+        listOfConceptAttempts.Add(NoOfConditionalStatementsAttempts);
+        listOfConceptAttempts.Add(NoOfLoopsAttempts);
+        listOfConceptAttempts.Add(NoOfAssessmentAttempts);
+
+        //save the number of attempts for each concepts in the player prefs for the very first time
+        //For Basic Arithmetic
+        if(!(PlayerPrefs.HasKey("Basic Arithmetic Attempts")))
+        {
+            PlayerPrefs.SetInt("Basic Arithmetic Attempts", listOfConceptAttempts[0]);
+        }
+        //For Datatype
+        if(!(PlayerPrefs.HasKey("Datatype Attempts")))
+        {
+            PlayerPrefs.SetInt("Datatype Attempts", listOfConceptAttempts[1]);
+        }
+        //For Input & Ouput
+        if (!(PlayerPrefs.HasKey("Input Ouput Attempts")))
+        {
+            PlayerPrefs.SetInt("Input Ouput Attempts", listOfConceptAttempts[2]);
+        }
+        //For Conditional Statements
+        if (!(PlayerPrefs.HasKey("Conditional Statements Attempts")))
+        {
+            PlayerPrefs.SetInt("Conditional Statements Attempts", listOfConceptAttempts[3]);
+        }
+        //For Loops
+        if (!(PlayerPrefs.HasKey("Loops Attempts")))
+        {
+            PlayerPrefs.SetInt("Loops Attempts", listOfConceptAttempts[4]);
+        }
+        //For Assessment
+        if (!(PlayerPrefs.HasKey("Assessment Attempts")))
+        {
+            PlayerPrefs.SetInt("Assessment Attempts", listOfConceptAttempts[5]);
+        }
+
+
     }
     //read in all the content from the file stated in order to instantiate objects of Question type
     public void LoadConceptQuestions(string questionFileName)
     {
+        //get the name of the concept
+        conceptName = questionFileName;
         //temporary store for question
         string question = "";
         //temporary store for correctanswer
@@ -177,6 +237,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         //End of quiz. Return to the concept selection screen
         else
         {
+            
             StartCoroutine(DelayDialoguePopUp());
         }
     }
@@ -196,13 +257,68 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject;
         acknowledgementBox.transform.SetParent(canvas.transform, false);
         acknowledgementBox.transform.localScale.Set(1, 1, 1);
+        RecordScore();
         //destroy the persisting gameManager
         Destroy(this.gameObject);
+    }
+
+    public void RecordScore()
+    {    
+
+        if (conceptName.Equals("Basic Arithmetic.txt"))
+        {
+            //save the final score obtained by the user for the concept: Basic Arimetic
+            PlayerPrefs.SetInt("Basic Arithmetic Save" + PlayerPrefs.GetInt("Basic Arithmetic Attempts"), score);
+            //increment the number of attempts for the concept: Basic Arithemtic for the upcoming attempt
+            PlayerPrefs.SetInt("Basic Arithmetic Attempts", PlayerPrefs.GetInt("Basic Arithmetic Attempts") + 1);
+        }
+        else if (conceptName.Equals("Datatype.txt"))
+        {
+            //save the final score obtained by the user for the concept: Datatype
+            PlayerPrefs.SetInt("Datatype Save" + PlayerPrefs.GetInt("Datatype Attempts"), score);
+            //increment the number of attempts for the concept: Datatype for the upcoming attempt
+            PlayerPrefs.SetInt("Datatype Attempts", PlayerPrefs.GetInt("Datatype Attempts") + 1);
+
+        }
+        else if (conceptName.Equals("Input Ouput.txt"))
+        {
+            //save the final score obtained by the user for the concept: Input Ouput
+            PlayerPrefs.SetInt("Input Output Save" + PlayerPrefs.GetInt("Input Ouput Attempts"), score);
+            //increment the number of attempts for the concept: Input Ouput for the upcoming attempt
+            PlayerPrefs.SetInt("Input Ouput Attempts", PlayerPrefs.GetInt("Input Ouput Attempts") + 1);
+
+        }
+        else if (conceptName.Equals("Conditional Statements.txt"))
+        {
+            //save the final score obtained by the user for the concept: Conditional Statements
+            PlayerPrefs.SetInt("Conditional Statements Save" + PlayerPrefs.GetInt("Conditional Statements Attempts"), score);
+            //increment the number of attempts for the concept: Conditional Statements for the upcoming attempt
+            PlayerPrefs.SetInt("Conditional Statements Attempts", PlayerPrefs.GetInt("Conditional Statements Attempts") + 1);
+        }
+        else if (conceptName.Equals("Loops.txt"))
+        {
+            //save the final score obtained by the user for the concept: Loops
+            PlayerPrefs.SetInt("Loops Save" + PlayerPrefs.GetInt("Loops Attempts"), score);
+            //increment the number of attempts for the concept: Loops for the upcoming attempt
+            PlayerPrefs.SetInt("Loops Attempts", PlayerPrefs.GetInt("Loops Attempts") + 1);
+        }
+        else if (conceptName.Equals("Assessment.txt"))
+        {
+            //save the final score obtained by the user for the concept: Assessment
+            PlayerPrefs.SetInt("Assessment Save" + PlayerPrefs.GetInt("Assessment Attempts"), score);
+            //increment the number of attempts for the concept: Assessment for the upcoming attempt
+            PlayerPrefs.SetInt("Assessment Attempts", PlayerPrefs.GetInt("Assessment Attempts") + 1);
+        }
     }
 
         //for debugging
         private void OnDestroy()
     {
         Debug.Log("GameStatus was destroyed");
+    }
+
+    public void DeleteAllSave()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
