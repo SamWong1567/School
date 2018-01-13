@@ -118,6 +118,8 @@ public class ConceptIntroduction : MonoBehaviour {
         print(listOfContentsByPage.Count);
         if(noOfPages > listOfContentsByPage.Count)
         {
+            Destroy(gameManagerForCSS);
+            print("game manager destroyed after concept intro");
             gcss.LoadScene("Concept_Selection_Scene");
         }
     }
@@ -133,10 +135,7 @@ public class ConceptIntroduction : MonoBehaviour {
         DisplayContent();
     }
 
-    private void OnDestroy()
-    {
-        Debug.Log("Concept Intro was destroyed");
-    }
+
 
 
 

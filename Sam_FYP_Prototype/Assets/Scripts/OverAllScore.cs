@@ -77,6 +77,9 @@ public class OverAllScore : MonoBehaviour {
 
     public void ReturnToMainMenu()
     {
+        //on exit, destroy the current gameManager to prevent having duplicated gameManagers
+        Destroy(gameManagerForCSS);
+        print("game manager Destroyed after concept intro");
         gcss.LoadScene("Concept_Selection_Scene");
     }
 	
