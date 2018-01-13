@@ -75,6 +75,7 @@ public class GameManagerMCQ : MonoBehaviour
     //display questions at the question panel
     void DisplayQuestion()
     {
+        print("list count" + gcss.qnsList.Count);
         qnsText.text = gcss.qnsList[gcss.randomNum].question;
     }
     

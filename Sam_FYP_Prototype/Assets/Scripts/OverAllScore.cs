@@ -19,47 +19,59 @@ public class OverAllScore : MonoBehaviour {
 
     public void DisplayAllScores()
     {
+        int temp;
         GameObject panel = GameObject.Find("ScoreBoard");
         Text panelText = panel.GetComponentInChildren<Text>();
         panelText.text = "<b>Basic Arithmetic</b>";
-        for (int i =0; i<PlayerPrefs.GetInt("Basic Arithmetic Attempts"); i++)
+        for (int i = 0; i<PlayerPrefs.GetInt("Basic Arithmetic Attempts"); i++)
         {
-            panelText.text += "\nAttempt Number: " + ++i + "\tScore: " + PlayerPrefs.GetInt("Basic Arithmetic Save"+i);
+            //to display the very first Attempt Number to be 1 instead of 0
+            temp = i;
+            temp = ++temp;
+            panelText.text += "\nAttempt Number: " + temp + "\tScore: " + PlayerPrefs.GetInt("Basic Arithmetic Save"+i);
         }
         panelText.text += "\n";
 
         panelText.text += "\n<b>Datatype</b>";
         for (int i = 0; i <PlayerPrefs.GetInt("Datatype Attempts"); i++)
         {
-            panelText.text += "\nAttempt Number: " + ++i + "\tScore: " + PlayerPrefs.GetInt("Datatype Save"+i);
+            temp = i;
+            temp = ++temp;
+            panelText.text += "\nAttempt Number: " + temp + "\tScore: " + PlayerPrefs.GetInt("Datatype Save"+i);
         }
         panelText.text += "\n";
 
-        panelText.text += "\n<b>Input & Ouput</b>";
-        for (int i = 0; i <PlayerPrefs.GetInt("Input Ouput Attempts"); i++)
+        panelText.text += "\n<b>Input & Output</b>";
+        for (int i = 0; i <PlayerPrefs.GetInt("Input Output Attempts"); i++)
         {
-            panelText.text += "\nAttempt Number: " + ++i + "\tScore: " + PlayerPrefs.GetInt("Input Output Save"+i);
+            temp = i;
+            temp = ++temp;
+            panelText.text += "\nAttempt Number: " + temp + "\tScore: " + PlayerPrefs.GetInt("Input Output Save"+i);
         }
         panelText.text += "\n";
 
         panelText.text += "\n<b>Conditional Statements</b>";
         for (int i = 0; i <PlayerPrefs.GetInt("Conditional Statements Attempts"); i++)
         {
-            panelText.text += "\nAttempt Number: " + ++i + "\tScore: " + PlayerPrefs.GetInt("Conditional Statements Save"+i);
+            temp = i;
+            temp = ++temp;
+            panelText.text += "\nAttempt Number: " + temp + "\tScore: " + PlayerPrefs.GetInt("Conditional Statements Save"+i);
         }
         panelText.text += "\n";
 
         panelText.text += "\n<b>Loops</b>";
         for (int i = 0; i <PlayerPrefs.GetInt("Loops Attempts"); i++)
         {
-            panelText.text += "\nAttempt Number: " + ++i + "\tScore: " + PlayerPrefs.GetInt("Loops Save"+i);
+            temp = i;
+            temp = ++temp;
+            panelText.text += "\nAttempt Number: " + temp + "\tScore: " + PlayerPrefs.GetInt("Loops Save"+i);
         }
         panelText.text += "\n";
 
         panelText.text += "\n<b>Assessment</b>";
         for (int i = 0; i <PlayerPrefs.GetInt("Assessment Attempts"); i++)
         {
-            panelText.text += "\nAttempt Number: " + ++i + "\tScore: " + PlayerPrefs.GetInt("Assessment Save"+i);
+            panelText.text += "\nAttempt Number: " + i + "\tScore: " + PlayerPrefs.GetInt("Assessment Save"+i);
         }
     }
 

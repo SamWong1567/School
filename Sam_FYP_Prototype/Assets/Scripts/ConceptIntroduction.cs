@@ -37,34 +37,35 @@ public class ConceptIntroduction : MonoBehaviour {
     //identify which concept the user chosen and retrieve the content in the file for that concept
     public void LoadContent()
     {
-        
+
         string fileName = "";
 
         //identify which concept the user chosen
-        if (gcss.conceptName.Equals("Basic Arithmetic.txt"))
+        if (gcss.fileNum == 1)
         {
             fileName = "Basic Arithmetic Intro.txt";
         }
-        else if(gcss.conceptName.Equals("Datatype.txt"))
+        else if (gcss.fileNum == 2)
         {
-            fileName = "Datatype Intro";
+            fileName = "Datatype Intro.txt";
         }
-        else if(gcss.conceptName.Equals("Input Ouput.txt"))
+        else if (gcss.fileNum == 3)
         {
-            fileName = "Input Ouput Intro.txt";
+            fileName = "Input Output Intro.txt";
         }
-        else if(gcss.conceptName.Equals("Conditional Statements.txt"))
+        else if (gcss.fileNum == 4)
         {
             fileName = "Conditional Statements Intro.txt";
         }
-        else if(gcss.conceptName.Equals("Loops.txt"))
+        else if (gcss.fileNum == 5)
         {
             fileName = "Loops Intro.txt";
         }
-        else if(gcss.conceptName.Equals("Assessment.txt"))
+        else if (gcss.fileNum == 6)
         {
             fileName = "Assessment Intro.txt";
         }
+
         //retrieve the file in correspond to the concept chosen
         //get relative path to file as opposed to abosolute so that the file can be read on any computer
         string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets");
@@ -117,12 +118,7 @@ public class ConceptIntroduction : MonoBehaviour {
         print(listOfContentsByPage.Count);
         if(noOfPages > listOfContentsByPage.Count)
         {
-            GameObject canvas = GameObject.Find("Canvas");
-            acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject;
-            //notify user that he is proceeding to the quiz
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job! You have reached the end of the tutorial. You will now be challenged with a set of questions";
-            acknowledgementBox.transform.SetParent(canvas.transform, false);
-            acknowledgementBox.transform.localScale.Set(1, 1, 1);
+            gcss.LoadScene("Concept_Selection_Scene");
         }
     }
 
@@ -137,6 +133,11 @@ public class ConceptIntroduction : MonoBehaviour {
         DisplayContent();
     }
 
+    private void OnDestroy()
+    {
+        Debug.Log("Concept Intro was destroyed");
+    }
 
-	
+
+
 }

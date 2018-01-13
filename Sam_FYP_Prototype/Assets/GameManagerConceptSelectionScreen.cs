@@ -26,10 +26,13 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //keeps track of the player's score
     public int score = 0;
 
+    //keep track of the concept intro file to load
+    public int fileNum;
+
     //the very first attempt by user
     int NoOfBasicArithmeticAttempts = 0;
     int NoOfDatatypeAttempts = 0;
-    int NoOfInputOuputAttempts = 0;
+    int NoOfInputOutputAttempts = 0;
     int NoOfConditionalStatementsAttempts = 0;
     int NoOfLoopsAttempts = 0;
     int NoOfAssessmentAttempts = 0;
@@ -44,7 +47,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
 
         listOfConceptAttempts.Add(NoOfBasicArithmeticAttempts);
         listOfConceptAttempts.Add(NoOfDatatypeAttempts);
-        listOfConceptAttempts.Add(NoOfInputOuputAttempts);
+        listOfConceptAttempts.Add(NoOfInputOutputAttempts);
         listOfConceptAttempts.Add(NoOfConditionalStatementsAttempts);
         listOfConceptAttempts.Add(NoOfLoopsAttempts);
         listOfConceptAttempts.Add(NoOfAssessmentAttempts);
@@ -60,10 +63,10 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         {
             PlayerPrefs.SetInt("Datatype Attempts", listOfConceptAttempts[1]);
         }
-        //For Input & Ouput
-        if (!(PlayerPrefs.HasKey("Input Ouput Attempts")))
+        //For Input & Output
+        if (!(PlayerPrefs.HasKey("Input Output Attempts")))
         {
-            PlayerPrefs.SetInt("Input Ouput Attempts", listOfConceptAttempts[2]);
+            PlayerPrefs.SetInt("Input Output Attempts", listOfConceptAttempts[2]);
         }
         //For Conditional Statements
         if (!(PlayerPrefs.HasKey("Conditional Statements Attempts")))
@@ -84,6 +87,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //read in all the content from the file stated in order to instantiate objects of Question type
     public void LoadConceptQuestions(string questionFileName)
     {
+        //DeleteAllSave();
         //get the name of the concept
         conceptName = questionFileName;
         //temporary store for question
@@ -192,7 +196,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 correctAnswer = new string[10];
             }
             sr.Close();
-            LoadScene("Concept Intro Scene");
+            RandomizeQuestion();
         }
         catch (Exception e)
         {
@@ -277,12 +281,12 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
             PlayerPrefs.SetInt("Datatype Attempts", PlayerPrefs.GetInt("Datatype Attempts") + 1);
 
         }
-        else if (conceptName.Equals("Input Ouput.txt"))
+        else if (conceptName.Equals("Input Output.txt"))
         {
-            //save the final score obtained by the user for the concept: Input Ouput
-            PlayerPrefs.SetInt("Input Output Save" + PlayerPrefs.GetInt("Input Ouput Attempts"), score);
-            //increment the number of attempts for the concept: Input Ouput for the upcoming attempt
-            PlayerPrefs.SetInt("Input Ouput Attempts", PlayerPrefs.GetInt("Input Ouput Attempts") + 1);
+            //save the final score obtained by the user for the concept: Input Output
+            PlayerPrefs.SetInt("Input Output Save" + PlayerPrefs.GetInt("Input Output Attempts"), score);
+            //increment the number of attempts for the concept: Input Output for the upcoming attempt
+            PlayerPrefs.SetInt("Input Output Attempts", PlayerPrefs.GetInt("Input Output Attempts") + 1);
 
         }
         else if (conceptName.Equals("Conditional Statements.txt"))
@@ -306,6 +310,12 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
             //increment the number of attempts for the concept: Assessment for the upcoming attempt
             PlayerPrefs.SetInt("Assessment Attempts", PlayerPrefs.GetInt("Assessment Attempts") + 1);
         }
+    }
+    //load a concept introduction scene
+    public void LoadConceptIntro(int i)
+    {
+        fileNum = i;
+        LoadScene("Concept Intro Scene");
     }
 
         //for debugging
