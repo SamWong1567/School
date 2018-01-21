@@ -39,31 +39,44 @@ public class ConceptIntroduction : MonoBehaviour {
     {
 
         string fileName = "";
-
+        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen");
+        Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
         //identify which concept the user chosen
         if (gcss.fileNum == 1)
         {
             fileName = "Basic Arithmetic Intro.txt";
+            //change the panel app to the corresponding concept name
+            conceptNamePanelText.text = "Arithmetic Expressions";
         }
         else if (gcss.fileNum == 2)
         {
             fileName = "Datatype Intro.txt";
+            //change the panel app to the corresponding concept name
+            conceptNamePanelText.text = "Datatype";
         }
         else if (gcss.fileNum == 3)
         {
             fileName = "Input Output Intro.txt";
+            //change the panel app to the corresponding concept name
+            conceptNamePanelText.text = "Input Output";
         }
         else if (gcss.fileNum == 4)
         {
             fileName = "Conditional Statements Intro.txt";
+            //change the panel app to the corresponding concept name
+            conceptNamePanelText.text = "Conditional Statements";
         }
         else if (gcss.fileNum == 5)
         {
             fileName = "Loops Intro.txt";
+            //change the panel app to the corresponding concept name
+            conceptNamePanelText.text = "Loops";
         }
         else if (gcss.fileNum == 6)
         {
             fileName = "Assessment Intro.txt";
+            //change the panel app to the corresponding concept name
+            conceptNamePanelText.text = "Assessment";
         }
 
         //retrieve the file in correspond to the concept chosen
@@ -118,12 +131,14 @@ public class ConceptIntroduction : MonoBehaviour {
         print(listOfContentsByPage.Count);
         if(noOfPages > listOfContentsByPage.Count)
         {
+            //on exit, destroy the current gameManager to prevent having duplicated gameManagers
             Destroy(gameManagerForCSS);
             print("game manager destroyed after concept intro");
             gcss.LoadScene("Concept_Selection_Scene");
         }
     }
 
+    //when the next button is pressed
     public void ClearText()
     {
         //display on the panel
@@ -135,6 +150,12 @@ public class ConceptIntroduction : MonoBehaviour {
         DisplayContent();
     }
 
+    //for back button
+    public void ReturnToMainMenu()
+    {
+        Destroy(gameManagerForCSS);
+        gcss.LoadScene("Concept_Selection_Scene");
+    }
 
 
 
