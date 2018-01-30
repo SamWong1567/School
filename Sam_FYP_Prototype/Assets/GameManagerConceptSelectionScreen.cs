@@ -111,56 +111,76 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         //temporary store for line read in by file
         string tempLine;
 
-        //get relative path to file as opposed to abosolute so that the file can be read on any computer
-        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, questionFileName);
-            //= Path.Combine(Directory.GetCurrentDirectory(),"Assets");
+        //read the text files stored in the Resources folder
+        TextAsset file = Resources.Load(questionFileName) as TextAsset;
+        //= Path.Combine(Directory.GetCurrentDirectory(),"Assets");
         //filePath = Path.Combine(filePath, "Questions_Answers_Codes");
         //filePath = Path.Combine(filePath, questionFileName);
-        
 
+        //load all the contents of the file into a string array
+        string[] contentsInFile = file.text.Split('\n');
+        
+        //remove all the unnecessary spaces from each line of string
+        for(int i =0; i<contentsInFile.Length; i++)
+        {
+            contentsInFile[i] = contentsInFile[i].Replace("\n", String.Empty);
+            contentsInFile[i] = contentsInFile[i].Replace("\r", String.Empty);
+            contentsInFile[i] = contentsInFile[i].Replace("\t", String.Empty);
+        }
+
+        //counter for the array
+        int index = 0;
+
+        //print(contentsInFile[1].Length);
         try
         {
-            //Read text file and extract it's contents line by line
-            StreamReader sr = new StreamReader(filePath);
-            while (true)
-            {
+            while(true)
+            {             
                 //clears the value assigned to question
                 question = "";
-                //if end of line, terminate
-                if((tempLine = sr.ReadLine()) == null)
+                //reached the end of file
+                if(index >= contentsInFile.Length)
                 {
                     break;
                 }
-                qnsType = int.Parse(tempLine);
-                numberOfQnsLines = int.Parse(sr.ReadLine());
+                qnsType = int.Parse(contentsInFile[index]);
+                index++;
+                numberOfQnsLines = int.Parse(contentsInFile[index]);
+                index++;
 
                 if (qnsType != 3)
                 {
-                    question = sr.ReadLine();
+                    question = contentsInFile[index];
+                    index++;
                 }
                 else
                 {
                     for (int i = 0; i < numberOfQnsLines; i++)
                     {
                         //read each question line in the format that is displayed in the text
-                        question += sr.ReadLine() + '\n';
+                        question += contentsInFile[index] + '\n';
+                        index++;
                     }
 
                     question = question.Remove(question.Length - 1, 1);
-
+                    
                 }
 
                 //if question type is not fill in the blanks
-                if(qnsType != 3)
+                if (qnsType != 3)
                 {
-                    correctAnswer[0] = sr.ReadLine();
+                    correctAnswer[0] = contentsInFile[index];
+                    index++;
                 }
                 else
                 {
-                    numberOfCorrectAnswers = int.Parse(sr.ReadLine());
+                    numberOfCorrectAnswers = int.Parse(contentsInFile[index]);
+                    index++;
                     for (int i = 0; i < numberOfCorrectAnswers ; i++)
                     {
-                        correctAnswer[i] = sr.ReadLine();
+                        correctAnswer[i] = contentsInFile[index];
+                        index++;
+                        
                     }
 
                 }
@@ -169,7 +189,9 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 {
                     for(int i = 0; i<3; i++)
                     {
-                        wrongAnswer[i] = sr.ReadLine();
+                        wrongAnswer[i] = contentsInFile[index];
+                        index++;
+                        
                     }
                     
                 }
@@ -177,11 +199,13 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 //if it is fill in the blanks question, read in the question's wrong options
                 else if(qnsType == 3)
                 {
-                    numberOfWrongAns = int.Parse(sr.ReadLine());
+                    numberOfWrongAns = int.Parse(contentsInFile[index]);
+                    index++;
                     //number of options to read in
                     for (int i = 0; i<numberOfWrongAns; i++)
                     {
-                        wrongAnswer[i] = sr.ReadLine();
+                        wrongAnswer[i] = contentsInFile[index];
+                        index++;
                     }
                 }
 
@@ -193,17 +217,18 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 //creating and adding instance of Question objects to qnsList  
                 qnsList.Add(new Question(question, correctAnswer, wrongAnswer, qnsType));
                 //skip empty line between questions in the textfile
-                sr.ReadLine();
+                //string skipEmptyLine = contentsInFile[index];
+                index++;
                 wrongAnswer = new string[10];
                 correctAnswer = new string[10];
             }
-            sr.Close();
             RandomizeQuestion();
         }
         catch (Exception e)
         {
             Debug.LogException(e, this);
         }
+
     }
 
     //randomizes a question to be asked

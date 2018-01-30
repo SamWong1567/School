@@ -44,68 +44,45 @@ public class ConceptIntroduction : MonoBehaviour {
         //identify which concept the user chosen
         if (gcss.fileNum == 1)
         {
-            fileName = "Basic Arithmetic Intro.txt";
+            fileName = "Basic Arithmetic Intro";
             //change the panel app to the corresponding concept name
             conceptNamePanelText.text = "Arithmetic Expressions";
         }
         else if (gcss.fileNum == 2)
         {
-            fileName = "Datatype Intro.txt";
+            fileName = "Datatype Intro";
             //change the panel app to the corresponding concept name
             conceptNamePanelText.text = "Datatype";
         }
         else if (gcss.fileNum == 3)
         {
-            fileName = "Input Output Intro.txt";
+            fileName = "Input Output Intro";
             //change the panel app to the corresponding concept name
             conceptNamePanelText.text = "Input Output";
         }
         else if (gcss.fileNum == 4)
         {
-            fileName = "Conditional Statements Intro.txt";
+            fileName = "Conditional Statements Intro";
             //change the panel app to the corresponding concept name
             conceptNamePanelText.text = "Conditional Statements";
         }
         else if (gcss.fileNum == 5)
         {
-            fileName = "Loops Intro.txt";
+            fileName = "Loops Intro";
             //change the panel app to the corresponding concept name
             conceptNamePanelText.text = "Loops";
         }
         else if (gcss.fileNum == 6)
         {
-            fileName = "Assessment Intro.txt";
+            fileName = "Assessment Intro";
             //change the panel app to the corresponding concept name
             conceptNamePanelText.text = "Assessment";
         }
 
         //retrieve the file in correspond to the concept chosen
-        //get relative path to file as opposed to abosolute so that the file can be read on any computer
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets");
-        filePath = Path.Combine(filePath, "Questions_Answers_Codes");
-        filePath = Path.Combine(filePath, fileName);
-        StreamReader sr = new StreamReader(filePath);
-        try
-        {
-            while(true)
-            {
-                tempLine = sr.ReadLine();
-                //if end of line, terminate
-                if(tempLine == null)
-                {
-                    break;
-                }
-                else
-                {
-                    tempStoreContent += tempLine;
-                }
-            }
-            sr.Close();
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e, this);
-        }
+        TextAsset file = Resources.Load(fileName) as TextAsset;
+        tempStoreContent = file.ToString();
+
         //split the contents to specific pages
         listOfContentsByPage = tempStoreContent.Split('~').ToList();
         DisplayContent();
