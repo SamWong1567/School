@@ -133,8 +133,4 @@ public class ConceptIntroduction : MonoBehaviour {
         Destroy(gameManagerForCSS);
         gcss.LoadScene("Concept_Selection_Scene");
     }
-
-
-
-
 }

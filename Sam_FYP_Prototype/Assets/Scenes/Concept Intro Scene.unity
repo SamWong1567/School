@@ -453,9 +453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite1x: {fileID: 21300000, guid: 829c3f8d4975ede43b76bfa5446bd5de, type: 3}
-  sprite2x: {fileID: 21300000, guid: a86ae56132065e64b8f069725f1ba8a4, type: 3}
-  sprite4x: {fileID: 21300000, guid: 9ad8c2df418810c4992b99bf957bb831, type: 3}
+  sprite1x: {fileID: 21300000, guid: ed90c1c634076324db8842e72c19fe52, type: 3}
+  sprite2x: {fileID: 21300000, guid: ed90c1c634076324db8842e72c19fe52, type: 3}
+  sprite4x: {fileID: 21300000, guid: ed90c1c634076324db8842e72c19fe52, type: 3}
 --- !u!114 &276766692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +476,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 829c3f8d4975ede43b76bfa5446bd5de, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ed90c1c634076324db8842e72c19fe52, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1925,8 +1925,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: fbe3c09b43ce4304e86e7496c81bb9ed, type: 3}
-    m_FontSize: 16
+    m_Font: {fileID: 12800000, guid: ad105ce5c1a24a84f87df69819b699f8, type: 3}
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -2126,13 +2126,42 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d201e8b47ab6df54eaae10ae255e070d,
+      objectReference: {fileID: 21300000, guid: ed90c1c634076324db8842e72c19fe52,
         type: 3}
     - target: {fileID: 114373205787227720, guid: 69672812b357dbf44917c25b164ebc26,
         type: 2}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114514375900713164, guid: 69672812b357dbf44917c25b164ebc26,
+        type: 2}
+      propertyPath: sprite4x
+      value: 
+      objectReference: {fileID: 21300000, guid: ed90c1c634076324db8842e72c19fe52,
+        type: 3}
+    - target: {fileID: 114514375900713164, guid: 69672812b357dbf44917c25b164ebc26,
+        type: 2}
+      propertyPath: sprite2x
+      value: 
+      objectReference: {fileID: 21300000, guid: ed90c1c634076324db8842e72c19fe52,
+        type: 3}
+    - target: {fileID: 114514375900713164, guid: 69672812b357dbf44917c25b164ebc26,
+        type: 2}
+      propertyPath: sprite1x
+      value: 
+      objectReference: {fileID: 21300000, guid: ed90c1c634076324db8842e72c19fe52,
+        type: 3}
+    - target: {fileID: 114008860170475932, guid: 69672812b357dbf44917c25b164ebc26,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114008860170475932, guid: 69672812b357dbf44917c25b164ebc26,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: ad105ce5c1a24a84f87df69819b699f8,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69672812b357dbf44917c25b164ebc26, type: 2}
   m_IsPrefabParent: 0
