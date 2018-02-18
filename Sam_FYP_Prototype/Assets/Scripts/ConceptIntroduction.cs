@@ -24,6 +24,10 @@ public class ConceptIntroduction : MonoBehaviour {
     string tempLine;
     string tempStoreContent;
 
+    //panel to display text
+    public GameObject horizontalScrollingPanelPrefab;
+    GameObject horizontalScrollingPanel;
+
     // Use this for initialization
     void Start ()
     {
@@ -90,29 +94,38 @@ public class ConceptIntroduction : MonoBehaviour {
 
     public void DisplayContent()
     {
-        //display on the panel
-        GameObject contentPanel = GameObject.Find("Concept Content Panel");
-        Text contentText = contentPanel.GetComponentInChildren<Text>();
-        if(noOfPages < listOfContentsByPage.Count)
+        //Main area to spawn panels
+        GameObject contentPanel = GameObject.Find("Container");
+        //Text contentText = contentPanel.GetComponentInChildren<Text>();
+        //if(noOfPages < listOfContentsByPage.Count)
+        //spawn 1 panel per page
+        for(int i = 0; i<listOfContentsByPage.Count; i++)
         {
+            //spawn a panel for each page
+            horizontalScrollingPanel = Instantiate(horizontalScrollingPanelPrefab) as GameObject;
+            //set parent to parent panel
+            horizontalScrollingPanel.transform.SetParent(contentPanel.transform, false);
+            Text contentText = horizontalScrollingPanel.GetComponentInChildren<Text>();
             //split content into actual lines
             listOfContentByLine = listOfContentsByPage[noOfPages].Split('@').ToList();
-            for (int i = 0; i < listOfContentByLine.Count; i++)
+            for (int j = 0; j < listOfContentByLine.Count; j++)
             {
-                contentText.text += listOfContentByLine[i];
+                contentText.text += listOfContentByLine[j];
                 contentText.text += "\n";
             }
+            noOfPages++;
         }
-        noOfPages++;
+        
         print(noOfPages + "asd");
         print(listOfContentsByPage.Count);
+        /*
         if(noOfPages > listOfContentsByPage.Count)
         {
             //on exit, destroy the current gameManager to prevent having duplicated gameManagers
             Destroy(gameManagerForCSS);
             print("game manager destroyed after concept intro");
             gcss.LoadScene("Concept_Selection_Scene");
-        }
+        }*/
     }
 
     //when the next button is pressed
