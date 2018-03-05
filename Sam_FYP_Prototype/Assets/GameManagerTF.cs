@@ -30,6 +30,9 @@ public class GameManagerTF : MonoBehaviour {
         gameManagerForCSS = GameObject.Find("GameManager");
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
+        //update the slider
+        UpdateSliderBar();
+        DisplayContentInHeaders();
         DisplayQuestion();
     }
 
@@ -42,6 +45,31 @@ public class GameManagerTF : MonoBehaviour {
             Destroy(acknowledgementBox);
         }*/
     }
+
+    //update the slider as users attempt each question
+    public void UpdateSliderBar()
+    {
+        Slider s = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Slider>();
+        //15 questions
+        s.maxValue = 15;
+        //update the progress
+        s.value = gcss.sliderBarValue;
+    }
+
+    //To let users know which concept they are currently at as well as what type of question they are attempting
+    void DisplayContentInHeaders()
+    {
+        //display the concept name on the top most subheader
+        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen");
+        Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
+        conceptNamePanelText.text = gcss.conceptName;
+
+        //display the type of question being attempted by the user
+        GameObject questionTypePanel = GameObject.Find("Question Type Panel");
+        Text questionTypePanelText = questionTypePanel.GetComponentInChildren<Text>();
+        questionTypePanelText.text = "True/False Question";
+    }
+
     //display questions at the question panel
     void DisplayQuestion()
     {
@@ -98,7 +126,7 @@ public class GameManagerTF : MonoBehaviour {
             //no score will be added    
             //StartCoroutine(TransitionToNextQuestion());
         }
-        
+        gcss.sliderBarValue += 1;
     }
 
     //delay before displaying next question

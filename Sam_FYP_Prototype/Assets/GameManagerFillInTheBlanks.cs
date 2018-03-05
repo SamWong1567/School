@@ -47,9 +47,35 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         gameManagerForCSS = GameObject.Find("GameManager");
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
+        UpdateSliderBar();
+        DisplayContentInHeaders();
         SplitString();
         DisplayPseudocode();
         StartCoroutine(DisplayAnsOptions());
+    }
+
+    //update the slider as users attempt each question
+    public void UpdateSliderBar()
+    {
+        Slider s = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Slider>();
+        //15 questions
+        s.maxValue = 15;
+        //update the progress
+        s.value = gcss.sliderBarValue;
+    }
+
+    //To let users know which concept they are currently at as well as what type of question they are attempting
+    void DisplayContentInHeaders()
+    {
+        //display the concept name on the top most subheader
+        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen");
+        Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
+        conceptNamePanelText.text = gcss.conceptName;
+
+        //display the type of question being attempted by the user
+        GameObject questionTypePanel = GameObject.Find("Question Type Panel");
+        Text questionTypePanelText = questionTypePanel.GetComponentInChildren<Text>();
+        questionTypePanelText.text = "Fill-in-the-blanks Question";
     }
 
     //split the string that is read in from the file
@@ -343,5 +369,6 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             acknowledgementBox.transform.SetParent(canvas.transform, false);
             acknowledgementBox.transform.localScale.Set(1, 1, 1);
         }
+        gcss.sliderBarValue += 1;
     }
 }

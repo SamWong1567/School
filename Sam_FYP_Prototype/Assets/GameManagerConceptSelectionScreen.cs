@@ -29,6 +29,9 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //keep track of the concept intro file to load
     public int fileNum;
 
+    //keep track of the slider bar value
+    public int sliderBarValue = 0;
+
     //the very first attempt by user
     int NoOfBasicArithmeticAttempts = 0;
     int NoOfDatatypeAttempts = 0;
@@ -107,9 +110,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         int numberOfWrongAns;
         //for fill in the blanks
         int numberOfCorrectAnswers;
-
-        //temporary store for line read in by file
-        string tempLine;
 
         //read the text files stored in the Resources folder
         TextAsset file = Resources.Load(questionFileName) as TextAsset;
@@ -228,7 +228,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         {
             Debug.LogException(e, this);
         }
-
     }
 
     //randomizes a question to be asked
@@ -256,6 +255,12 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
 
     public void CallNextQuestion()
     {
+        //update slider bar to give user a sense of which question they are currently at
+        /*
+        if(sliderBarValue != 15)
+        {
+            UpdateSliderBar();
+        }*/
         //remove the question that was asked
         qnsList.RemoveAt(randomNum);
         //transit to next question
@@ -292,7 +297,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
 
     public void RecordScore()
     {    
-
         if (conceptName.Equals("Basic Arithmetic.txt"))
         {
             //save the final score obtained by the user for the concept: Basic Arimetic
@@ -338,6 +342,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
             PlayerPrefs.SetInt("Assessment Attempts", PlayerPrefs.GetInt("Assessment Attempts") + 1);
         }
     }
+
     //load a concept introduction scene
     public void LoadConceptIntro(int i)
     {

@@ -1,4 +1,4 @@
-Introduction to arithmetic expressions@
+<b>Introduction to arithmetic expressions</b>@
 In programming, arithmetic expressions instructs the computer to do calculations@
 //referenced from python@
 

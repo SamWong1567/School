@@ -14,6 +14,8 @@ public class AcknowledgeToProceed : MonoBehaviour {
         gameManagerForCSS = GameObject.Find("GameManager");
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
+        //update that user attempted the quesiton
+
     }
 
     public void ProceedToNextQuestion()

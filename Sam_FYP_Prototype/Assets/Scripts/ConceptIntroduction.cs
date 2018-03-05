@@ -45,41 +45,42 @@ public class ConceptIntroduction : MonoBehaviour {
         string fileName = "";
         GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen");
         Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
+        conceptNamePanelText.text = "test";
         //identify which concept the user chosen
         if (gcss.fileNum == 1)
         {
             fileName = "Basic Arithmetic Intro";
-            //change the panel app to the corresponding concept name
+            //change the panel header to the corresponding concept name
             conceptNamePanelText.text = "Arithmetic Expressions";
         }
         else if (gcss.fileNum == 2)
         {
             fileName = "Datatype Intro";
-            //change the panel app to the corresponding concept name
+            //change the panel header to the corresponding concept name
             conceptNamePanelText.text = "Datatype";
         }
         else if (gcss.fileNum == 3)
         {
             fileName = "Input Output Intro";
-            //change the panel app to the corresponding concept name
+            //change the panel header to the corresponding concept name
             conceptNamePanelText.text = "Input Output";
         }
         else if (gcss.fileNum == 4)
         {
             fileName = "Conditional Statements Intro";
-            //change the panel app to the corresponding concept name
+            //change the panel header to the corresponding concept name
             conceptNamePanelText.text = "Conditional Statements";
         }
         else if (gcss.fileNum == 5)
         {
             fileName = "Loops Intro";
-            //change the panel app to the corresponding concept name
+            //change the panel header to the corresponding concept name
             conceptNamePanelText.text = "Loops";
         }
         else if (gcss.fileNum == 6)
         {
             fileName = "Assessment Intro";
-            //change the panel app to the corresponding concept name
+            //change the panel header to the corresponding concept name
             conceptNamePanelText.text = "Assessment";
         }
 

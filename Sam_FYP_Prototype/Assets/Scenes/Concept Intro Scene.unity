@@ -1567,7 +1567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1985434227}
   m_Layer: 5
-  m_Name: Page number panel
+  m_Name: Pagination panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
