@@ -1,73 +1,64 @@
-<b>Introduction to arithmetic expressions</b>@
-In programming, arithmetic expressions instructs the computer to do calculations@
-//referenced from python@
+01 Introduction to pseudocode@
+At its simplest, codes are basically instructions for         a computer to execute. In this application, the programming concepts are taught using       <b><i>Pseudocode</i></b> instead of actual syntaxes found in programming languages.@
 
-Example:@
-Print (1+1)@
+As the name denotes, Pseudocodes are a generic     way to represent codes in English. This allow programmers to express their intentions in an     informal and generic way before translating it into actual code. Pseudocodes are numerically indented     to show the flow of how it should be executed by a computer if it were to be written in actual code.@
+
+For e.g. Imagine that you are trying to write a        program to record your spending in a given day.               A <b><i>Pseudocode</i></b> representation of this could be:@
+
+   <color=#757575>1. Allow program to take in values of spending</color>@
+   <color=#757575>2. Sum these inputs</color>@
+   <color=#757575>3. Display total expenses for the day</color>@
+~
+02 Introduction to Arithmetic Expressions@
+Having understood the premise of Pseudocode, we   can now explore our first concept. Represented in    <color=#757575>Grey</color> below, Print(1+1) is an example of a    <b><i>Pseudocode</i></b>; with the Output stating its outcome.@
+
+   <color=#757575>1: Print(1+1)</color>@
 Output: 2@
 
-In the example, line 1 is expressed in terms of pseudocode@
-*Pseudocode: As the name denotes, pseudocodes are a generic way to represent codes instead of the actual syntax found in programming languages //incomplete@
-
-1+1 Is an example of an arithmetic expression.@
-Print is a function which tells the computer computer to output whatever that is found in it’s brackets. In other words, functions are also just another form of instructions for the computer@
-Finally, when the program is run, the output will reflect 2 as the result@
+In the line, Print refers to the Function while (1+1) is   the <b><i>Arithmetic Expression</i></b>. Together, it tells the computer to produce the results in the bracket.@
 ~
-Operators@
-The following operators are commonly used in programming@
+03 Common Operators@
+In Programming, <b><i>Operators</i></b> are symbols that tells        the computers to perform specific mathematical, relational or logical operations. Some commonly       used <b><i>Operators</i></b> are:@
 
-Addition@
-Addition would be done using +@
-Example@
-print(4+2)@
+A) Addition@
+<b><i>Addition</i></b> would be done using <b><color=#00BCD4>+</color></b>, for e.g.@
+
+   <color=#757575>1: Print(4+2)</color>@
 Output: 6@
-~
-Operators@
-The following operators are commonly used in programming@
 
-Subtraction@
-Subtraction would be done using -@
-Example@
-print(4-2)@
+B) Subtraction@
+<b><i>Subtraction</i></b> would be done using <b><color=#00BCD4>-</color></b>, for e.g.@
+
+   <color=#757575>1: Print(4-2)</color>@
 Output: 2@
 ~
-Operators@
-The following operators are commonly used in programming@
+03 Common Operators@
+C) Multiplication@
+<b><i>Multiplication</i></b> would be done using <b><color=#00BCD4>*</color></b>, for e.g.@
 
-Multiplication@
-Multiplication would be done using *@
-Example@
-print(4*2)@
+   <color=#757575>1: Print(4*2)</color>@
 Output: 8@
-~
-Operators@
-The following operators are commonly used in programming@
 
-Division@
-Division would be doing using /@
-Example@
-print(4/2)@
+D) Division@
+<b><i>Division</i></b> would be done using <b><color=#00BCD4>/</color></b>, for e.g.@
+
+   <color=#757575>1: Print(4/2)</color>@
 Output: 2@
-~
-Operators@
-The following operators are commonly used in programming@
 
-Modulus@
-Modulus returns the remainder of the division of 2 numbers@
-This would be done using %@
-Example@
-print(4%2)@
-Output: 0@
+E) Modulus@
+<b><i>Modulus</i></b> returns the remainder of the division of         two numbers; this would be done using <b><color=#00BCD4>%</color></b>, for e.g.@
+
+   <color=#757575>1: Print(5%2)</color>@
+Output: 1@
 ~
-Operator precedence@
-Occasionally, we might want a certain operation to take place before the other.@
-Consider the following expression:@
-2*6+3@
+04 Operator Precedence@
+Occasionally, we might want a certain operation to   take place before another. Consider the following expression:@
+
+   <color=#757575>1: Print(2*6+3)</color>@
 Output: 15@
 
-Technically, multiplication would take place first before the addition.@
-What if we wanted the addition to take place first before the multiplication?@
-This can be done by using brackets ( )@
+Technically, multiplication would take place first      before the addition, but what if we wanted the     addition to take place first before the multiplication? This can be done by using brackets <b><color=#00BCD4>( )</color></b>.@
 
-2*(6+3)@
-Output: 11@
+   <color=#757575>1: Print(2*(6+3))</color>@
+Output: 18@
+

@@ -31,7 +31,7 @@ public class GameManagerTF : MonoBehaviour {
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
         //update the slider
-        UpdateSliderBar();
+        //UpdateSliderBar();
         DisplayContentInHeaders();
         DisplayQuestion();
     }

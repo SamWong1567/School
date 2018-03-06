@@ -255,12 +255,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
 
     public void CallNextQuestion()
     {
-        //update slider bar to give user a sense of which question they are currently at
-        /*
-        if(sliderBarValue != 15)
-        {
-            UpdateSliderBar();
-        }*/
         //remove the question that was asked
         qnsList.RemoveAt(randomNum);
         //transit to next question

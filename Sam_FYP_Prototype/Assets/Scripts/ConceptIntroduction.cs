@@ -28,6 +28,7 @@ public class ConceptIntroduction : MonoBehaviour {
     public GameObject horizontalScrollingPanelPrefab;
     GameObject horizontalScrollingPanel;
 
+
     // Use this for initialization
     void Start ()
     {
@@ -51,13 +52,13 @@ public class ConceptIntroduction : MonoBehaviour {
         {
             fileName = "Basic Arithmetic Intro";
             //change the panel header to the corresponding concept name
-            conceptNamePanelText.text = "Arithmetic Expressions";
+            conceptNamePanelText.text = "Basic Arithmetic Expressions";
         }
         else if (gcss.fileNum == 2)
         {
             fileName = "Datatype Intro";
             //change the panel header to the corresponding concept name
-            conceptNamePanelText.text = "Datatype";
+            conceptNamePanelText.text = "Datatypes";
         }
         else if (gcss.fileNum == 3)
         {
@@ -97,8 +98,6 @@ public class ConceptIntroduction : MonoBehaviour {
     {
         //Main area to spawn panels
         GameObject contentPanel = GameObject.Find("Container");
-        //Text contentText = contentPanel.GetComponentInChildren<Text>();
-        //if(noOfPages < listOfContentsByPage.Count)
         //spawn 1 panel per page
         for(int i = 0; i<listOfContentsByPage.Count; i++)
         {
@@ -107,38 +106,41 @@ public class ConceptIntroduction : MonoBehaviour {
             //set parent to parent panel
             horizontalScrollingPanel.transform.SetParent(contentPanel.transform, false);
             Text contentText = horizontalScrollingPanel.GetComponentInChildren<Text>();
+            //rename subheader panel to uniquely identify and display text
+            GameObject subheaderName = GameObject.Find("Subheader panel");
+            subheaderName.name += i;
             //split content into actual lines
             listOfContentByLine = listOfContentsByPage[noOfPages].Split('@').ToList();
             for (int j = 0; j < listOfContentByLine.Count; j++)
-            {
+            {   
+                //display first line as subheader for every page
+                if(j == 0)
+                {
+                    GameObject subheaderPanel = GameObject.Find(subheaderName.name);
+                    Text subheaderText = subheaderPanel.GetComponentInChildren<Text>();
+                    //remove unnecessary new lines
+                    listOfContentByLine[0] = listOfContentByLine[0].Replace("\n", String.Empty);
+                    subheaderText.text = listOfContentByLine[0];
+                    continue;
+                }
+                if(j == 1)
+                {
+                    //remove unnecessary new lines
+                    listOfContentByLine[1] = listOfContentByLine[1].Replace("\n", String.Empty);
+                }
                 contentText.text += listOfContentByLine[j];
-                contentText.text += "\n";
             }
             noOfPages++;
         }
         
         print(noOfPages + "asd");
         print(listOfContentsByPage.Count);
-        /*
-        if(noOfPages > listOfContentsByPage.Count)
-        {
-            //on exit, destroy the current gameManager to prevent having duplicated gameManagers
-            Destroy(gameManagerForCSS);
-            print("game manager destroyed after concept intro");
-            gcss.LoadScene("Concept_Selection_Scene");
-        }*/
     }
 
-    //when the next button is pressed
-    public void ClearText()
+    //when the quiz button is pressed
+    public void LoadQuiz(String s)
     {
-        //display on the panel
-        GameObject contentPanel = GameObject.Find("Concept Content Panel");
-        Text contentText = contentPanel.GetComponentInChildren<Text>();
-        //clear the text
-        contentText.text = "";
-        //load next content
-        DisplayContent();
+        gcss.LoadConceptQuestions(s);
     }
 
     //for back button

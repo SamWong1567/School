@@ -68,7 +68,7 @@ public class GameManagerMCQ : MonoBehaviour
         gameManagerForCSS = GameObject.Find("GameManager");
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
-        UpdateSliderBar();
+        //UpdateSliderBar();
         DisplayContentInHeaders();
         DisplayQuestion();
         DisplayAnswers();
