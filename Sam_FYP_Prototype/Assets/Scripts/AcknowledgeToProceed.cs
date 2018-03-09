@@ -20,9 +20,9 @@ public class AcknowledgeToProceed : MonoBehaviour {
         //checks if whether user is at the last question
         if(gcss.qnsList.Count == 1)
         {
-            GameObject proceedButtonObj = GameObject.Find("Proceed Button");
+            GameObject proceedButtonObj = GameObject.Find("Next Button");
             Text proceedButtonText = proceedButtonObj.GetComponentInChildren<Text>();
-            proceedButtonText.text = "Return to main menu";
+            proceedButtonText.text = "FINISH";
             Button proceedButton = proceedButtonObj.GetComponentInChildren<Button>();
             //proceedButton.onClick.RemoveListener(ProceedToNextQuestion);
             

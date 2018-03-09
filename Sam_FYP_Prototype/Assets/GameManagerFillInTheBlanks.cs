@@ -36,6 +36,8 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     public GameObject returnToMainMenuDialogueBoxPreFab;
     GameObject returnToMainMenuDialogueBox;
 
+    //variable for NEXT button
+    Button nextButton;
 
     //Array of arrays to store the pseudocodes to be displayed
     string[][] arrayOfArrays = new string[30][];
@@ -50,7 +52,10 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         gameManagerForCSS = GameObject.Find("GameManager");
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
+        //retrieve the NEXT button
+        nextButton = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Button>();
         //UpdateSliderBar();
+        DisableNextButton();
         DisplayContentInHeaders();
         SplitString();
         DisplayPseudocode();
@@ -341,13 +346,27 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         //resets the blank panel to empty again
         blankPanel.GetComponentInChildren<Text>().text = "___";
     }
-    
+
+    //safeguard user from skipping to next question without answering the question
+    void DisableNextButton()
+    {
+        nextButton.interactable = false;
+    }
+
     //check answers when the RUN CODE button is tapped
     public void CheckAnswer()
     {
         Boolean correct = true;
+        //Disable the run button to avoid user from attempting the question again
+        Button runButton = GameObject.Find("Run Button").GetComponent<Button>();
+        runButton.interactable = false;
+        //enable the NEXT button to allow to user to proceed to next question
+        nextButton.interactable = true;
+        //spawn the result outcome panel to display results
         GameObject canvas = GameObject.Find("Canvas");
         acknowledgementBox = Instantiate(acknowedgementBoxPrefab) as GameObject;
+        acknowledgementBox.transform.SetParent(canvas.transform, false);
+        acknowledgementBox.transform.localScale.Set(1, 1, 1);
         for (int i =0;i<blanksGameObjList.Count;i++)
         {
             //as long as this condition is not triggered, the question is deemed to be answered correctly
@@ -355,9 +374,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             {
                 print("Wrong   Ans");
                 //dialogue box to appear to notify that user answered wrongly
-                acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!" + " Current Score: " + gcss.score;
-                acknowledgementBox.transform.SetParent(canvas.transform, false);
-                acknowledgementBox.transform.localScale.Set(1, 1, 1);
+                acknowledgementBox.GetComponentInChildren<Text>().text = "Wrong!";
                 correct = false;
                 break;
             }
@@ -368,9 +385,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             //add score
             gcss.score += 1;
             //dialogue box to appear to notify that user answered correctly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!" + " Current Score: " + gcss.score;
-            acknowledgementBox.transform.SetParent(canvas.transform, false);
-            acknowledgementBox.transform.localScale.Set(1, 1, 1);
+            acknowledgementBox.GetComponentInChildren<Text>().text = "Correct!";
         }
         gcss.sliderBarValue += 1;
     }
