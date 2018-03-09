@@ -403,7 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 51230740}
   m_Layer: 5
-  m_Name: Button - Learn
+  m_Name: Loops Button - Learn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -508,10 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0
@@ -688,7 +685,7 @@ GameObject:
   - component: {fileID: 92067577}
   - component: {fileID: 92067576}
   m_Layer: 5
-  m_Name: Text - Attempts Number
+  m_Name: Datatype - Attempts Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,7 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26153ff35c674d5438623ce489e3edc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows: {fileID: 1120202132}
+  shadows: {fileID: 0}
 --- !u!225 &93414145
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -835,9 +832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite1x: {fileID: 21300000, guid: bdb3c2fa2edce14428c2588d923d9431, type: 3}
-  sprite2x: {fileID: 21300000, guid: f8e0ae8fe4abe4e44bb4a9a89648eea4, type: 3}
-  sprite4x: {fileID: 21300000, guid: ea5374f26645a6843a8727fbebe2cdb0, type: 3}
+  sprite1x: {fileID: 0}
+  sprite2x: {fileID: 0}
+  sprite4x: {fileID: 0}
 --- !u!114 &93414147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,10 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 2042019692}
-  - {fileID: 2000594401}
-  - {fileID: 850865671}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0
@@ -955,7 +949,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bdb3c2fa2edce14428c2588d923d9431, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -980,7 +974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 133700947}
   m_Layer: 5
-  m_Name: Button - Quiz
+  m_Name: Basic Arithmetic Expressions Button - Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1356,7 +1350,7 @@ GameObject:
   - component: {fileID: 389523263}
   - component: {fileID: 389523262}
   m_Layer: 5
-  m_Name: Text - Average Score
+  m_Name: Basic Arithmetic Expressions - Average Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1414,7 +1408,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 0%
 --- !u!222 &389523263
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1566,13 +1560,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomNum: 0
-  AcknowedgementBoxPrefab: {fileID: 1869642187918868, guid: a2b8281a7772e9e4a9192030ca39bd4e,
-    type: 2}
+  AcknowedgementBoxPrefab: {fileID: 0}
   conceptName: 
   score: 0
   fileNum: 0
   sliderBarValue: 0
-  listOfConceptAttempts: 
 --- !u!4 &396889726
 Transform:
   m_ObjectHideFlags: 0
@@ -1752,7 +1744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 433972940}
   m_Layer: 5
-  m_Name: Button - Quiz
+  m_Name: Conditional Statements Button - Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1866,7 +1858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 486239676}
   m_Layer: 5
-  m_Name: Button - Learn
+  m_Name: Basic Arithmetic Expressions Button - Learn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2200,10 +2192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0
@@ -2354,7 +2343,7 @@ GameObject:
   - component: {fileID: 707807784}
   - component: {fileID: 707807783}
   m_Layer: 5
-  m_Name: Text - Attempts Number
+  m_Name: Input Output - Attempts Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2430,7 +2419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 790879544}
   m_Layer: 5
-  m_Name: Button - Learn
+  m_Name: Conditional Statements Button - Learn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2566,8 +2555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84fb88f80357bf14e8a30b1e2bfda1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 1
-  anim: 1
+  isOn: 0
+  anim: 0
 --- !u!225 &818533413
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2746,7 +2735,7 @@ GameObject:
   - component: {fileID: 852713274}
   - component: {fileID: 852713273}
   m_Layer: 5
-  m_Name: Text - Latest Score
+  m_Name: Input Output - Latest Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2824,7 +2813,7 @@ GameObject:
   - component: {fileID: 886098731}
   - component: {fileID: 886098730}
   m_Layer: 5
-  m_Name: Text - Attempts Number
+  m_Name: Basic Arithmetic Expressions - Attempts Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3297,10 +3286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0
@@ -3405,7 +3391,7 @@ GameObject:
   - component: {fileID: 1066797662}
   - component: {fileID: 1066797661}
   m_Layer: 5
-  m_Name: Text - Average Score
+  m_Name: Loops - Average Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3463,7 +3449,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 0%
 --- !u!222 &1066797662
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3483,7 +3469,7 @@ GameObject:
   - component: {fileID: 1070632285}
   - component: {fileID: 1070632284}
   m_Layer: 5
-  m_Name: Text - Attempts Number
+  m_Name: Loops - Attempts Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3696,10 +3682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0
@@ -4005,10 +3988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0
@@ -4213,7 +4193,7 @@ GameObject:
   - component: {fileID: 1199284443}
   - component: {fileID: 1199284442}
   m_Layer: 5
-  m_Name: Text - Average Score
+  m_Name: Datatype - Average Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4271,7 +4251,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 0%
 --- !u!222 &1199284443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4379,7 +4359,6 @@ RectTransform:
   - {fileID: 1725942786}
   - {fileID: 1111218079}
   - {fileID: 9972223}
-  - {fileID: 1433427741}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4537,7 +4516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26153ff35c674d5438623ce489e3edc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows: {fileID: 1301233954}
+  shadows: {fileID: 0}
 --- !u!225 &1237885705
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4562,9 +4541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite1x: {fileID: 21300000, guid: bdb3c2fa2edce14428c2588d923d9431, type: 3}
-  sprite2x: {fileID: 21300000, guid: f8e0ae8fe4abe4e44bb4a9a89648eea4, type: 3}
-  sprite4x: {fileID: 21300000, guid: ea5374f26645a6843a8727fbebe2cdb0, type: 3}
+  sprite1x: {fileID: 0}
+  sprite2x: {fileID: 0}
+  sprite4x: {fileID: 0}
 --- !u!114 &1237885707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4577,10 +4556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 818533412}
-  - {fileID: 1008046133}
-  - {fileID: 1195735635}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0
@@ -4682,7 +4658,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bdb3c2fa2edce14428c2588d923d9431, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5260,7 +5236,7 @@ GameObject:
   - component: {fileID: 1324485646}
   - component: {fileID: 1324485645}
   m_Layer: 5
-  m_Name: Text - Attempts Number
+  m_Name: Conditional Statements - Attempts Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5416,7 +5392,7 @@ GameObject:
   - component: {fileID: 1383582592}
   - component: {fileID: 1383582591}
   m_Layer: 5
-  m_Name: Text - Latest Score
+  m_Name: Conditional Statements - Latest Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5621,74 +5597,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1420157399}
---- !u!1 &1433427740
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1433427741}
-  - component: {fileID: 1433427743}
-  - component: {fileID: 1433427742}
-  m_Layer: 5
-  m_Name: left panel 16
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1433427741
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1433427740}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1217785375}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -172, y: 194.9}
-  m_SizeDelta: {x: 16, y: 90}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1433427742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1433427740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.42068958, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1433427743
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1433427740}
 --- !u!1 &1462496457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5768,10 +5676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0
@@ -5876,7 +5781,7 @@ GameObject:
   - component: {fileID: 1489497500}
   - component: {fileID: 1489497499}
   m_Layer: 5
-  m_Name: Text - Average Score
+  m_Name: Input Output - Average Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5934,7 +5839,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 0%
 --- !u!222 &1489497500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6026,7 +5931,7 @@ GameObject:
   - component: {fileID: 1495640490}
   - component: {fileID: 1495640489}
   m_Layer: 5
-  m_Name: Text - Latest Score
+  m_Name: Basic Arithmetic Expressions - Latest Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6104,7 +6009,7 @@ GameObject:
   - component: {fileID: 1505660329}
   - component: {fileID: 1505660328}
   m_Layer: 5
-  m_Name: Text - Average Score
+  m_Name: Conditional Statements - Average Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6162,7 +6067,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 0%
 --- !u!222 &1505660329
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6180,7 +6085,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1521794192}
   m_Layer: 5
-  m_Name: Button - Learn
+  m_Name: Input Output Button - Learn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6383,7 +6288,7 @@ GameObject:
   - component: {fileID: 1589148471}
   - component: {fileID: 1589148470}
   m_Layer: 5
-  m_Name: Text - Latest Score
+  m_Name: Loops - Latest Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6461,7 +6366,7 @@ GameObject:
   - component: {fileID: 1622534494}
   - component: {fileID: 1622534493}
   m_Layer: 5
-  m_Name: Text - Latest Score
+  m_Name: Datatype - Latest Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7215,7 +7120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1871345085}
   m_Layer: 5
-  m_Name: Button - Quiz
+  m_Name: Loops Button - Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7344,7 +7249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1896570395}
   m_Layer: 5
-  m_Name: Button - Quiz
+  m_Name: Datatype Button - Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7380,7 +7285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911448572}
   m_Layer: 5
-  m_Name: Button - Quiz
+  m_Name: Input Output Button - Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7588,7 +7493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008091677}
   m_Layer: 5
-  m_Name: Button - Learn
+  m_Name: Datatype Button - Learn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7646,8 +7551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84fb88f80357bf14e8a30b1e2bfda1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 1
-  anim: 1
+  isOn: 0
+  anim: 0
 --- !u!225 &2042019693
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8036,10 +7941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0
@@ -8211,10 +8113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f7d0d68c03bc499e5761b021193a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  shadows: []
   shadowNormalSize: 1
   shadowActiveSize: 2
   shadowsActiveWhen: 0

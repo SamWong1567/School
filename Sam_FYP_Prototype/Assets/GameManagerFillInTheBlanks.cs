@@ -10,8 +10,8 @@ using UnityEngine.EventSystems;
 public class GameManagerFillInTheBlanks : MonoBehaviour {
 
     //list of game objects
-    List<GameObject> BlanksGameObjList = new List<GameObject>();
-    List<GameObject> AnswersGameObjList = new List<GameObject>();
+    List<GameObject> blanksGameObjList = new List<GameObject>();
+    List<GameObject> answersGameObjList = new List<GameObject>();
 
     //variables for displaying pseudocode
     GameObject parentPanel;
@@ -31,8 +31,11 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     StoreAnsButtonIndex storeAnsBtnIndex;
 
     //variable for dialogue box
-    public GameObject AcknowedgementBoxPrefab;
+    public GameObject acknowedgementBoxPrefab;
     GameObject acknowledgementBox;
+    public GameObject returnToMainMenuDialogueBoxPreFab;
+    GameObject returnToMainMenuDialogueBox;
+
 
     //Array of arrays to store the pseudocodes to be displayed
     string[][] arrayOfArrays = new string[30][];
@@ -68,7 +71,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     void DisplayContentInHeaders()
     {
         //display the concept name on the top most subheader
-        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen");
+        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen for quizzes");
         Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
         conceptNamePanelText.text = gcss.conceptName;
 
@@ -142,7 +145,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
                     //method will remove selected answer from this blank
                     temp.onClick.AddListener(delegate { RemoveAnswer(); });
                     //add to gameObject list
-                    BlanksGameObjList.Add(pseudocodeBlock);
+                    blanksGameObjList.Add(pseudocodeBlock);
                 }
                 else
                 {
@@ -217,7 +220,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         Button buttonTemp = answerBlock.GetComponent<Button>();
         buttonTemp.onClick.AddListener(delegate { SelectAnswer(); });
         //add it to the answer game object list
-        AnswersGameObjList.Add(answerBlock);
+        answersGameObjList.Add(answerBlock);
         //assign the index of this gameObject to another script
         ansBtnIndex = answerBlock.GetComponent<AnswerButtonIndex>();
         ansBtnIndex.buttonIndex = count;
@@ -239,7 +242,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             buttonTemp = subsequentBlock.GetComponent<Button>();
             buttonTemp.onClick.AddListener(delegate { SelectAnswer(); });
             //add it to the answer game object list
-            AnswersGameObjList.Add(subsequentBlock);
+            answersGameObjList.Add(subsequentBlock);
             //assign the index of this gameObject to another script
             ansBtnIndex = subsequentBlock.GetComponent<AnswerButtonIndex>();
             ansBtnIndex.buttonIndex = count;
@@ -300,15 +303,15 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         //get the game object of the button that is tapped
         GameObject ansButton = EventSystem.current.currentSelectedGameObject;
         //find the very first blank to fill the answer 
-        for(int i = 0; i<BlanksGameObjList.Count; i++)
+        for(int i = 0; i<blanksGameObjList.Count; i++)
         {
-            if(BlanksGameObjList[i].GetComponentInChildren<Text>().text == "___")
+            if(blanksGameObjList[i].GetComponentInChildren<Text>().text == "___")
             {
                 //keep track of which answer button was tapped
                 temp = ansButton.GetComponentInChildren<AnswerButtonIndex>().buttonIndex;
                 //store this index
-                BlanksGameObjList[i].GetComponentInChildren<StoreAnsButtonIndex>().indexStored = temp;
-                BlanksGameObjList[i].GetComponentInChildren<Text>().text = ansButton.GetComponentInChildren<Text>().text;
+                blanksGameObjList[i].GetComponentInChildren<StoreAnsButtonIndex>().indexStored = temp;
+                blanksGameObjList[i].GetComponentInChildren<Text>().text = ansButton.GetComponentInChildren<Text>().text;
                 //to signify the selection of the answer
                 ansButton.GetComponentInChildren<Text>().text = "";      
                 //disable the onClick listern of the button
@@ -330,9 +333,9 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             //get the index of the answer button to return the text to
             index = blankPanel.GetComponentInChildren<StoreAnsButtonIndex>().indexStored;
             //restore the text back to the answer option button
-            AnswersGameObjList[index].GetComponentInChildren<Text>().text = blankPanel.GetComponentInChildren<Text>().text;
+            answersGameObjList[index].GetComponentInChildren<Text>().text = blankPanel.GetComponentInChildren<Text>().text;
             //enable the onClick listern of the button
-            AnswersGameObjList[index].GetComponent<Button>().interactable = true;
+            answersGameObjList[index].GetComponent<Button>().interactable = true;
             //AnswersGameObjList[index].GetComponent<>().enabled = true;
         }
         //resets the blank panel to empty again
@@ -344,11 +347,11 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     {
         Boolean correct = true;
         GameObject canvas = GameObject.Find("Canvas");
-        acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject;
-        for (int i =0;i<BlanksGameObjList.Count;i++)
+        acknowledgementBox = Instantiate(acknowedgementBoxPrefab) as GameObject;
+        for (int i =0;i<blanksGameObjList.Count;i++)
         {
             //as long as this condition is not triggered, the question is deemed to be answered correctly
-            if(!(BlanksGameObjList[i].GetComponentInChildren<Text>().text.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[i])))
+            if(!(blanksGameObjList[i].GetComponentInChildren<Text>().text.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[i])))
             {
                 print("Wrong   Ans");
                 //dialogue box to appear to notify that user answered wrongly
@@ -370,5 +373,14 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             acknowledgementBox.transform.localScale.Set(1, 1, 1);
         }
         gcss.sliderBarValue += 1;
+    }
+
+    //return to main menu
+    public void ReturnToMainMenu()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        returnToMainMenuDialogueBox = Instantiate(returnToMainMenuDialogueBoxPreFab) as GameObject;
+        returnToMainMenuDialogueBox.transform.SetParent(canvas.transform, false);
+        returnToMainMenuDialogueBox.transform.localScale.Set(1, 1, 1);
     }
 }

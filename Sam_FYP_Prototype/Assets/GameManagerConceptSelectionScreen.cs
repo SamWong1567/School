@@ -15,7 +15,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     public int randomNum;
 
     //variable for dialogue box
-    public GameObject AcknowedgementBoxPrefab;
+    public GameObject acknowedgementBoxPrefab;
     GameObject acknowledgementBox;
 
     float delayTime = 2f;
@@ -32,60 +32,15 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //keep track of the slider bar value
     public int sliderBarValue = 0;
 
-    //the very first attempt by user
-    int NoOfBasicArithmeticAttempts = 0;
-    int NoOfDatatypeAttempts = 0;
-    int NoOfInputOutputAttempts = 0;
-    int NoOfConditionalStatementsAttempts = 0;
-    int NoOfLoopsAttempts = 0;
-    int NoOfAssessmentAttempts = 0;
-
-    //List to store the attempts of each concept
-    public List<int> listOfConceptAttempts = new List<int>();
-
+    //stores the number of questions read in
+    int qnsCount;
     private void Start()
     {
+        //DeleteAllSave();
         //to ensure that this game object persist through scene changes
         GameObject.DontDestroyOnLoad(this.gameObject);
-
-        listOfConceptAttempts.Add(NoOfBasicArithmeticAttempts);
-        listOfConceptAttempts.Add(NoOfDatatypeAttempts);
-        listOfConceptAttempts.Add(NoOfInputOutputAttempts);
-        listOfConceptAttempts.Add(NoOfConditionalStatementsAttempts);
-        listOfConceptAttempts.Add(NoOfLoopsAttempts);
-        listOfConceptAttempts.Add(NoOfAssessmentAttempts);
-
-        //save the number of attempts for each concepts in the player prefs for the very first time
-        //For Basic Arithmetic
-        if(!(PlayerPrefs.HasKey("Basic Arithmetic Attempts")))
-        {
-            PlayerPrefs.SetInt("Basic Arithmetic Attempts", listOfConceptAttempts[0]);
-        }
-        //For Datatype
-        if(!(PlayerPrefs.HasKey("Datatype Attempts")))
-        {
-            PlayerPrefs.SetInt("Datatype Attempts", listOfConceptAttempts[1]);
-        }
-        //For Input & Output
-        if (!(PlayerPrefs.HasKey("Input Output Attempts")))
-        {
-            PlayerPrefs.SetInt("Input Output Attempts", listOfConceptAttempts[2]);
-        }
-        //For Conditional Statements
-        if (!(PlayerPrefs.HasKey("Conditional Statements Attempts")))
-        {
-            PlayerPrefs.SetInt("Conditional Statements Attempts", listOfConceptAttempts[3]);
-        }
-        //For Loops
-        if (!(PlayerPrefs.HasKey("Loops Attempts")))
-        {
-            PlayerPrefs.SetInt("Loops Attempts", listOfConceptAttempts[4]);
-        }
-        //For Assessment
-        if (!(PlayerPrefs.HasKey("Assessment Attempts")))
-        {
-            PlayerPrefs.SetInt("Assessment Attempts", listOfConceptAttempts[5]);
-        }
+        //Show the scores of each concept when user loads into the mobile app
+        DisplayScore();
     }
     //read in all the content from the file stated in order to instantiate objects of Question type
     public void LoadConceptQuestions(string questionFileName)
@@ -113,9 +68,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
 
         //read the text files stored in the Resources folder
         TextAsset file = Resources.Load(questionFileName) as TextAsset;
-        //= Path.Combine(Directory.GetCurrentDirectory(),"Assets");
-        //filePath = Path.Combine(filePath, "Questions_Answers_Codes");
-        //filePath = Path.Combine(filePath, questionFileName);
 
         //load all the contents of the file into a string array
         string[] contentsInFile = file.text.Split('\n');
@@ -161,9 +113,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                         question += contentsInFile[index] + '\n';
                         index++;
                     }
-
                     question = question.Remove(question.Length - 1, 1);
-                    
                 }
 
                 //if question type is not fill in the blanks
@@ -180,9 +130,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                     {
                         correctAnswer[i] = contentsInFile[index];
                         index++;
-                        
                     }
-
                 }
                 //question type is MCQ, then read in the wrong answers
                 if(qnsType == 2)
@@ -191,9 +139,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                     {
                         wrongAnswer[i] = contentsInFile[index];
                         index++;
-                        
                     }
-                    
                 }
 
                 //if it is fill in the blanks question, read in the question's wrong options
@@ -222,6 +168,8 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 wrongAnswer = new string[10];
                 correctAnswer = new string[10];
             }
+            //save the number questions read in to calculate the average score as the questions will be removed from the qnsList when attempted
+            qnsCount = qnsList.Count;
             RandomizeQuestion();
         }
         catch (Exception e)
@@ -265,7 +213,10 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         //End of quiz. Return to the concept selection screen
         else
         {
-            StartCoroutine(DelayDialoguePopUp());
+            RecordScore();
+            LoadScene("Concept_Selection_Scene");
+            //destroy the persisting gameManager
+            Destroy(this.gameObject);
         }
     }
 
@@ -281,7 +232,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         GameObject canvas = GameObject.Find("Canvas");
-        acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject;
+        acknowledgementBox = Instantiate(acknowedgementBoxPrefab) as GameObject;
         acknowledgementBox.transform.SetParent(canvas.transform, false);
         acknowledgementBox.transform.localScale.Set(1, 1, 1);
         RecordScore();
@@ -289,52 +240,164 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    //called after user finishes a quiz from a particular concept
     public void RecordScore()
-    {    
-        if (conceptName.Equals("Basic Arithmetic.txt"))
+    {
+        float tempAvgScore = 0.0f;
+        if (conceptName.Equals("Basic Arithmetic Expressions"))
         {
-            //save the final score obtained by the user for the concept: Basic Arimetic
-            PlayerPrefs.SetInt("Basic Arithmetic Save" + PlayerPrefs.GetInt("Basic Arithmetic Attempts"), score);
-            //increment the number of attempts for the concept: Basic Arithemtic for the upcoming attempt
-            PlayerPrefs.SetInt("Basic Arithmetic Attempts", PlayerPrefs.GetInt("Basic Arithmetic Attempts") + 1);
+            //increment the number of attempts for the concept: Basic Arithemtic upon completing the quiz
+            PlayerPrefs.SetInt("Basic Arithmetic Attempts", (PlayerPrefs.GetInt("Basic Arithmetic Attempts") + 1));
+            //save the final score obtained by the user which will be used to display the latest score for the concept: Basic Arithmetic 
+            PlayerPrefs.SetInt("Basic Arithmetic Save", score);
+            //compute the total scores that the user ever obtained for Basic Arithmetic to calculate the average score
+            PlayerPrefs.SetInt("Total Score For Basic Arithmetic", (PlayerPrefs.GetInt("Total Score For Basic Arithmetic") + score));
+            //calculate the average score for the concept Basic Arithmetic
+            tempAvgScore = CalculateAverageScore(PlayerPrefs.GetInt("Total Score For Basic Arithmetic"), PlayerPrefs.GetInt("Basic Arithmetic Attempts"));
+            //convert the average score to the following string format: 00.00%
+            //save the average score for the concept Basic Arithmetic
+            PlayerPrefs.SetString("Average Score For Basic Arithmetic", (tempAvgScore*100).ToString("0.00"));
+            
+            print("me");
+            print("Attempts: " + PlayerPrefs.GetInt("Basic Arithmetic Attempts"));
+            print("Latest Score:" + PlayerPrefs.GetInt("Basic Arithmetic Save"));
+            print("Avg Score:" + (PlayerPrefs.GetString("Average Score For Basic Arithmetic")));
+            print("Total Score:" + PlayerPrefs.GetInt("Total Score For Basic Arithmetic"));
+            
         }
-        else if (conceptName.Equals("Datatype.txt"))
+        else if (conceptName.Equals("Datatype"))
         {
-            //save the final score obtained by the user for the concept: Datatype
-            PlayerPrefs.SetInt("Datatype Save" + PlayerPrefs.GetInt("Datatype Attempts"), score);
-            //increment the number of attempts for the concept: Datatype for the upcoming attempt
-            PlayerPrefs.SetInt("Datatype Attempts", PlayerPrefs.GetInt("Datatype Attempts") + 1);
+            //increment the number of attempts for the concept: Datatype upon completing the quiz
+            PlayerPrefs.SetInt("Datatype Attempts", (PlayerPrefs.GetInt("Datatype Attempts") + 1));
+            //save the final score obtained by the user which will be used to display the latest score for the concept: Datatype
+            PlayerPrefs.SetInt("Datatype Save", score);
+            //compute the total scores that the user ever obtained for Datatype to calculate the average score
+            PlayerPrefs.SetInt("Total Score For Datatype", (PlayerPrefs.GetInt("Total Score For Datatype") + score));
+            //calculate the average score for the concept Datatype
+            tempAvgScore = CalculateAverageScore(PlayerPrefs.GetInt("Total Score For Datatype"), PlayerPrefs.GetInt("Datatype Attempts"));
+            //convert the average score to the following string format: 00.00%
+            //save the average score for the concept Datatype
+            PlayerPrefs.SetString("Average Score For Datatype", (tempAvgScore * 100).ToString("0.00"));
+        }
+        else if (conceptName.Equals("Input Output"))
+        {
+            //increment the number of attempts for the concept: Input Output upon completing the quiz
+            PlayerPrefs.SetInt("Input Output Attempts", (PlayerPrefs.GetInt("Input Output Attempts") + 1));
+            //save the final score obtained by the user which will be used to display the latest score for the concept: Input Output
+            PlayerPrefs.SetInt("Input Output Save", score);
+            //compute the total scores that the user ever obtained for Input Output to calculate the average score
+            PlayerPrefs.SetInt("Total Score For Input Output", (PlayerPrefs.GetInt("Total Score For Input Output") + score));
+            //calculate the average score for the concept Input Output
+            tempAvgScore = CalculateAverageScore(PlayerPrefs.GetInt("Total Score For Input Output"), PlayerPrefs.GetInt("Input Output Attempts"));
+            //convert the average score to the following string format: 00.00%
+            //save the average score for the concept Input Output
+            PlayerPrefs.SetString("Average Score For Input Output", (tempAvgScore * 100).ToString("0.00"));
+        }
+        else if (conceptName.Equals("Conditional Statements"))
+        {
+            //increment the number of attempts for the concept: Conditional Statements upon completing the quiz
+            PlayerPrefs.SetInt("Conditional Statements Attempts", (PlayerPrefs.GetInt("Conditional Statements Attempts") + 1));
+            //save the final score obtained by the user which will be used to display the latest score for the concept: Conditional Statements
+            PlayerPrefs.SetInt("Conditional Statements Save", score);
+            //compute the total scores that the user ever obtained for Conditional Statements to calculate the average score
+            PlayerPrefs.SetInt("Total Score For Conditional Statements", (PlayerPrefs.GetInt("Total Score For Conditional Statements") + score));
+            //calculate the average score for the concept Conditional Statements
+            tempAvgScore = CalculateAverageScore(PlayerPrefs.GetInt("Total Score For Conditional Statements"), PlayerPrefs.GetInt("Conditional Statements Attempts"));
+            //convert the average score to the following string format: 00.00%
+            //save the average score for the concept Conditional Statements
+            PlayerPrefs.SetString("Average Score For Conditional Statements", (tempAvgScore * 100).ToString("0.00"));
+        }
+        else if (conceptName.Equals("Loops"))
+        {
+            //increment the number of attempts for the concept: Loops upon completing the quiz
+            PlayerPrefs.SetInt("Loops Attempts", (PlayerPrefs.GetInt("Loops Attempts") + 1));
+            //save the final score obtained by the user which will be used to display the latest score for the concept: Loops
+            PlayerPrefs.SetInt("Loops Save", score);
+            //compute the total scores that the user ever obtained for Loops to calculate the average score
+            PlayerPrefs.SetInt("Total Score For Loops", (PlayerPrefs.GetInt("Total Score For Loops") + score));
+            //calculate the average score for the concept Loops
+            tempAvgScore = CalculateAverageScore(PlayerPrefs.GetInt("Total Score For Loops"), PlayerPrefs.GetInt("Loops Attempts"));
+            //convert the average score to the following string format: 00.00%
+            //save the average score for the concept Loops
+            PlayerPrefs.SetString("Average Score For Loops", (tempAvgScore * 100).ToString("0.00"));
+        }
+    }
 
-        }
-        else if (conceptName.Equals("Input Output.txt"))
+    void DisplayScore()
+    {
+        //Scores for Basic Arithmetic 
+        Text basicArithmeticNoOfAttemptsText = GameObject.Find("Basic Arithmetic Expressions - Attempts Number").GetComponent<Text>();
+        //Display the number of attempts for Basic Arithmetic
+        basicArithmeticNoOfAttemptsText.text = PlayerPrefs.GetInt("Basic Arithmetic Attempts").ToString();
+        //Display the latest score for Basic Arithmetic
+        Text basicArithmeticLatestScoreText = GameObject.Find("Basic Arithmetic Expressions - Latest Score").GetComponent<Text>();
+        basicArithmeticLatestScoreText.text = PlayerPrefs.GetInt("Basic Arithmetic Save").ToString();
+        //Display the average score for Basic Arithmetic
+        if (PlayerPrefs.HasKey("Average Score For Basic Arithmetic"))
         {
-            //save the final score obtained by the user for the concept: Input Output
-            PlayerPrefs.SetInt("Input Output Save" + PlayerPrefs.GetInt("Input Output Attempts"), score);
-            //increment the number of attempts for the concept: Input Output for the upcoming attempt
-            PlayerPrefs.SetInt("Input Output Attempts", PlayerPrefs.GetInt("Input Output Attempts") + 1);
+            Text basicArithmeticAverageScoreText = GameObject.Find("Basic Arithmetic Expressions - Average Score").GetComponent<Text>();
+            basicArithmeticAverageScoreText.text = PlayerPrefs.GetString("Average Score For Basic Arithmetic") + "%";
+        }
+        //Scores for DataType
+        Text dataTypeNoOfAttemptsText = GameObject.Find("Datatype - Attempts Number").GetComponent<Text>();
+        //Display the number of attempts for DataType
+        dataTypeNoOfAttemptsText.text = PlayerPrefs.GetInt("DataType Attempts").ToString();
+        //Display the latest score for DataType
+        Text dataTypeLatestScoreText = GameObject.Find("Datatype - Latest Score").GetComponent<Text>();
+        dataTypeLatestScoreText.text = PlayerPrefs.GetInt("DataType Save").ToString();
+        //Display the average score for DataType
+        if (PlayerPrefs.HasKey("Average Score For DataType"))
+        {
+            Text datatypeAverageScoreText = GameObject.Find("DataType - Average Score").GetComponent<Text>();
+            datatypeAverageScoreText.text = PlayerPrefs.GetString("Average Score For DataType") + "%";
+        }
+        
+        //Scores for Input Output
+        Text inputOutputNoOfAttemptsText = GameObject.Find("Input Output - Attempts Number").GetComponent<Text>();
+        //Display the number of attempts for Input Output
+        inputOutputNoOfAttemptsText.text = PlayerPrefs.GetInt("Input Output Attempts").ToString();
+        //Display the latest score for Input Output
+        Text inputOutputLatestScoreText = GameObject.Find("Input Output - Latest Score").GetComponent<Text>();
+        inputOutputLatestScoreText.text = PlayerPrefs.GetInt("Input Output Save").ToString();
+        //Display the average score for Input Output
+        if (PlayerPrefs.HasKey("Average Score For Input Output"))
+        {
+            Text inputOutputAverageScoreText = GameObject.Find("Input Output - Average Score").GetComponent<Text>();
+            inputOutputAverageScoreText.text = PlayerPrefs.GetString("Average Score For Input Output") + "%";
+        }
+        
+        //Scores for Conditional Statements
+        Text conditionalStatementsNoOfAttemptsText = GameObject.Find("Conditional Statements - Attempts Number").GetComponent<Text>();
+        //Display the number of attempts for Conditional Statements
+        conditionalStatementsNoOfAttemptsText.text = PlayerPrefs.GetInt("Conditional Statements Attempts").ToString();
+        //Display the latest score for Conditional Statements
+        Text conditionalStatementsLatestScoreText = GameObject.Find("Conditional Statements - Latest Score").GetComponent<Text>();
+        conditionalStatementsLatestScoreText.text = PlayerPrefs.GetInt("Conditional Statements Save").ToString();
+        //Display the average score for Conditional Statements
+        if (PlayerPrefs.HasKey("Average Score For Conditional Statements"))
+        {
+            Text conditionalStatementsAverageScoreText = GameObject.Find("Conditional Statements - Average Score").GetComponent<Text>();
+            conditionalStatementsAverageScoreText.text = PlayerPrefs.GetString("Average Score For Conditional Statements") + "%";
+        }
 
-        }
-        else if (conceptName.Equals("Conditional Statements.txt"))
+        //Scores for Loops 
+        Text loopsNoOfAttemptsText = GameObject.Find("Loops - Attempts Number").GetComponent<Text>();
+        //Display the number of attempts for Loops
+        loopsNoOfAttemptsText.text = PlayerPrefs.GetInt("Loops Attempts").ToString();
+        //Display the latest score for Loops
+        Text loopsLatestScoreText = GameObject.Find("Loops - Latest Score").GetComponent<Text>();
+        loopsLatestScoreText.text = PlayerPrefs.GetInt("Loops Save").ToString();
+        //Display the average score for Loops
+        if (PlayerPrefs.HasKey("Average Score For Loops"))
         {
-            //save the final score obtained by the user for the concept: Conditional Statements
-            PlayerPrefs.SetInt("Conditional Statements Save" + PlayerPrefs.GetInt("Conditional Statements Attempts"), score);
-            //increment the number of attempts for the concept: Conditional Statements for the upcoming attempt
-            PlayerPrefs.SetInt("Conditional Statements Attempts", PlayerPrefs.GetInt("Conditional Statements Attempts") + 1);
+            Text loopsAverageScoreText = GameObject.Find("Loops - Average Score").GetComponent<Text>();
+            loopsAverageScoreText.text = PlayerPrefs.GetString("Average Score For Loops") + "%";
         }
-        else if (conceptName.Equals("Loops.txt"))
-        {
-            //save the final score obtained by the user for the concept: Loops
-            PlayerPrefs.SetInt("Loops Save" + PlayerPrefs.GetInt("Loops Attempts"), score);
-            //increment the number of attempts for the concept: Loops for the upcoming attempt
-            PlayerPrefs.SetInt("Loops Attempts", PlayerPrefs.GetInt("Loops Attempts") + 1);
-        }
-        else if (conceptName.Equals("Assessment.txt"))
-        {
-            //save the final score obtained by the user for the concept: Assessment
-            PlayerPrefs.SetInt("Assessment Save" + PlayerPrefs.GetInt("Assessment Attempts"), score);
-            //increment the number of attempts for the concept: Assessment for the upcoming attempt
-            PlayerPrefs.SetInt("Assessment Attempts", PlayerPrefs.GetInt("Assessment Attempts") + 1);
-        }
+    }
+
+    float CalculateAverageScore(int totalScore, int totalNoOfAttempts)
+    {
+        return (float)totalScore / ((float)totalNoOfAttempts * qnsCount);
     }
 
     //load a concept introduction scene
@@ -344,8 +407,8 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         LoadScene("Concept Intro Scene");
     }
 
-        //for debugging
-        private void OnDestroy()
+    //for debugging
+    private void OnDestroy()
     {
         Debug.Log("GameStatus was destroyed");
     }

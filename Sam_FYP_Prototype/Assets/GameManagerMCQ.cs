@@ -55,8 +55,10 @@ public class GameManagerMCQ : MonoBehaviour
     GameManagerConceptSelectionScreen gcss;
 
     //variable for dialogue box
-    public GameObject AcknowedgementBoxPrefab;
+    public GameObject acknowedgementBoxPrefab;
     GameObject acknowledgementBox;
+    public GameObject returnToMainMenuDialogueBoxPreFab;
+    GameObject returnToMainMenuDialogueBox;
 
     //delay when changing question
     private float delayBetweenQuestions = 1f;
@@ -88,7 +90,7 @@ public class GameManagerMCQ : MonoBehaviour
     void DisplayContentInHeaders()
     {
         //display the concept name on the top most subheader
-        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen");
+        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen for quizzes");
         Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
         conceptNamePanelText.text = gcss.conceptName;
 
@@ -184,12 +186,21 @@ public class GameManagerMCQ : MonoBehaviour
         //checks the answer displayed at option 4 button
         CheckAns(s4);
     }
-    
+
+    //return to main menu
+    public void ReturnToMainMenu()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        returnToMainMenuDialogueBox = Instantiate(returnToMainMenuDialogueBoxPreFab) as GameObject;
+        returnToMainMenuDialogueBox.transform.SetParent(canvas.transform, false);
+        returnToMainMenuDialogueBox.transform.localScale.Set(1, 1, 1);
+    }
+
     //check if the answer selected by the user is correct
     public void CheckAns(string ans)
     {
         GameObject canvas = GameObject.Find("Canvas");
-        acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject;
+        acknowledgementBox = Instantiate(acknowedgementBoxPrefab) as GameObject;
         if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {   //add score
             gcss.score += 1;

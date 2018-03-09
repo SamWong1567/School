@@ -12,7 +12,7 @@ public class ConceptIntroduction : MonoBehaviour {
     GameManagerConceptSelectionScreen gcss;
 
     //variable for dialogue box
-    public GameObject AcknowedgementBoxPrefab;
+    public GameObject acknowedgementBoxPrefab;
     GameObject acknowledgementBox;
 
     //keeps track of the number of pages of content
@@ -44,7 +44,7 @@ public class ConceptIntroduction : MonoBehaviour {
     {
 
         string fileName = "";
-        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen");
+        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen for concept intro");
         Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
         conceptNamePanelText.text = "test";
         //identify which concept the user chosen

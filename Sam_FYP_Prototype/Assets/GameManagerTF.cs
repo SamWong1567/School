@@ -22,6 +22,8 @@ public class GameManagerTF : MonoBehaviour {
     //variable for dialogue box
     public GameObject AcknowedgementBoxPrefab;
     GameObject acknowledgementBox;
+    public GameObject returnToMainMenuDialogueBoxPreFab;
+    GameObject returnToMainMenuDialogueBox;
 
     //called everytime you load/reload a scene
     void Start()
@@ -60,7 +62,7 @@ public class GameManagerTF : MonoBehaviour {
     void DisplayContentInHeaders()
     {
         //display the concept name on the top most subheader
-        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen");
+        GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen for quizzes");
         Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
         conceptNamePanelText.text = gcss.conceptName;
 
@@ -90,7 +92,16 @@ public class GameManagerTF : MonoBehaviour {
         string a = "False";
         CheckAnswer(a);
     }
-    
+
+    //return to main menu
+    public void ReturnToMainMenu()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        returnToMainMenuDialogueBox = Instantiate(returnToMainMenuDialogueBoxPreFab) as GameObject;
+        returnToMainMenuDialogueBox.transform.SetParent(canvas.transform, false);
+        returnToMainMenuDialogueBox.transform.localScale.Set(1, 1, 1);
+    }
+
     //check if answer chosen by user is correct or wrong
     public void CheckAnswer(string ans)
     {

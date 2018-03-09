@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReturnToMenu : MonoBehaviour {
+public class ReturnToHomeDialogueBox : MonoBehaviour {
 
     GameObject gameManagerForCSS;
     GameManagerConceptSelectionScreen gcss;
@@ -14,10 +14,19 @@ public class ReturnToMenu : MonoBehaviour {
         gameManagerForCSS = GameObject.Find("GameManager");
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
-
-        GameObject canvas = GameObject.Find("Canvas");
-
-
     }
 
+
+    public void YesButton()
+    {
+        //destroy persisting gameObj upon exit
+        Destroy(gameManagerForCSS);
+        gcss.LoadScene("Concept_Selection_Scene");
+    }
+
+    public void NoButton()
+    {
+        GameObject dialogueBox = GameObject.Find("Return to home dialogue box(Clone)");
+        Destroy(dialogueBox);
+    }
 }
