@@ -16,7 +16,6 @@ public class ReturnToHomeDialogueBox : MonoBehaviour {
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
     }
 
-
     public void YesButton()
     {
         //destroy persisting gameObj upon exit

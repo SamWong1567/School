@@ -20,15 +20,9 @@ public class AcknowledgeToProceed : MonoBehaviour {
         //checks if whether user is at the last question
         if(gcss.qnsList.Count == 1)
         {
-            GameObject proceedButtonObj = GameObject.Find("Next Button");
+            GameObject proceedButtonObj = GameObject.Find("Next button");
             Text proceedButtonText = proceedButtonObj.GetComponentInChildren<Text>();
             proceedButtonText.text = "FINISH";
-            Button proceedButton = proceedButtonObj.GetComponentInChildren<Button>();
-            //proceedButton.onClick.RemoveListener(ProceedToNextQuestion);
-            
-            //proceedButton.onClick.RemoveAllListeners();
-            //proceedButton.onClick.
-            proceedButton.onClick.AddListener(delegate {EndOfQuestions(); });
         }
     }
 
@@ -37,10 +31,4 @@ public class AcknowledgeToProceed : MonoBehaviour {
         gcss.CallNextQuestion();
     }
 
-    public void EndOfQuestions()
-    {
-        print("i got reached");
-        //destroy the persisting gameManager
-        //Destroy(this.gameObject);
-    }
 }

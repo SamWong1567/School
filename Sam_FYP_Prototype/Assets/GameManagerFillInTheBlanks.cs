@@ -31,8 +31,8 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     StoreAnsButtonIndex storeAnsBtnIndex;
 
     //variable for dialogue box
-    public GameObject acknowedgementBoxPrefab;
-    GameObject acknowledgementBox;
+    public GameObject resultOutcomePanelPrefab;
+    GameObject resultOutcomePanel;
     public GameObject returnToMainMenuDialogueBoxPreFab;
     GameObject returnToMainMenuDialogueBox;
 
@@ -364,9 +364,9 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         nextButton.interactable = true;
         //spawn the result outcome panel to display results
         GameObject canvas = GameObject.Find("Canvas");
-        acknowledgementBox = Instantiate(acknowedgementBoxPrefab) as GameObject;
-        acknowledgementBox.transform.SetParent(canvas.transform, false);
-        acknowledgementBox.transform.localScale.Set(1, 1, 1);
+        resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
+        resultOutcomePanel.transform.SetParent(canvas.transform, false);
+        resultOutcomePanel.transform.localScale.Set(1, 1, 1);
         for (int i =0;i<blanksGameObjList.Count;i++)
         {
             //as long as this condition is not triggered, the question is deemed to be answered correctly
@@ -374,7 +374,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             {
                 print("Wrong   Ans");
                 //dialogue box to appear to notify that user answered wrongly
-                acknowledgementBox.GetComponentInChildren<Text>().text = "Wrong!";
+                resultOutcomePanel.GetComponentInChildren<Text>().text = "Wrong!";
                 correct = false;
                 break;
             }
@@ -385,7 +385,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             //add score
             gcss.score += 1;
             //dialogue box to appear to notify that user answered correctly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Correct!";
+            resultOutcomePanel.GetComponentInChildren<Text>().text = "Correct!";
         }
         gcss.sliderBarValue += 1;
     }

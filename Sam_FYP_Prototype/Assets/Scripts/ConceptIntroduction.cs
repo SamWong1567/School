@@ -11,10 +11,6 @@ public class ConceptIntroduction : MonoBehaviour {
     GameObject gameManagerForCSS;
     GameManagerConceptSelectionScreen gcss;
 
-    //variable for dialogue box
-    public GameObject acknowedgementBoxPrefab;
-    GameObject acknowledgementBox;
-
     //keeps track of the number of pages of content
     int noOfPages = 0;
 
@@ -77,12 +73,6 @@ public class ConceptIntroduction : MonoBehaviour {
             fileName = "Loops Intro";
             //change the panel header to the corresponding concept name
             conceptNamePanelText.text = "Loops";
-        }
-        else if (gcss.fileNum == 6)
-        {
-            fileName = "Assessment Intro";
-            //change the panel header to the corresponding concept name
-            conceptNamePanelText.text = "Assessment";
         }
 
         //retrieve the file in correspond to the concept chosen

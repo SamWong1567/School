@@ -55,13 +55,13 @@ public class GameManagerMCQ : MonoBehaviour
     GameManagerConceptSelectionScreen gcss;
 
     //variable for dialogue box
-    public GameObject acknowedgementBoxPrefab;
-    GameObject acknowledgementBox;
+    public GameObject resultOutcomePanelPrefab;
+    GameObject resultOutcomePanel;
     public GameObject returnToMainMenuDialogueBoxPreFab;
     GameObject returnToMainMenuDialogueBox;
 
-    //delay when changing question
-    private float delayBetweenQuestions = 1f;
+    //variable for NEXT button
+    Button nextButton;
 
     // Use this for initialization
     void Start ()
@@ -70,7 +70,10 @@ public class GameManagerMCQ : MonoBehaviour
         gameManagerForCSS = GameObject.Find("GameManager");
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
+        //retrieve the NEXT button
+        nextButton = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Button>();
         //UpdateSliderBar();
+        DisableNextButton();
         DisplayContentInHeaders();
         DisplayQuestion();
         DisplayAnswers();
@@ -200,39 +203,47 @@ public class GameManagerMCQ : MonoBehaviour
     public void CheckAns(string ans)
     {
         GameObject canvas = GameObject.Find("Canvas");
-        acknowledgementBox = Instantiate(acknowedgementBoxPrefab) as GameObject;
+        DisableAnswerOptionButtons();
+        //enable the NEXT button to allow to user to proceed to next question
+        nextButton.interactable = true;
+        resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
+        resultOutcomePanel.transform.SetParent(canvas.transform, false);
+        resultOutcomePanel.transform.localScale.Set(1, 1, 1);
         if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {   //add score
             gcss.score += 1;
             //dialogue box to appear to notify that user answered correctly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!" + " Current Score: " + gcss.score;
-            acknowledgementBox.transform.SetParent(canvas.transform, false);
-            acknowledgementBox.transform.localScale.Set(1, 1, 1);
-
+            resultOutcomePanel.GetComponentInChildren<Text>().text = "Correct!";
             print("CORRECT");
-            //StartCoroutine(TransitionToNextQuestion());
         }
         else
         {
             //dialogue box to appear to notify that user answered wrongly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!" + " Current Score: " + gcss.score;
-            acknowledgementBox.transform.SetParent(canvas.transform, false);
-            acknowledgementBox.transform.localScale.Set(1, 1, 1);
-
+            resultOutcomePanel.GetComponentInChildren<Text>().text = "Wrong!";
             print("WRONG");
-            //StartCoroutine(TransitionToNextQuestion());
+
         }
         gcss.sliderBarValue += 1;
     }
-    
-    //delay before displaying next question
-    IEnumerator TransitionToNextQuestion()
+
+    //safeguard user from skipping to next question without answering the question
+    void DisableNextButton()
     {
-        yield return new WaitForSeconds(delayBetweenQuestions);
-        //displayQuestion();
-        //displayAnswers();
+        nextButton.interactable = false;
     }
-    
+
+    //disable all answer option buttons after user attempts the question to prevent double attempts
+    void DisableAnswerOptionButtons()
+    {
+        Button option1 = GameObject.Find("Option 1").GetComponentInChildren<Button>();
+        option1.interactable = false;
+        Button option2 = GameObject.Find("Option 2").GetComponentInChildren<Button>();
+        option2.interactable = false;
+        Button option3 = GameObject.Find("Option 3").GetComponentInChildren<Button>();
+        option3.interactable = false;
+        Button option4 = GameObject.Find("Option 4").GetComponentInChildren<Button>();
+        option4.interactable = false;
+    }
 }
 
 

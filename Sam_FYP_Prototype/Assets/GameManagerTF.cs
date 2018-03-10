@@ -20,10 +20,13 @@ public class GameManagerTF : MonoBehaviour {
     GameManagerConceptSelectionScreen gcss;
 
     //variable for dialogue box
-    public GameObject AcknowedgementBoxPrefab;
-    GameObject acknowledgementBox;
+    public GameObject resultOutcomePanelPrefab;
+    GameObject resultOutcomePanel;
     public GameObject returnToMainMenuDialogueBoxPreFab;
     GameObject returnToMainMenuDialogueBox;
+
+    //variable for NEXT button
+    Button nextButton;
 
     //called everytime you load/reload a scene
     void Start()
@@ -32,20 +35,13 @@ public class GameManagerTF : MonoBehaviour {
         gameManagerForCSS = GameObject.Find("GameManager");
         //retrieve the script called GameManagerConceptSelectionScreen.cs that is attached under GameManager
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
+        //retrieve the NEXT button
+        nextButton = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Button>();
         //update the slider
         //UpdateSliderBar();
+        DisableNextButton();
         DisplayContentInHeaders();
         DisplayQuestion();
-    }
-
-    private void Update()
-    {   /*
-        int duration = 2;
-        
-        if (Time.time > time + duration)
-        {
-            Destroy(acknowledgementBox);
-        }*/
     }
 
     //update the slider as users attempt each question
@@ -106,26 +102,24 @@ public class GameManagerTF : MonoBehaviour {
     public void CheckAnswer(string ans)
     {
         GameObject canvas = GameObject.Find("Canvas");
-        acknowledgementBox = Instantiate(AcknowedgementBoxPrefab) as GameObject; 
+        DisableAnswerOptionsButtons();
+        //enable the NEXT button to allow to user to proceed to next question
+        nextButton.interactable = true;
+        resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
+        resultOutcomePanel.transform.SetParent(canvas.transform, false);
+        resultOutcomePanel.transform.localScale.Set(1, 1, 1);
         //if answer is correct
         if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {
             //add to score
             gcss.score += 1;
             //dialogue box to appear to notify that user answered correctly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Good Job!" + " Current Score: " + gcss.score;
-            acknowledgementBox.transform.SetParent(canvas.transform, false);
-            acknowledgementBox.transform.localScale.Set(1,1,1);
-            
-            //add score here
-            //StartCoroutine(TransitionToNextQuestion());
+            resultOutcomePanel.GetComponentInChildren<Text>().text = "Correct!";
         }
         else
         {   
             //dialogue box to appear to notify that user answered wrongly
-            acknowledgementBox.GetComponentInChildren<Text>().text = "Better luck next time!" + " Current Score: " + gcss.score;
-            acknowledgementBox.transform.SetParent(canvas.transform, false);
-            acknowledgementBox.transform.localScale.Set(1, 1, 1);
+            resultOutcomePanel.GetComponentInChildren<Text>().text = "Wrong!";
             print("wrong");
             
             //acknowledgementBox = Instantiate(tryAgainPrefab) as GameObject;
@@ -140,18 +134,25 @@ public class GameManagerTF : MonoBehaviour {
         gcss.sliderBarValue += 1;
     }
 
+    //safeguard user from skipping to next question without answering the question
+    void DisableNextButton()
+    {
+        nextButton.interactable = false;
+    }
+
+    void DisableAnswerOptionsButtons()
+    {
+        Button trueButton = GameObject.Find("Button - TRUE").GetComponentInChildren<Button>();
+        trueButton.interactable = false;
+        Button falseButton = GameObject.Find("Button - FALSE").GetComponentInChildren<Button>();
+        falseButton.interactable = false;
+    }
+
     //delay before displaying next question
     IEnumerator TransitionToNextQuestion ()
     {
         yield return new WaitForSeconds(delayBetweenQuestions);
         DisplayQuestion();
-    }
-
-    //function to load to another scene
-    public void LoadScene(string sceneName)
-    {
-        //load to the specific scene name that was passed into the parameter
-        SceneManager.LoadScene(sceneName);
     }
 
 }

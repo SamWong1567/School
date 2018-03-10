@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qnsText: {fileID: 2129721608}
-  AcknowedgementBoxPrefab: {fileID: 1183280619026766, guid: dc111ff050f22e640a174f5e650c3e91,
+  resultOutcomePanelPrefab: {fileID: 1183280619026766, guid: dc111ff050f22e640a174f5e650c3e91,
     type: 2}
   returnToMainMenuDialogueBoxPreFab: {fileID: 1725631195186694, guid: 4abe708ebe9c15240903252db49cd5e3,
     type: 2}
@@ -1951,7 +1951,7 @@ Prefab:
     - target: {fileID: 224350924573455308, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -61.5
       objectReference: {fileID: 0}
     - target: {fileID: 224350924573455308, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
@@ -1961,7 +1961,7 @@ Prefab:
     - target: {fileID: 224350924573455308, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 224076785095022010, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
@@ -1971,7 +1971,17 @@ Prefab:
     - target: {fileID: 224076785095022010, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 91
+      objectReference: {fileID: 0}
+    - target: {fileID: 224390037093725084, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 34.266598
+      objectReference: {fileID: 0}
+    - target: {fileID: 224390037093725084, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 16.062468
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1366702c9ae8a3f4299f1bfcc2acf762, type: 2}
