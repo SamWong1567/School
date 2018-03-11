@@ -28,6 +28,10 @@ public class GameManagerTF : MonoBehaviour {
     //variable for NEXT button
     Button nextButton;
 
+    //sprite images
+    public Sprite thumbsUp;
+    public Sprite thumbsDown;
+
     //called everytime you load/reload a scene
     void Start()
     {
@@ -105,32 +109,36 @@ public class GameManagerTF : MonoBehaviour {
         DisableAnswerOptionsButtons();
         //enable the NEXT button to allow to user to proceed to next question
         nextButton.interactable = true;
+        //set color to green when button is enabled
+        Text nextButtonColor = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Text>();
+        nextButtonColor.color = new Color32(0, 188, 212, 255);
+        //dialogue box to appear to notify that user answers the question
         resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
         resultOutcomePanel.transform.SetParent(canvas.transform, false);
         resultOutcomePanel.transform.localScale.Set(1, 1, 1);
+        Image iconImage = GameObject.Find("Container").GetComponentInChildren<Image>();
+        Text resultOutComePanelText = resultOutcomePanel.GetComponentInChildren<Text>();
         //if answer is correct
         if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {
             //add to score
             gcss.score += 1;
-            //dialogue box to appear to notify that user answered correctly
-            resultOutcomePanel.GetComponentInChildren<Text>().text = "Correct!";
+            //set font to 16 and color to green when answer is correct
+            resultOutComePanelText.text = "<size=16><color=#009688>Correct!</color></size>" + "\n";
+            //display thumbs up icon
+            iconImage.sprite = thumbsUp;
         }
         else
-        {   
-            //dialogue box to appear to notify that user answered wrongly
-            resultOutcomePanel.GetComponentInChildren<Text>().text = "Wrong!";
-            print("wrong");
-            
-            //acknowledgementBox = Instantiate(tryAgainPrefab) as GameObject;
-            //acknowledgementBox.transform.SetParent(canvas.transform,false);
-
-            //time = Time.time;
-            
-      
-            //no score will be added    
-            //StartCoroutine(TransitionToNextQuestion());
+        {
+            //set font size to 16 and color to red when answer is wrong
+            resultOutComePanelText.text = "<size=16><color=#D50000FF>Wrong!</color></size>" + "\n";
+            //display thumbs down icon
+            iconImage.sprite = thumbsDown;
         }
+        //change color to black to display the correct answer
+        resultOutComePanelText.color = new Color32(33,33,33,215);
+        //Display the correct answer for the question
+        resultOutComePanelText.text += "The answer is " + gcss.qnsList[gcss.randomNum].correctAnswer[0];
         gcss.sliderBarValue += 1;
     }
 
@@ -142,6 +150,7 @@ public class GameManagerTF : MonoBehaviour {
 
     void DisableAnswerOptionsButtons()
     {
+        
         Button trueButton = GameObject.Find("Button - TRUE").GetComponentInChildren<Button>();
         trueButton.interactable = false;
         Button falseButton = GameObject.Find("Button - FALSE").GetComponentInChildren<Button>();

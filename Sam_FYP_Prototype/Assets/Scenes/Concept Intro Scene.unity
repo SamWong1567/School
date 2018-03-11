@@ -815,8 +815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c522d1208bd84e4c98208180a808074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AcknowedgementBoxPrefab: {fileID: 1869642187918868, guid: f734572ebfefda348aa2489a48373d79,
-    type: 2}
   horizontalScrollingPanelPrefab: {fileID: 1088845427242178, guid: fb4380deb6ad36b45ad6101b35775c0b,
     type: 2}
 --- !u!1 &1062893126
@@ -896,7 +894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
+  m_Color: {r: 0, g: 0.7372549, b: 0.83137256, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

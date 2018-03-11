@@ -63,6 +63,10 @@ public class GameManagerMCQ : MonoBehaviour
     //variable for NEXT button
     Button nextButton;
 
+    //sprite images
+    public Sprite thumbsUp;
+    public Sprite thumbsDown;
+
     // Use this for initialization
     void Start ()
     {
@@ -206,21 +210,29 @@ public class GameManagerMCQ : MonoBehaviour
         DisableAnswerOptionButtons();
         //enable the NEXT button to allow to user to proceed to next question
         nextButton.interactable = true;
+        //set color to green when button is enabled
+        Text nextButtonColor = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Text>();
+        nextButtonColor.color = new Color32(0, 188, 212, 255);
         resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
         resultOutcomePanel.transform.SetParent(canvas.transform, false);
         resultOutcomePanel.transform.localScale.Set(1, 1, 1);
+        Image iconImage = GameObject.Find("Container").GetComponentInChildren<Image>();
         if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {   //add score
             gcss.score += 1;
             //dialogue box to appear to notify that user answered correctly
             resultOutcomePanel.GetComponentInChildren<Text>().text = "Correct!";
             print("CORRECT");
+            //display thumbs up icon
+            iconImage.sprite = thumbsUp;
         }
         else
         {
             //dialogue box to appear to notify that user answered wrongly
             resultOutcomePanel.GetComponentInChildren<Text>().text = "Wrong!";
             print("WRONG");
+            //display thumbs down icon
+            iconImage.sprite = thumbsDown;
 
         }
         gcss.sliderBarValue += 1;

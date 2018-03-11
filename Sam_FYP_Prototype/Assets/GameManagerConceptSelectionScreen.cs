@@ -113,6 +113,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                         question += contentsInFile[index] + '\n';
                         index++;
                     }
+                    //remove \n at the end of the last statement
                     question = question.Remove(question.Length - 1, 1);
                 }
 

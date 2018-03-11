@@ -46,6 +46,10 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     int noOfBlanks = 0;
     int namingIndexForAnsButton = 1;
 
+    //sprite images
+    public Sprite thumbsUp;
+    public Sprite thumbsDown;
+
     void Start()
     {
         //retrieve the game object called GameManager
@@ -358,15 +362,19 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     {
         Boolean correct = true;
         //Disable the run button to avoid user from attempting the question again
-        Button runButton = GameObject.Find("Run Button").GetComponent<Button>();
+        Button runButton = GameObject.Find("Run Button").GetComponentInChildren<Button>();
         runButton.interactable = false;
         //enable the NEXT button to allow to user to proceed to next question
         nextButton.interactable = true;
+        //set color to green when button is enabled
+        Text nextButtonColor = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Text>();
+        nextButtonColor.color = new Color32(0, 188, 212, 255);
         //spawn the result outcome panel to display results
         GameObject canvas = GameObject.Find("Canvas");
         resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
         resultOutcomePanel.transform.SetParent(canvas.transform, false);
         resultOutcomePanel.transform.localScale.Set(1, 1, 1);
+        Image iconImage = GameObject.Find("Container").GetComponentInChildren<Image>();
         for (int i =0;i<blanksGameObjList.Count;i++)
         {
             //as long as this condition is not triggered, the question is deemed to be answered correctly
@@ -376,6 +384,8 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
                 //dialogue box to appear to notify that user answered wrongly
                 resultOutcomePanel.GetComponentInChildren<Text>().text = "Wrong!";
                 correct = false;
+                //display thumbs down icon
+                iconImage.sprite = thumbsDown;
                 break;
             }
         }
@@ -386,6 +396,8 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
             gcss.score += 1;
             //dialogue box to appear to notify that user answered correctly
             resultOutcomePanel.GetComponentInChildren<Text>().text = "Correct!";
+            //display thumbs up icon
+            iconImage.sprite = thumbsUp;
         }
         gcss.sliderBarValue += 1;
     }
