@@ -65,6 +65,8 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         int numberOfWrongAns;
         //for fill in the blanks
         int numberOfCorrectAnswers;
+        //explanation text for the quiz questions
+        string quizExplanation;
 
         //read the text files stored in the Resources folder
         TextAsset file = Resources.Load(questionFileName) as TextAsset;
@@ -161,8 +163,11 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                     wrongAnswer = new string[10];
                 }
 
+                quizExplanation = contentsInFile[index];
+                index++;
+
                 //creating and adding instance of Question objects to qnsList  
-                qnsList.Add(new Question(question, correctAnswer, wrongAnswer, qnsType));
+                qnsList.Add(new Question(question, correctAnswer, wrongAnswer, qnsType, quizExplanation));
                 //skip empty line between questions in the textfile
                 //string skipEmptyLine = contentsInFile[index];
                 index++;

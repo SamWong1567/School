@@ -1200,7 +1200,7 @@ MonoBehaviour:
   optionField2: {fileID: 225876752}
   optionField3: {fileID: 1906421921}
   optionField4: {fileID: 147775340}
-  resultOutcomePanelPrefab: {fileID: 1233219952291284, guid: 567fa47cc5a3d1f44a807dcce4d8889f,
+  resultOutcomePanelPrefab: {fileID: 1418167861415778, guid: 567fa47cc5a3d1f44a807dcce4d8889f,
     type: 2}
   returnToMainMenuDialogueBoxPreFab: {fileID: 1533571264934462, guid: 4abe708ebe9c15240903252db49cd5e3,
     type: 2}
@@ -1702,7 +1702,7 @@ Prefab:
     - target: {fileID: 224121416353946506, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224112865194213640, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
@@ -1752,7 +1752,7 @@ Prefab:
     - target: {fileID: 224681935579094676, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 32.094723
+      value: 32.356712
       objectReference: {fileID: 0}
     - target: {fileID: 224681935579094676, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}

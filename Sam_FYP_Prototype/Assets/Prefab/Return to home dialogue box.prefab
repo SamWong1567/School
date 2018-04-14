@@ -467,8 +467,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.3
-  m_Text: "By pressing the up button, you \nwill be returned to the home screen and
-    all progress that you have made in the quiz will be   lost. Are you sure that
+  m_Text: "By pressing the back button, you \nwill be returned to the home screen
+    and all progress that you have made in the quiz will be   lost. Are you sure that
     you want  to continue?"
 --- !u!114 &114381082962681090
 MonoBehaviour:

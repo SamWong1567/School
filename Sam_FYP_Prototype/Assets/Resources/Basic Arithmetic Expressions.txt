@@ -2,11 +2,13 @@
 1
 When assigning variables names you should name them appropriately
 True
+Giving variables meaniningful names will help you identify what the variables were created for.
 
 1
 1
 For loop is used when you do know not the number of loops to occur
 False
+While loop is used when you are unsure of how many times the loop will occur.
 
 2
 1
@@ -15,6 +17,7 @@ Which of the following values should you assign to int?
 2.5
 1 000 000
 0.0008
+int is used for integer values
 
 2
 1
@@ -23,43 +26,56 @@ string
 boolean
 int
 double
+String datatype is used when storing text
 
-3
-3
-1. salary <- 1000
-2. bankAmount <- 5000
-3. totalMoney <- _ + _
-4
-asdasd121
-asdasd
-salary
-bankAmount
-8
-111
-222
-333
-444
-55
-66
-77
-88
-
-3
-3
-1. myMoney <- 1000
-2. bankBal <- 5000
-3. total <-_+_
 2
-myMoney
-bankBal
-5
-asd
-ddd
-fff
-sss
-431
+1
+Assuming that there are 3.2 Malaysian ringgit in each Singapore dollar. Which statement would print the correct amount of 350 Singapore dollars in Malaysian ringgit? 
+print(350*3.2)
+print(350x3.2)
+print(350/3.2)
+print(350+3.2)
+In programming, multiplication is written with *
 
+2
 1
+What is the output of the following pseudocode? print(32 + 9*10/5)
+50
+82
+68
+40
+The multiplication and division operators have a higher precedence than the addition operator and thus would take place first
+
+3
+2
+Find out the number of months in a millennium 
+1. 1 * _ * 12 //Number of months
 1
-Is Aditya gay?
-True
+1000
+4
+100
+500
+10000
+10
+There are 12,000 months in a millennium 
+
+3
+5
+Achieve the following output:
+21 4 121 
+1. print(_%_)
+2. print(_)
+3. print(_/_)
+5
+171
+50
+4
+121
+11
+5
+21
+8
+211
+158
+2
+This question attempts to assess the user’s understanding of the operators. To achieve the value of 21 as the first output, the user will have to mod 171 by 50. The second output is to ensure that the user knows what the print() statement does and in this case, it is simply made to output 4. The last output would simply be taking the value of 121 and dividing it by 11.

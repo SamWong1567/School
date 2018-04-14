@@ -76,7 +76,7 @@ public class GameManagerMCQ : MonoBehaviour
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
         //retrieve the NEXT button
         nextButton = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Button>();
-        //UpdateSliderBar();
+        UpdateSliderBar();
         DisableNextButton();
         DisplayContentInHeaders();
         DisplayQuestion();
@@ -88,7 +88,7 @@ public class GameManagerMCQ : MonoBehaviour
     {
         Slider s = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Slider>();
         //15 questions
-        s.maxValue = 15;
+        s.maxValue = 8;
         //update the progress
         s.value = gcss.sliderBarValue;
     }
@@ -104,7 +104,7 @@ public class GameManagerMCQ : MonoBehaviour
         //display the type of question being attempted by the user
         GameObject questionTypePanel = GameObject.Find("Question Type Panel");
         Text questionTypePanelText = questionTypePanel.GetComponentInChildren<Text>();
-        questionTypePanelText.text = "Multiple Choice Question";
+        questionTypePanelText.text = "Multiple Choice";
     }
 
     //display questions at the question panel
@@ -213,28 +213,31 @@ public class GameManagerMCQ : MonoBehaviour
         //set color to green when button is enabled
         Text nextButtonColor = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Text>();
         nextButtonColor.color = new Color32(0, 188, 212, 255);
+        //dialogue box to appear to notify that user answers the question
         resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
         resultOutcomePanel.transform.SetParent(canvas.transform, false);
         resultOutcomePanel.transform.localScale.Set(1, 1, 1);
         Image iconImage = GameObject.Find("Container").GetComponentInChildren<Image>();
+        Text resultOutComePanelText = resultOutcomePanel.GetComponentInChildren<Text>();
         if (ans.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[0]))
         {   //add score
             gcss.score += 1;
-            //dialogue box to appear to notify that user answered correctly
-            resultOutcomePanel.GetComponentInChildren<Text>().text = "Correct!";
-            print("CORRECT");
+            //set font to 16 and color to green when answer is correct
+            resultOutComePanelText.text = "<size=16><color=#009688>Correct!</color></size>" + "\n";
             //display thumbs up icon
             iconImage.sprite = thumbsUp;
         }
         else
         {
-            //dialogue box to appear to notify that user answered wrongly
-            resultOutcomePanel.GetComponentInChildren<Text>().text = "Wrong!";
-            print("WRONG");
+            //set font size to 16 and color to red when answer is wrong
+            resultOutComePanelText.text = "<size=16><color=#D50000FF>Wrong!</color></size>" + "\n";
             //display thumbs down icon
             iconImage.sprite = thumbsDown;
-
         }
+        //change color to black to display the correct answer
+        resultOutComePanelText.color = new Color32(33, 33, 33, 215);
+        //Display the correct answer and explanation for the question
+        resultOutComePanelText.text += "The answer is " + gcss.qnsList[gcss.randomNum].correctAnswer[0] + "\n" + gcss.qnsList[gcss.randomNum].qnsExplanation;
         gcss.sliderBarValue += 1;
     }
 

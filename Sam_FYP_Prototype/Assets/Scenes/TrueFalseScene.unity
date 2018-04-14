@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qnsText: {fileID: 1700130075}
-  resultOutcomePanelPrefab: {fileID: 1071061917845592, guid: 352804b463b6b17458498f4542425b0f,
+  resultOutcomePanelPrefab: {fileID: 1997438805656490, guid: 352804b463b6b17458498f4542425b0f,
     type: 2}
   returnToMainMenuDialogueBoxPreFab: {fileID: 1533571264934462, guid: 4abe708ebe9c15240903252db49cd5e3,
     type: 2}
@@ -2155,7 +2155,7 @@ Prefab:
     - target: {fileID: 224112865194213640, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -61.5
       objectReference: {fileID: 0}
     - target: {fileID: 224112865194213640, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
@@ -2165,7 +2165,7 @@ Prefab:
     - target: {fileID: 224112865194213640, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 224376633214639270, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
@@ -2175,7 +2175,7 @@ Prefab:
     - target: {fileID: 224376633214639270, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 91
       objectReference: {fileID: 0}
     - target: {fileID: 224681935579094676, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
@@ -2185,7 +2185,7 @@ Prefab:
     - target: {fileID: 224681935579094676, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 15.167209
       objectReference: {fileID: 0}
     - target: {fileID: 224376633214639270, guid: 1366702c9ae8a3f4299f1bfcc2acf762,
         type: 2}

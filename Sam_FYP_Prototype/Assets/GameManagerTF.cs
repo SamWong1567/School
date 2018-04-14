@@ -42,7 +42,7 @@ public class GameManagerTF : MonoBehaviour {
         //retrieve the NEXT button
         nextButton = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Button>();
         //update the slider
-        //UpdateSliderBar();
+        UpdateSliderBar();
         DisableNextButton();
         DisplayContentInHeaders();
         DisplayQuestion();
@@ -53,7 +53,7 @@ public class GameManagerTF : MonoBehaviour {
     {
         Slider s = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Slider>();
         //15 questions
-        s.maxValue = 15;
+        s.maxValue = 8;
         //update the progress
         s.value = gcss.sliderBarValue;
     }
@@ -69,7 +69,7 @@ public class GameManagerTF : MonoBehaviour {
         //display the type of question being attempted by the user
         GameObject questionTypePanel = GameObject.Find("Question Type Panel");
         Text questionTypePanelText = questionTypePanel.GetComponentInChildren<Text>();
-        questionTypePanelText.text = "True/False Question";
+        questionTypePanelText.text = "True or False";
     }
 
     //display questions at the question panel
@@ -137,8 +137,8 @@ public class GameManagerTF : MonoBehaviour {
         }
         //change color to black to display the correct answer
         resultOutComePanelText.color = new Color32(33,33,33,215);
-        //Display the correct answer for the question
-        resultOutComePanelText.text += "The answer is " + gcss.qnsList[gcss.randomNum].correctAnswer[0];
+        //Display the correct answer and explanation for the question
+        resultOutComePanelText.text += "The answer is " + gcss.qnsList[gcss.randomNum].correctAnswer[0] + "\n" + gcss.qnsList[gcss.randomNum].qnsExplanation;
         gcss.sliderBarValue += 1;
     }
 

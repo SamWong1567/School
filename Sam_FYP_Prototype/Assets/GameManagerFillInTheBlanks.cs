@@ -58,7 +58,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         gcss = gameManagerForCSS.GetComponent<GameManagerConceptSelectionScreen>();
         //retrieve the NEXT button
         nextButton = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Button>();
-        //UpdateSliderBar();
+        UpdateSliderBar();
         DisableNextButton();
         DisplayContentInHeaders();
         SplitString();
@@ -71,7 +71,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     {
         Slider s = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Slider>();
         //15 questions
-        s.maxValue = 15;
+        s.maxValue = 8;
         //update the progress
         s.value = gcss.sliderBarValue;
     }
@@ -87,7 +87,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         //display the type of question being attempted by the user
         GameObject questionTypePanel = GameObject.Find("Question Type Panel");
         Text questionTypePanelText = questionTypePanel.GetComponentInChildren<Text>();
-        questionTypePanelText.text = "Fill-in-the-blanks Question";
+        questionTypePanelText.text = "Fill-in-the-blanks ";
     }
 
     //split the string that is read in from the file
@@ -140,7 +140,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
                     Color c = image.color;
                     //changing the alpha to 0 for complete transparency
                     c.a = 0;
-                    image.color = c;
+                    image.color = c; 
                 }
                 //if string is a blank to be filled in extend the blank for visibility 
                 //else print the psuedocode statement
@@ -371,21 +371,22 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         nextButtonColor.color = new Color32(0, 188, 212, 255);
         //spawn the result outcome panel to display results
         GameObject canvas = GameObject.Find("Canvas");
+        //dialogue box to appear to notify that user answers the question
         resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
         resultOutcomePanel.transform.SetParent(canvas.transform, false);
         resultOutcomePanel.transform.localScale.Set(1, 1, 1);
         Image iconImage = GameObject.Find("Container").GetComponentInChildren<Image>();
+        Text resultOutComePanelText = resultOutcomePanel.GetComponentInChildren<Text>();
         for (int i =0;i<blanksGameObjList.Count;i++)
         {
             //as long as this condition is not triggered, the question is deemed to be answered correctly
             if(!(blanksGameObjList[i].GetComponentInChildren<Text>().text.Equals(gcss.qnsList[gcss.randomNum].correctAnswer[i])))
             {
-                print("Wrong   Ans");
-                //dialogue box to appear to notify that user answered wrongly
-                resultOutcomePanel.GetComponentInChildren<Text>().text = "Wrong!";
-                correct = false;
+                //set font size to 16 and color to red when answer is wrong
+                resultOutComePanelText.text = "<size=16><color=#D50000FF>Wrong!</color></size>" + "\n";
                 //display thumbs down icon
                 iconImage.sprite = thumbsDown;
+                correct = false;
                 break;
             }
         }
@@ -394,11 +395,20 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         {
             //add score
             gcss.score += 1;
-            //dialogue box to appear to notify that user answered correctly
-            resultOutcomePanel.GetComponentInChildren<Text>().text = "Correct!";
+            //set font to 16 and color to green when answer is correct
+            resultOutComePanelText.text = "<size=16><color=#009688>Correct!</color></size>" + "\n";
             //display thumbs up icon
             iconImage.sprite = thumbsUp;
         }
+        //change color to black to display the correct answer
+        resultOutComePanelText.color = new Color32(33, 33, 33, 215);
+        //Display the correct answer and explanation for the question
+        string temp = "";
+        for(int i = 0; i<gcss.qnsList[gcss.randomNum].correctAnswer.Length;i++)
+        {
+            temp += gcss.qnsList[gcss.randomNum].correctAnswer[i] + " ";
+        }
+        resultOutComePanelText.text += "The answer is " + temp + "\n" + gcss.qnsList[gcss.randomNum].qnsExplanation;
         gcss.sliderBarValue += 1;
     }
 

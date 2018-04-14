@@ -10,15 +10,17 @@ public class Question{
     //for displaying mcq and fill in the blanks options
     public string[] wrongAns = new string[10];
     public int qnsType;
+    public string qnsExplanation;
 
     //constructor
-    public Question(string q, string[] a, string[] wa, int type)
+    public Question(string q, string[] a, string[] wa, int type, string explanation)
     {
         question = q;
         //source, destination, size
         Array.Copy(a, correctAnswer,10);
         Array.Copy(wa,wrongAns,10);
         qnsType = type;
+        qnsExplanation = explanation;
     }
 
 }
