@@ -1,2 +1,0 @@
-When assigning variables names you should name them appropriately,True,False
-For loop is used when you do know not the number of loops to occur,False,True

@@ -1,4 +1,4 @@
-01 Introduction to pseudocode@
+01 Before we start: Introduction to pseudocode@
 At its simplest, codes are basically instructions for         a computer to execute. In this application, the programming concepts are taught using       <b><i>Pseudocode</i></b> instead of actual syntaxes found in programming languages.@
 
 As the name denotes, Pseudocodes are a generic     way to represent codes in English. This allow programmers to express their intentions in an     informal and generic way before translating it into actual code. Pseudocodes are numerically indented     to show the flow of how it should be executed by a computer if it were to be written in actual code.@
@@ -15,10 +15,10 @@ For e.g. Imagine that you are trying to write a        program to record your sp
    <color=#757575>1: Print(1+1)</color>@
 Output: 2@
 
-In the line, Print refers to the Function while (1+1) is   the <b><i>Arithmetic Expression</i></b>. Together, it tells the computer to produce the results in the bracket.@
+In the line, Print() refers to a Function which displays whatever that is within its brackets onto the computer screen while (1+1) is the <b><i>Arithmetic Expression</i></b>. Together, <color=#757575>Print(1+1)</color> tells the computer to output the results of the arithmetic expression onto the computer screen.@
 ~
 03 Common Operators@
-In Programming, <b><i>Operators</i></b> are symbols that tells        the computers to perform specific mathematical, relational or logical operations. Some commonly       used <b><i>Operators</i></b> are:@
+In Programming, <b><i>Operators</i></b> are symbols that tells        the computers to perform specific mathematical or logical operations. Some commonly used <b><i>Operators</i></b> are:@
 
 A) Addition@
 <b><i>Addition</i></b> would be done using <b><color=#00BCD4>+</color></b>, for e.g.@

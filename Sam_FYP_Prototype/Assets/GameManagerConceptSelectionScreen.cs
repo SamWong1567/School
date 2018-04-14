@@ -250,7 +250,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     public void RecordScore()
     {
         float tempAvgScore = 0.0f;
-        if (conceptName.Equals("Basic Arithmetic Expressions"))
+        if (conceptName.Equals("Introduction & Basic Arithmetic"))
         {
             //increment the number of attempts for the concept: Basic Arithemtic upon completing the quiz
             PlayerPrefs.SetInt("Basic Arithmetic Attempts", (PlayerPrefs.GetInt("Basic Arithmetic Attempts") + 1));
@@ -271,7 +271,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
             print("Total Score:" + PlayerPrefs.GetInt("Total Score For Basic Arithmetic"));
             
         }
-        else if (conceptName.Equals("Datatype"))
+        else if (conceptName.Equals("Variables & Datatypes"))
         {
             //increment the number of attempts for the concept: Datatype upon completing the quiz
             PlayerPrefs.SetInt("Datatype Attempts", (PlayerPrefs.GetInt("Datatype Attempts") + 1));

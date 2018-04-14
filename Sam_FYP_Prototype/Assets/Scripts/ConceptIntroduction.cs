@@ -42,17 +42,16 @@ public class ConceptIntroduction : MonoBehaviour {
         string fileName = "";
         GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen for concept intro");
         Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
-        conceptNamePanelText.text = "test";
         //identify which concept the user chosen
         if (gcss.fileNum == 1)
         {
-            fileName = "Basic Arithmetic Intro";
+            fileName = "Introduction & Basic Arithmetic Intro";
             //change the panel header to the corresponding concept name
-            conceptNamePanelText.text = "Basic Arithmetic Expressions";
+            conceptNamePanelText.text = "Introduction & Basic Arithmetic";
         }
         else if (gcss.fileNum == 2)
         {
-            fileName = "Datatype Intro";
+            fileName = "Variables & Datatypes Intro";
             //change the panel header to the corresponding concept name
             conceptNamePanelText.text = "Datatypes";
         }
