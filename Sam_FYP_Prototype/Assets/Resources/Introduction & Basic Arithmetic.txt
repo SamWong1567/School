@@ -1,32 +1,38 @@
 1
 1
-When assigning variables names you should name them appropriately
-True
-Giving variables meaniningful names will help you identify what the variables were created for.
-
-1
-1
-For loop is used when you do know not the number of loops to occur
+In programming, the division operator is written as \
 False
-While loop is used when you are unsure of how many times the loop will occur.
+In programming, the division operator is written as /.
 
-2
 1
-Which of the following values should you assign to int?
 1
-2.5
-1 000 000
-0.0008
-int is used for integer values
+At its simplest, programming is about writing codes for the computer to execute 
+True
+Codes can also be seen as instructions for the computer.
 
-2
 1
-Which datatype should you use when declaring a text?
-string
-boolean
-int
-double
-String datatype is used when storing text
+1
+Pseudocodes are actual working codes that can be executed by the computer
+False
+Pseudocodes are just a generic way to represent the main idea of how the actual code should be written. 
+
+1
+1
+The print() function is used for arithmetic calculations 
+False
+The print() function is used to output anything in its brackets onto the computer screen.
+
+1
+1
+The modulus operator %, works the same way as the division operator
+False
+The modulus operator %, returns the remainder of the division of 2 numbers.
+
+1
+1
+The computer executes codes in a line by line manner
+True
+This is extremely important as we cannot simply assume that the computer is able to tell how we want our codes to be executed. Rather, we must explicitly state the flow of how the codes should be executed. In pseudocodes, each statement is indented which shows the flow of execution.
 
 2
 1
@@ -35,7 +41,7 @@ print(350*3.2)
 print(350x3.2)
 print(350/3.2)
 print(350+3.2)
-In programming, multiplication is written with *
+In programming, the multiplication operator is *.
 
 2
 1
@@ -44,20 +50,59 @@ What is the output of the following pseudocode? print(32 + 9*10/5)
 82
 68
 40
-The multiplication and division operators have a higher precedence than the addition operator and thus would take place first
+Explanation: The multiplication and division operators have a higher precedence than the addition operator thus, take place first.
+
+2
+1
+Which of the following is a programming operator?
+/
+\
+@
+x
+/ is the only valid operator here which is used for division purposes in programming.
+
+2
+1
+There are 1.51 dollars in each pound. How many pounds are there in one dollar?
+print(1/1.51)
+print(1*1.51)
+print(1\1.51)
+print(1.51/1)
+The solution would be to take 1 dollar and divide it by 1.51 using the / operator.
+
+2
+1
+There are 8 bits in one byte. Print out the number of bits in a kilobyte (* kilo represents 10^3)
+print(8*1000)
+print(8x1000)
+print(8*10000)
+print(8x10000)
+A kilobyte consists of 8,000 bits and the multiplication operator, * should be used.
+
+2
+1
+There are 8 bits in one byte. How many kilobytes are there in one megabyte (* kilo represents 10^3 while megabyte represents 10^6)
+0.001
+1000
+100
+0.01
+When expanded, kilobyte would result to 1,000 bytes whereas megabyte results in 1,000,000 bytes. Therefore, a kilobyte is 1/1000 of a megabyte.
 
 3
+3
+Output the number of months in
+a millennium onto the computer screen 
+1. _ (1 * 1000 * _) 
 2
-Find out the number of months in a millennium 
-1. 1 * _ * 12 //Number of months
-1
-1000
-4
-100
-500
+print
+12
+5
+24
+output
 10000
-10
-There are 12,000 months in a millennium 
+365
+display
+There are 12,000 months in a millennium and the function to be used should be print().
 
 3
 5
@@ -78,4 +123,21 @@ Achieve the following output:
 211
 158
 2
-This question attempts to assess the user’s understanding of the operators. To achieve the value of 21 as the first output, the user will have to mod 171 by 50. The second output is to ensure that the user knows what the print() statement does and in this case, it is simply made to output 4. The last output would simply be taking the value of 121 and dividing it by 11.
+To achieve the value of 21 as the first output, the user will have to mod 171 by 50. The second output is to ensure that the user knows what the print() statement does and in this case, it is simply made to output 4. The last output would simply be taking the value of 121 and dividing it by 11.
+
+3
+5
+Print out the following sentences
+Programming is fun
+1. _(_)
+2. _(_)
+3. _(_)
+6
+print
+Programming
+print
+Is
+print
+Fun
+0
+The purpose of this question would be to showcase that computers execute codes in a line by line manner. Therefore, the flow of how the codes should be run should be explicitly stated and not be assumed that the computer is able know how we want our codes to be run. This flow in pseudocode is represented by indentating each statement of code.

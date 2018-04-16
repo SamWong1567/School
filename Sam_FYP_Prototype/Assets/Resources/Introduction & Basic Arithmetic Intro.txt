@@ -61,4 +61,3 @@ Technically, multiplication would take place first      before the addition, but
 
    <color=#757575>1: Print(2*(6+3))</color>@
 Output: 18@
-

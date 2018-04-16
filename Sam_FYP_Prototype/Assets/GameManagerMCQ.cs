@@ -88,7 +88,7 @@ public class GameManagerMCQ : MonoBehaviour
     {
         Slider s = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Slider>();
         //15 questions
-        s.maxValue = 8;
+        s.maxValue = 15;
         //update the progress
         s.value = gcss.sliderBarValue;
     }
