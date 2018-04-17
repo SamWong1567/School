@@ -5,17 +5,17 @@ For e.g. A variable declaration could be:@
 	<color=#757575>1. int weight</color>@
 <color=#00BCD4>int</color> refers to the type of data that this variable can store while <color=#00BCD4>weight</color> is the name of the variable. You should name variables meaningfully as it helps you to know why and what it was created for.@
 
-The next step would be <b><i>Variable Assignment</i></b> which is to assign a value to <color=#00BCD4>weight</color>@
-	<color=#757575>2. weight = 60</color>@ 
+The next step would be <b><i>Variable Assignment</i></b> which is to assign a value to a variable using the symbol <color=#00BCD4><-</color>@
+	<color=#757575>2. weight <- 60</color>@ 
 Therefore, <color=#00BCD4>weight</color> now stores a value which is <color=#00BCD4>60</color>. *Note that you only have to declare the datatype of a variable once. Therefore, <color=#00BCD4>int</color> is not required to be stated again when assigning a value to <color=#00BCD4>weight</color>.@
 ~
 02 Variable declaration & assignment@
 Having looked at variable declaration & assignment, these two steps can actually be done in a single statement.@
 
 For e.g. Imagine you are writing a program to calculate a person's Body Mass Index (BMI). To capture the person's weight (kg) and height (m) and use it for calculation, variables are required.@ 
-	<color=#757575>1. int weight = 60</color>@ 
-	<color=#757575>2. double height = 1.75</color>@ 	
-	<color=#757575>3. int BMI = weight / (height^2)</color>@ 
+	<color=#757575>1. int weight <- 60</color>@ 
+	<color=#757575>2. double height <- 1.75</color>@ 	
+	<color=#757575>3. int BMI <- weight / (height^2)</color>@ 
 As it can be seen, the variable <color=#00BCD4>weight</color> was declared to be of the <color=#00BCD4>int</color> datatype and assigned a value of <color=#00BCD4>60</color>. This showcases the declaration and assignment of a variable in a single statement. The variable <color=#00BCD4>BMI</color> then stores the result of the BMI formula calculation. In this case, the formula is carried out on the values stored in <color=#00BCD4>weight (60)</color> and <color=#00BCD4>height (1.75)</color> which means that <color=#00BCD4>BMI</color> stores the result of <color=#00BCD4>60/(1.75^2)</color> which is <color=#00BCD4>19.6</color>.@
 
 Therefore, if we were to write <color=#757575>print(BMI)</color>, it would output the value of <color=#00BCD4>19.6</color> and <b>NOT</b> <color=#00BCD4>BMI</color> as that is the name of the variable.@
@@ -25,44 +25,44 @@ This section explores the common <b><i>datatypes</i></b> found in programming wh
 
 A) <b>int</b>@
 int is used to hold integers. For e.g.@
-	<color=#757575>1. int numberOfStudents = 4</color>@
+	<color=#757575>1. int numberOfStudents <- 4</color>@
 B) <b>double</b>@
 double is used to hold values with decimals. For e.g.@
-	<color=#757575>1. double averageTestScore = 86.59</color>@
+	<color=#757575>1. double averageTestScore <- 86.59</color>@
 C) <b>char</b>@
 char is used to hold a <b>SINGLE</b> character. For e.g.@
-	<color=#757575>1. char gender = M</color>@
+	<color=#757575>1. char gender <- M</color>@
 D) <b>String</b>@
 String is used to hold a sequence of characters. For e.g.@
-	<color=#757575>1. String name = John</color>@
+	<color=#757575>1. String name <- John</color>@
 E) <b>boolean</b>@
 boolean is used to hold <b>ONLY</b> either a true or false value. For e.g.@
-	<color=#757575>1. boolean personHasDegree = true</color>@
+	<color=#757575>1. boolean personHasDegree <- true</color>@
 ~
 04 Common mistakes@
 This section looks at the <b>common mistakes</b> when using variables.@
 
 A) <b>Assigning wrong values to variables</b>. For e.g.@
-	<color=#757575>1. boolean gender = 5</color>@
+	<color=#757575>1. boolean gender <- 5</color>@
 <color=#00BCD4>gender</color>, being of type <color=#00BCD4>boolean</color>, only accepts a value of true or false but is assigned an <color=#00BCD4>integer</color>. As such, it is important to note that variables should only be assigned values that they are allowed to store.@
 B) <b>Declaring the same variable twice</b>. For e.g.@
-	<color=#757575>1. int length = 4</color>@
-	<color=#757575>2. int length = 10</color>@
+	<color=#757575>1. int length <- 4</color>@
+	<color=#757575>2. int length <- 10</color>@
 Since <color=#00BCD4>length</color> is already declared in statement 1, statement 2 will cause an error as it is trying to create an already existing variable. The computer will be confused if two variables of the same name exist.@
 C) <b>Omitting the datatype of variable</b>. For e.g.@
-	<color=#757575>1. length = 4</color>@
+	<color=#757575>1. length <- 4</color>@
 The computer does not know what datatype <color=#00BCD4>length</color> is. This is not allowed as all variables must be declared to be a specific datatype.@
 ~
 05 Working with variables@
 When working with variables, there are a few points to note.@
 
 A) <b>Assigning to same variable more than once</b>. For e.g.@
-	<color=#757575>1. int numberOfStudents = 0</color>@
-	<color=#757575>2. numberOfStudents = 5</color>@
+	<color=#757575>1. int numberOfStudents <- 0</color>@
+	<color=#757575>2. numberOfStudents <- 5</color>@
 This is allowed and does not give any error as you are simply updating the content of the variable. It should be noted that the variable will store the value of its latest assignment.@
 
 B) <b>Working with arithmetic calculations</b>. For e.g.@
-	<color=#757575>1. int  numberOfItemsSold = 5</color>@
-	<color=#757575>2. numberOfItemsSold = numberOfItemsSold + 1</color>@
+	<color=#757575>1. int  numberOfItemsSold <- 5</color>@
+	<color=#757575>2. numberOfItemsSold <- numberOfItemsSold + 1</color>@
 	<color=#757575>3. print(numberOfItemsSold)</color>@
 The output of statement 3 would be <color=#00BCD4>6</color>. This is because in statement 2, <color=#00BCD4>(numberOfItemsSold + 1)</color> translates to taking the content stored in <color=#00BCD4>numberOfItemsSold</color> and increment it by 1. After which, store this result to <color=#00BCD4>numberOfItemsSold</color>.@

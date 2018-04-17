@@ -77,6 +77,7 @@ public class GameManagerMCQ : MonoBehaviour
         //retrieve the NEXT button
         nextButton = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Button>();
         UpdateSliderBar();
+        UpdateQnsNumber();
         DisableNextButton();
         DisplayContentInHeaders();
         DisplayQuestion();
@@ -91,6 +92,16 @@ public class GameManagerMCQ : MonoBehaviour
         s.maxValue = 15;
         //update the progress
         s.value = gcss.sliderBarValue;
+    }
+
+    //update the question number of the question that is being shown to the user
+    public void UpdateQnsNumber()
+    {
+        Text qnsNum = GameObject.Find("Q Text").GetComponentInChildren<Text>();
+        //Since the slider bar value starts at 0, we increment it by 1 as to not display Question 0
+        int temp = gcss.sliderBarValue;
+        temp += 1;
+        qnsNum.text = "Q" + temp;
     }
 
     //To let users know which concept they are currently at as well as what type of question they are attempting
@@ -110,7 +121,6 @@ public class GameManagerMCQ : MonoBehaviour
     //display questions at the question panel
     void DisplayQuestion()
     {
-        print("list count" + gcss.qnsList.Count);
         qnsText.text = gcss.qnsList[gcss.randomNum].question;
     }
     

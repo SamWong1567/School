@@ -1,38 +1,38 @@
 1
 1
-In programming, the division operator is written as \
+In programming, the division operator is written as \.
 False
-In programming, the division operator is written as /.
+<color=#757575>In programming, the division operator is written as /.</color>
 
 1
 1
-At its simplest, programming is about writing codes for the computer to execute 
+At its simplest, programming is about writing codes for the computer to execute. 
 True
-Codes can also be seen as instructions for the computer.
+<color=#757575>Codes can also be seen as instructions for the computer.</color>
 
 1
 1
-Pseudocodes are actual working codes that can be executed by the computer
+Pseudocodes are actual working codes that can be executed by the computer.
 False
-Pseudocodes are just a generic way to represent the main idea of how the actual code should be written. 
+<color=#757575>Pseudocodes are just a generic way to represent the main idea of how the actual code should be written.</color>
 
 1
 1
-The print() function is used for arithmetic calculations 
+The print() function is used for arithmetic calculations. 
 False
-The print() function is used to output anything in its brackets onto the computer screen.
+<color=#757575>The print() function is used to output anything in its brackets onto the computer screen.</color>
 
 1
 1
-The modulus operator %, works the same way as the division operator
+The modulus operator %, works the same way as the division operator.
 False
-The modulus operator %, returns the remainder of the division of 2 numbers.
+<color=#757575>The modulus operator %, returns the remainder of the division of 2 numbers.</color>
 
 1
 1
-The computer executes codes in a line by line manner
+The computer executes codes in a line by line manner.
 True
-This is extremely important as we cannot simply assume that the computer is able to tell how we want our codes to be executed. Rather, we must explicitly state the flow of how the codes should be executed. In pseudocodes, each statement is indented which shows the flow of execution.
+<color=#757575>This is extremely important as we cannot simply assume that the computer is able to tell how we want our codes to be executed. Rather, we must explicitly state the flow of how the codes should be executed. In pseudocodes, each statement is indented which shows the flow of execution.</color>
 
 2
 1
@@ -41,16 +41,17 @@ print(350*3.2)
 print(350x3.2)
 print(350/3.2)
 print(350+3.2)
-In programming, the multiplication operator is *.
+<color=#757575>In programming, the multiplication operator is *.</color>
 
 2
-1
-What is the output of the following pseudocode? print(32 + 9*10/5)
+2
+What is the output of the following pseudocode? 
+1. print(32 + 9*10/5)
 50
 82
 68
 40
-Explanation: The multiplication and division operators have a higher precedence than the addition operator thus, take place first.
+<color=#757575>The multiplication and division operators have a higher precedence than the addition operator thus, take place first.</color>
 
 2
 1
@@ -59,7 +60,7 @@ Which of the following is a programming operator?
 \
 @
 x
-/ is the only valid operator here which is used for division purposes in programming.
+<color=#757575>/ is the only valid operator here which is used for division purposes in programming.</color>
 
 2
 1
@@ -68,30 +69,32 @@ print(1/1.51)
 print(1*1.51)
 print(1\1.51)
 print(1.51/1)
-The solution would be to take 1 dollar and divide it by 1.51 using the / operator.
+<color=#757575>The solution would be to take 1 dollar and divide it by 1.51 using the / operator.</color>
 
 2
-1
-There are 8 bits in one byte. Print out the number of bits in a kilobyte (* kilo represents 10^3)
+2
+There are 8 bits in one byte. Print out the number of bits in a kilobyte.
+(* kilo represents 10^3)
 print(8*1000)
 print(8x1000)
 print(8*10000)
 print(8x10000)
-A kilobyte consists of 8,000 bits and the multiplication operator, * should be used.
+<color=#757575>A kilobyte consists of 8,000 bits and the multiplication operator, * should be used.</color>
 
 2
-1
-There are 8 bits in one byte. How many kilobytes are there in one megabyte (* kilo represents 10^3 while megabyte represents 10^6)
+2
+There are 8 bits in one byte. How many kilobytes are there in one megabyte?
+(* kilo represents 10^3 while megabyte represents 10^6)
 0.001
 1000
 100
 0.01
-When expanded, kilobyte would result to 1,000 bytes whereas megabyte results in 1,000,000 bytes. Therefore, a kilobyte is 1/1000 of a megabyte.
+<color=#757575>When expanded, kilobyte would result to 1,000 bytes whereas megabyte results in 1,000,000 bytes. Therefore, a kilobyte is 1/1000 of a megabyte.</color>
 
 3
 3
 Output the number of months in
-a millennium onto the computer screen 
+a millennium onto the computer screen. 
 1. _ (1 * 1000 * _) 
 2
 print
@@ -102,7 +105,7 @@ output
 10000
 365
 display
-There are 12,000 months in a millennium and the function to be used should be print().
+<color=#757575>There are 12,000 months in a millennium and the function to be used should be print().</color>
 
 3
 5
@@ -123,7 +126,7 @@ Achieve the following output:
 211
 158
 2
-To achieve the value of 21 as the first output, the user will have to mod 171 by 50. The second output is to ensure that the user knows what the print() statement does and in this case, it is simply made to output 4. The last output would simply be taking the value of 121 and dividing it by 11.
+<color=#757575>To achieve the value of 21 as the first output, the user will have to mod 171 by 50. The second output is to ensure that the user knows what the print() statement does and in this case, it is simply made to output 4. The last output would simply be taking the value of 121 and dividing it by 11.</color>
 
 3
 5
@@ -140,4 +143,4 @@ Is
 print
 Fun
 0
-The purpose of this question would be to showcase that computers execute codes in a line by line manner. Therefore, the flow of how the codes should be run should be explicitly stated and not be assumed that the computer is able know how we want our codes to be run. This flow in pseudocode is represented by indentating each statement of code.
+<color=#757575>The purpose of this question would be to showcase that computers execute codes in a line by line manner. Therefore, the flow of how the codes should be run should be explicitly stated and not be assumed that the computer is able know how we want our codes to be run. This flow in pseudocode is represented by numerically indenting each statement of code.</color>

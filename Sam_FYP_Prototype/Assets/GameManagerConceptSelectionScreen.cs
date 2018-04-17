@@ -14,10 +14,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //will be assigned a random number and be used to display questions such as true/false, MCQ or fill in the blanks
     public int randomNum;
 
-    //variable for dialogue box
-    public GameObject acknowedgementBoxPrefab;
-    GameObject acknowledgementBox;
-
     float delayTime = 2f;
 
     //store the name of concept that users are attempting
@@ -102,22 +98,15 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 numberOfQnsLines = int.Parse(contentsInFile[index]);
                 index++;
 
-                if (qnsType != 3)
+                //loop for the number of lines in the question
+                for (int i = 0; i < numberOfQnsLines; i++)
                 {
-                    question = contentsInFile[index];
+                    //read each question line in the format that is displayed in the text
+                    question += contentsInFile[index] + '\n';
                     index++;
                 }
-                else
-                {
-                    for (int i = 0; i < numberOfQnsLines; i++)
-                    {
-                        //read each question line in the format that is displayed in the text
-                        question += contentsInFile[index] + '\n';
-                        index++;
-                    }
-                    //remove \n at the end of the last statement
-                    question = question.Remove(question.Length - 1, 1);
-                }
+                //remove \n at the end of the last statement
+                question = question.Remove(question.Length - 1, 1);
 
                 //if question type is not fill in the blanks
                 if (qnsType != 3)
@@ -211,6 +200,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     {
         //remove the question that was asked
         qnsList.RemoveAt(randomNum);
+        print(qnsList.Count);
         //transit to next question
         if (qnsList.Count != 0)
         {
@@ -233,19 +223,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    //delay before displaying "end of quiz" message
-    IEnumerator DelayDialoguePopUp()
-    {
-        yield return new WaitForSeconds(delayTime);
-        GameObject canvas = GameObject.Find("Canvas");
-        acknowledgementBox = Instantiate(acknowedgementBoxPrefab) as GameObject;
-        acknowledgementBox.transform.SetParent(canvas.transform, false);
-        acknowledgementBox.transform.localScale.Set(1, 1, 1);
-        RecordScore();
-        //destroy the persisting gameManager
-        Destroy(this.gameObject);
-    }
-
     //called after user finishes a quiz from a particular concept
     public void RecordScore()
     {
@@ -264,16 +241,9 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
             //save the average score for the concept Introduction & Basic Arithmetic
             PlayerPrefs.SetString("Average Score For Basic Arithmetic", (tempAvgScore*100).ToString("0.00"));
             
-            print("me");
-            print("Attempts: " + PlayerPrefs.GetInt("Basic Arithmetic Attempts"));
-            print("Latest Score:" + PlayerPrefs.GetInt("Basic Arithmetic Save"));
-            print("Avg Score:" + (PlayerPrefs.GetString("Average Score For Basic Arithmetic")));
-            print("Total Score:" + PlayerPrefs.GetInt("Total Score For Basic Arithmetic"));
-            
         }
         else if (conceptName.Equals("Variables & Datatypes"))
         {
-            print("hi was called");
             //increment the number of attempts for the concept: Datatype upon completing the quiz
             PlayerPrefs.SetInt("Datatype Attempts", (PlayerPrefs.GetInt("Datatype Attempts") + 1));
             //save the final score obtained by the user which will be used to display the latest score for the concept: Datatype

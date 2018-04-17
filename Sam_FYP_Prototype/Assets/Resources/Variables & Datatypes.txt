@@ -1,11 +1,165 @@
 1
 1
-[Datatype] When assigning variables names you should name them appropriately
+When assigning variables names, you should name them appropriately.
 True
-this is test
+<color=#757575>Giving variables meaningful names will help you identify what the variables were created for.</color>
+
+1
+3
+The following pseudocodes will not cause an error:
+1. int numberOfSongs <- 12
+2. int numberOfSongs <- 15
+False
+<color=#757575>A variable only needs to be declared once. Otherwise, it will cause an error as it will be taken by the computer that you are trying to create an existing variable.</color>
 
 1
 1
-[Datatype] For loop is used when you do know not the number of loops to occur
+The datatype, boolean, only holds a value of either true or false.
+True
+<color=#757575>Boolean is not allowed to hold any other values other than true or false.</color>
+
+1
+2
+The following statement will cause an error:
+1. char surname <- Jun
+True
+<color=#757575>char is only allowed to store a SINGLE character and not a sequence of characters.</color>
+
+1
+1
+Variable declaration and assignment can both be done in the same statement.
+True
+<color=#757575>Rather than having to declare the variable first then assigning it a variable which leads to two statements, we can simply perform both in one step which only require one statement which is more efficient.</color>
+
+2
+1
+Which of the following values should you assign to a variable of datatype int?
+1 000 000
+2.5
+a
+true
+<color=#757575>int is used for storing integer values which in this case is 1,000,000.</color>
+
+2
+1
+Which datatype should you use when storing a sequence of characters?
+String
+boolean
+char
+double
+<color=#757575>String datatype is used when storing a chain of characters such as “This is a sentence” while char only stores a SINGLE character such as ‘a’.</color> 
+
+2
+3
+What would be the output of the following pseudocode?
+1. int x <- 5
+2. print(x)
+5
+x
+Error
+Blank
+<color=#757575>The contents of the variable will be printed and not the name of the variable.</color>
+
+2
+5
+Which of the following are datatypes?
+1) int
+2) text
+3) variable
+4) char
+1,4
+1,2,3,4
+1,3,4
+1,2,4
+<color=#757575>The only datatypes here are int and char. Note that a variable is not a datatype.</color>
+
+2
+4
+Which of the following statements will cause an error?
+1. int numberOfDogs <- 3
+2. int numberOfCats <- 2
+3. totalNumberOfPets <- numberOfDogs + numberOfCats
+3
+1,2
+None of the above
+1,2,3
+<color=#757575>Statement 3 will cause an error as the variable totalNumberOfPets, is not declared to be of a specific datatype. This is not allowed as the computer won’t be able to know what type of values it is permitted to store.</color>
+
+2
+3
+Which of the following datatype would be the 
+most appropriate for the following sentence:
+Whether a person owns a pet.
+boolean
+char
+string
+double
+<color=#757575>In this case, boolean would be the most efficient datatype to use. This is because it only accepts a value of true or false. Therefore, if the person is assigned true, it would mean that he does own a pet. Otherwise, false would mean that the person does not own a pet.</color>
+
+2
+5
+What would be the output of the following pseudocodes?
+1. int x <- 1
+2. int y <- 4
+3. int z <- 2*x + 3*y
+4. print(z)
+14
+5
+Error will occur
+11
+<color=#757575>Arithmetic expression works perfectly fine with variables. In this case, we will be taking 2 and multiplying it with the contents of variable x while 3 would be used to multiply with the contents of variable y. These two results are then added together and stored in z which then outputs 14.</color>
+
+3
+3
+Declare a variable called numberOfDogs
+and assign it with an integer value of 5
+1. _  _ _  _
+4
+int
+numberOfDogs
+<-
+5
+4
+char
+num
+var
+->
+<color=#757575>Since the value to be stored is of type integer, the datatype int must be used. In addition, the assignment operator should be <-.</color>
+
+3
+4
+Complete the pseudocode 
+and print out the word Music.
+1. _ word  _ _
+2. _ _ _ _
+7
+String
+<-
+Music
+print
+(
+word
+)
+3
+char
+text
+->
+<color=#757575>First, declare the variable, word to be of String datatype as the word “Music” is a sequence of characters. After which, assign Music to it. Lastly, obtain the required output by telling the print() function to output the contents of the variable, word.</color>
+
+3
+7
+Assign the given values to
+their appropriate datatype
+1. int <- _
+2. double <- _
+3. char <- _
+4. String <- _
+5. boolean <- _
+5
+5342
+-99.123
++
+John15
 False
-test
+0
+<color=#757575>int will hold the value of 5342 since it is a integer. Double holds the value of -99.123 as it is a decimal number and is not affected by it being a negative number. char holds the value of + as it is a single character. String holds John15 as it is simply a sequence of characters. Lastly, boolean holds the value of false.</color>
