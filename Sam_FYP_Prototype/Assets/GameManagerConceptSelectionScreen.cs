@@ -252,16 +252,16 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         float tempAvgScore = 0.0f;
         if (conceptName.Equals("Introduction & Basic Arithmetic"))
         {
-            //increment the number of attempts for the concept: Basic Arithemtic upon completing the quiz
+            //increment the number of attempts for the concept: Introduction & Basic Arithemtic upon completing the quiz
             PlayerPrefs.SetInt("Basic Arithmetic Attempts", (PlayerPrefs.GetInt("Basic Arithmetic Attempts") + 1));
-            //save the final score obtained by the user which will be used to display the latest score for the concept: Basic Arithmetic 
+            //save the final score obtained by the user which will be used to display the latest score for the concept: Introduction & Basic Arithmetic 
             PlayerPrefs.SetInt("Basic Arithmetic Save", score);
-            //compute the total scores that the user ever obtained for Basic Arithmetic to calculate the average score
+            //compute the total scores that the user ever obtained for Introduction & Basic Arithmetic to calculate the average score
             PlayerPrefs.SetInt("Total Score For Basic Arithmetic", (PlayerPrefs.GetInt("Total Score For Basic Arithmetic") + score));
-            //calculate the average score for the concept Basic Arithmetic
+            //calculate the average score for the concept Introduction & Basic Arithmetic
             tempAvgScore = CalculateAverageScore(PlayerPrefs.GetInt("Total Score For Basic Arithmetic"), PlayerPrefs.GetInt("Basic Arithmetic Attempts"));
             //convert the average score to the following string format: 00.00%
-            //save the average score for the concept Basic Arithmetic
+            //save the average score for the concept Introduction & Basic Arithmetic
             PlayerPrefs.SetString("Average Score For Basic Arithmetic", (tempAvgScore*100).ToString("0.00"));
             
             print("me");
@@ -273,6 +273,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         }
         else if (conceptName.Equals("Variables & Datatypes"))
         {
+            print("hi was called");
             //increment the number of attempts for the concept: Datatype upon completing the quiz
             PlayerPrefs.SetInt("Datatype Attempts", (PlayerPrefs.GetInt("Datatype Attempts") + 1));
             //save the final score obtained by the user which will be used to display the latest score for the concept: Datatype
@@ -345,17 +346,17 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
             basicArithmeticAverageScoreText.text = PlayerPrefs.GetString("Average Score For Basic Arithmetic") + "%";
         }
         //Scores for DataType
-        Text dataTypeNoOfAttemptsText = GameObject.Find("Datatype - Attempts Number").GetComponent<Text>();
+        Text dataTypeNoOfAttemptsText = GameObject.Find("Variable and Datatype - Attempts Number").GetComponent<Text>();
         //Display the number of attempts for DataType
-        dataTypeNoOfAttemptsText.text = PlayerPrefs.GetInt("DataType Attempts").ToString();
+        dataTypeNoOfAttemptsText.text = PlayerPrefs.GetInt("Datatype Attempts").ToString();
         //Display the latest score for DataType
-        Text dataTypeLatestScoreText = GameObject.Find("Datatype - Latest Score").GetComponent<Text>();
-        dataTypeLatestScoreText.text = PlayerPrefs.GetInt("DataType Save").ToString();
+        Text dataTypeLatestScoreText = GameObject.Find("Variable and Datatype - Latest Score").GetComponent<Text>();
+        dataTypeLatestScoreText.text = PlayerPrefs.GetInt("Datatype Save").ToString();
         //Display the average score for DataType
-        if (PlayerPrefs.HasKey("Average Score For DataType"))
+        if (PlayerPrefs.HasKey("Average Score For Datatype"))
         {
-            Text datatypeAverageScoreText = GameObject.Find("DataType - Average Score").GetComponent<Text>();
-            datatypeAverageScoreText.text = PlayerPrefs.GetString("Average Score For DataType") + "%";
+            Text datatypeAverageScoreText = GameObject.Find("Variable and Datatype - Average Score").GetComponent<Text>();
+            datatypeAverageScoreText.text = PlayerPrefs.GetString("Average Score For Datatype") + "%";
         }
         
         //Scores for Input Output

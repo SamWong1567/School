@@ -19,6 +19,7 @@ public class ConceptIntroduction : MonoBehaviour {
 
     string tempLine;
     string tempStoreContent;
+    string fileName = "";
 
     //panel to display text
     public GameObject horizontalScrollingPanelPrefab;
@@ -38,8 +39,6 @@ public class ConceptIntroduction : MonoBehaviour {
     //identify which concept the user chosen and retrieve the content in the file for that concept
     public void LoadContent()
     {
-
-        string fileName = "";
         GameObject conceptNamePanel = GameObject.Find("Concept Name Panel on top of screen for concept intro");
         Text conceptNamePanelText = conceptNamePanel.GetComponentInChildren<Text>();
         //identify which concept the user chosen
@@ -53,7 +52,7 @@ public class ConceptIntroduction : MonoBehaviour {
         {
             fileName = "Variables & Datatypes Intro";
             //change the panel header to the corresponding concept name
-            conceptNamePanelText.text = "Datatypes";
+            conceptNamePanelText.text = "Variables & Datatypes";
         }
         else if (gcss.fileNum == 3)
         {
@@ -127,9 +126,11 @@ public class ConceptIntroduction : MonoBehaviour {
     }
 
     //when the quiz button is pressed
-    public void LoadQuiz(String s)
+    public void LoadQuiz()
     {
-        gcss.LoadConceptQuestions(s);
+        //Trim away the "Intro" characters of the file name
+        string temp = fileName.Substring(0, fileName.Length - 6);
+        gcss.LoadConceptQuestions(temp);
     }
 
     //for back button
