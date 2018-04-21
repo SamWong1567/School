@@ -54,7 +54,7 @@ public class GameManagerTF : MonoBehaviour {
     {
         Slider s = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Slider>();
         //15 questions
-        s.maxValue = 15;
+        s.maxValue = 8;
         //update the progress
         s.value = gcss.sliderBarValue;
     }

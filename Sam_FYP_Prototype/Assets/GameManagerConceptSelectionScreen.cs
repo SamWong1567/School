@@ -14,8 +14,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //will be assigned a random number and be used to display questions such as true/false, MCQ or fill in the blanks
     public int randomNum;
 
-    float delayTime = 2f;
-
     //store the name of concept that users are attempting
     public string conceptName;
 
@@ -38,10 +36,9 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         //Show the scores of each concept when user loads into the mobile app
         DisplayScore();
     }
-    //read in all the content from the file stated in order to instantiate objects of Question type
+    //read in all the content from the file and represent each question as an object of Question type
     public void LoadConceptQuestions(string questionFileName)
     {
-        //DeleteAllSave();
         //get the name of the concept
         conceptName = questionFileName;
         //temporary store for question
@@ -158,7 +155,6 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 //creating and adding instance of Question objects to qnsList  
                 qnsList.Add(new Question(question, correctAnswer, wrongAnswer, qnsType, quizExplanation));
                 //skip empty line between questions in the textfile
-                //string skipEmptyLine = contentsInFile[index];
                 index++;
                 wrongAnswer = new string[10];
                 correctAnswer = new string[10];
@@ -201,8 +197,8 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         //remove the question that was asked
         qnsList.RemoveAt(randomNum);
         print(qnsList.Count);
-        //transit to next question
-        if (qnsList.Count != 0)
+        //transit to next question if less than 8 questions asked
+        if (qnsList.Count != 7)
         {
             RandomizeQuestion();
         }
@@ -372,9 +368,10 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         }
     }
 
+    //method to calculate the average score obtained by the user
     float CalculateAverageScore(int totalScore, int totalNoOfAttempts)
     {
-        return (float)totalScore / ((float)totalNoOfAttempts * qnsCount);
+        return (float)totalScore / ((float)totalNoOfAttempts * 8);
     }
 
     //load a concept introduction scene
@@ -387,9 +384,11 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
     //for debugging
     private void OnDestroy()
     {
-        Debug.Log("GameStatus was destroyed");
+        //print this message when the persisting GameManager is destroyed
+        Debug.Log("GameManager was destroyed");
     }
 
+    //To delete all the keys that are used to save the scores.
     public void DeleteAllSave()
     {
         PlayerPrefs.DeleteAll();

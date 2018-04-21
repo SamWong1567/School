@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerOnBoarding : MonoBehaviour
 {
-
     // Use this for initialization
     void Start ()
     {

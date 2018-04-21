@@ -18,7 +18,7 @@ public class AcknowledgeToProceed : MonoBehaviour {
         //update that user attempted the quesiton
 
         //checks if whether user is at the last question
-        if(gcss.qnsList.Count == 1)
+        if(gcss.qnsList.Count == 8)
         {
             GameObject proceedButtonObj = GameObject.Find("Next button");
             Text proceedButtonText = proceedButtonObj.GetComponentInChildren<Text>();
