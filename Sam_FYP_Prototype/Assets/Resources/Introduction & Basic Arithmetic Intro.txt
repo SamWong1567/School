@@ -10,9 +10,9 @@ For e.g. Imagine that you are trying to write a        program to record your sp
    <color=#757575>3. Display total expenses for the day</color>@
 ~
 02 Introduction to Arithmetic Expressions@
-Having understood the premise of Pseudocode, we   can now explore our first concept. Represented in    <color=#757575>Grey</color> below, Print(1+1) is an example of a    <b><i>Pseudocode</i></b>; with the Output stating its outcome.@
+Having understood the premise of Pseudocode, we   can now explore our first concept. Represented in    <color=#757575>Grey</color> below, print(1+1) is an example of a    <b><i>Pseudocode</i></b>; with the Output stating its outcome.@
 
-   <color=#757575>1: Print(1+1)</color>@
+   <color=#757575>1. print(1+1)</color>@
 Output: 2@
 
 In the line, Print() refers to a Function which displays whatever that is within its brackets onto the computer screen while (1+1) is the <b><i>Arithmetic Expression</i></b>. Together, <color=#757575>Print(1+1)</color> tells the computer to output the results of the arithmetic expression onto the computer screen.@
@@ -23,41 +23,41 @@ In the line, Print() refers to a Function which displays whatever that is within
 A) Addition@
 <b><i>Addition</i></b> would be done using <b><color=#00BCD4>+</color></b>, for e.g.@
 
-   <color=#757575>1: Print(4+2)</color>@
+   <color=#757575>1. print(4+2)</color>@
 Output: 6@
 
 B) Subtraction@
 <b><i>Subtraction</i></b> would be done using <b><color=#00BCD4>-</color></b>, for e.g.@
 
-   <color=#757575>1: Print(4-2)</color>@
+   <color=#757575>1. print(4-2)</color>@
 Output: 2@
 ~
 03 Common Operators@
 C) Multiplication@
 <b><i>Multiplication</i></b> would be done using <b><color=#00BCD4>*</color></b>, for e.g.@
 
-   <color=#757575>1: Print(4*2)</color>@
+   <color=#757575>1. print(4*2)</color>@
 Output: 8@
 
 D) Division@
 <b><i>Division</i></b> would be done using <b><color=#00BCD4>/</color></b>, for e.g.@
 
-   <color=#757575>1: Print(4/2)</color>@
+   <color=#757575>1. print(4/2)</color>@
 Output: 2@
 
 E) Modulus@
 <b><i>Modulus</i></b> returns the remainder of the division of         two numbers; this would be done using <b><color=#00BCD4>%</color></b>, for e.g.@
 
-   <color=#757575>1: Print(5%2)</color>@
+   <color=#757575>1. print(5%2)</color>@
 Output: 1@
 ~
 04 Operator Precedence@
 Occasionally, we might want a certain operation to   take place before another. Consider the following expression:@
 
-   <color=#757575>1: Print(2*6+3)</color>@
+   <color=#757575>1. print(2*6+3)</color>@
 Output: 15@
 
 Technically, multiplication would take place first      before the addition, but what if we wanted the     addition to take place first before the multiplication? This can be done by using brackets <b><color=#00BCD4>( )</color></b>.@
 
-   <color=#757575>1: Print(2*(6+3))</color>@
+   <color=#757575>1. print(2*(6+3))</color>@
 Output: 18@
