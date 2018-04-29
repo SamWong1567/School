@@ -167,12 +167,5 @@ public class GameManagerTF : MonoBehaviour {
         falseButton.interactable = false;
     }
 
-    //delay before displaying next question
-    IEnumerator TransitionToNextQuestion ()
-    {
-        yield return new WaitForSeconds(delayBetweenQuestions);
-        DisplayQuestion();
-    }
-
 }
 
