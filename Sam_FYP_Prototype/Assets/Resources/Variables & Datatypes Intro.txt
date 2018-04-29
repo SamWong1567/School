@@ -16,8 +16,7 @@ For e.g. Imagine you are writing a program to calculate a person's Body Mass Ind
 	<color=#757575>1. int weight <- 60</color>@ 
 	<color=#757575>2. double height <- 1.75</color>@ 	
 	<color=#757575>3. int BMI <- weight / (height^2)</color>@ 
-As it can be seen, the variable <color=#00BCD4>weight</color> was declared to be of the <color=#00BCD4>int</color> datatype and assigned a value of <color=#00BCD4>60</color>. This showcases the declaration and assignment of a variable in a single statement. The variable <color=#00BCD4>BMI</color> then stores the result of the BMI formula calculation. In this case, the formula is carried out on the values stored in <color=#00BCD4>weight (60)</color> and <color=#00BCD4>height (1.75)</color> which means that <color=#00BCD4>BMI</color> stores the result of <color=#00BCD4>60/(1.75^2)</color> which is <color=#00BCD4>19.6</color>.@
-
+As it can be seen, the variable <color=#00BCD4>weight</color> was declared to be of the <color=#00BCD4>int</color> datatype and assigned a value of <color=#00BCD4>60</color>. This showcases the declaration and assignment of a variable in a single statement. The variable <color=#00BCD4>BMI</color> then stores the result of the BMI formula calculation <color=#00BCD4>60/(1.75^2)</color> by using the values stored in <color=#00BCD4>weight (60)</color> and <color=#00BCD4>height (1.75)</color>.@
 Therefore, if we were to write <color=#757575>print(BMI)</color>, it would output the value of <color=#00BCD4>19.6</color> and <b>NOT</b> <color=#00BCD4>BMI</color> as that is the name of the variable.@
 ~
 03 Datatypes@

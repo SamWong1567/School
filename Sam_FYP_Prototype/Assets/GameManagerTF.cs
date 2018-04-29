@@ -7,14 +7,10 @@ using System.IO; //for StreamReader
 using UnityEngine.SceneManagement;//for loading between scenes
 //Script for True False Scene
 public class GameManagerTF : MonoBehaviour {
-    float time;
 
    //to allow questions to be edited in the unity editor. Dragged text under panel into game manager QnsText field
     [SerializeField]
     private Text qnsText;
-
-    //delay when changing question
-    private float delayBetweenQuestions = 1f;
 
     GameObject gameManagerForCSS;
     GameManagerConceptSelectionScreen gcss;
@@ -54,7 +50,7 @@ public class GameManagerTF : MonoBehaviour {
     {
         Slider s = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Slider>();
         //15 questions
-        s.maxValue = 8;
+        s.maxValue = 7;
         //update the progress
         s.value = gcss.sliderBarValue;
     }
@@ -122,7 +118,7 @@ public class GameManagerTF : MonoBehaviour {
         //set color to green when button is enabled
         Text nextButtonColor = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Text>();
         nextButtonColor.color = new Color32(0, 188, 212, 255);
-        //dialogue box to appear to notify that user answers the question
+        //explanation box to appear to notify if the user answers the question correctly 
         resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
         resultOutcomePanel.transform.SetParent(canvas.transform, false);
         resultOutcomePanel.transform.localScale.Set(1, 1, 1);
@@ -158,6 +154,7 @@ public class GameManagerTF : MonoBehaviour {
         nextButton.interactable = false;
     }
 
+    //disable the TRUE and FALSE button from being interactive after the user attempts the question to prevent double attempts
     void DisableAnswerOptionsButtons()
     {
         

@@ -148,7 +148,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
                 {
                     wrongAnswer = new string[10];
                 }
-
+                //read in the explanation for the question
                 quizExplanation = contentsInFile[index];
                 index++;
 
@@ -219,7 +219,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    //called after user finishes a quiz from a particular concept
+    //called after user finishes a quiz of a particular concept
     public void RecordScore()
     {
         float tempAvgScore = 0.0f;
@@ -296,6 +296,7 @@ public class GameManagerConceptSelectionScreen : MonoBehaviour
         }
     }
 
+    //display the number of attempts, latest and average score at the main menu screen
     void DisplayScore()
     {
         //Scores for Basic Arithmetic 

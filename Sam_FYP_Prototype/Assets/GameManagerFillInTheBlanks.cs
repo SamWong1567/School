@@ -72,7 +72,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
     {
         Slider s = GameObject.Find("Bottom panel with slider").GetComponentInChildren<Slider>();
         //15 questions
-        s.maxValue = 8;
+        s.maxValue = 7;
         //update the progress
         s.value = gcss.sliderBarValue;
     }
@@ -382,7 +382,7 @@ public class GameManagerFillInTheBlanks : MonoBehaviour {
         nextButtonColor.color = new Color32(0, 188, 212, 255);
         //spawn the result outcome panel to display results
         GameObject canvas = GameObject.Find("Canvas");
-        //dialogue box to appear to notify that user answers the question
+        //explanation box to appear to notify if the user answers the question correctly
         resultOutcomePanel = Instantiate(resultOutcomePanelPrefab) as GameObject;
         resultOutcomePanel.transform.SetParent(canvas.transform, false);
         resultOutcomePanel.transform.localScale.Set(1, 1, 1);
